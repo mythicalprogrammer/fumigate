@@ -4,6 +4,7 @@ defmodule Fumigate.Repo.Migrations.CreateCoherenceUser do
     create table(:users) do
 
       add :name, :string
+      add :username, :string
       add :email, :string
       # authenticatable
       add :password_hash, :string

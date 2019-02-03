@@ -5,6 +5,7 @@ defmodule Fumigate.Coherence.User do
   
   schema "users" do
     field(:name, :string)
+    field(:username, :string)
     field(:email, :string)
     coherence_schema()
 
