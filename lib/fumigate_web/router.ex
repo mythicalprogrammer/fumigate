@@ -44,6 +44,7 @@ defmodule FumigateWeb.Router do
   scope "/", FumigateWeb do
     pipe_through :browser
     get "/", PageController, :index
+    resources "/users", UserController, only: [:index, :show]
   end
 
   # Other scopes may use custom stacks.
