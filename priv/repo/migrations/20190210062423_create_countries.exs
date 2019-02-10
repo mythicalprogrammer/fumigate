@@ -3,7 +3,7 @@ defmodule Fumigate.Repo.Migrations.CreateCountries do
 
   def change do
     create table(:countries) do
-      add :name, :string
+      add :name, :string, null: false
 
       timestamps()
     end
