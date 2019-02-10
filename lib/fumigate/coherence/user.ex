@@ -16,9 +16,10 @@ defmodule Fumigate.Coherence.User do
   @spec changeset(Ecto.Schema.t(), Map.t()) :: Ecto.Changeset.t()
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, ~w(name email)a ++ coherence_fields())
-    |> validate_required([:name, :email])
+    |> cast(params, ~w(name username email)a ++ coherence_fields())
+    |> validate_required([:name, :username, :email])
     |> validate_format(:email, ~r/@/)
+    |> unique_constraint(:username)
     |> unique_constraint(:email)
     |> validate_coherence(params)
   end

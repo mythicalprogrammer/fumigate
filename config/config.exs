@@ -41,6 +41,7 @@ config :coherence,
   registration_permitted_attributes: [
     "email",
     "name",
+    "username",
     "password",
     "current_password",
     "password_confirmation"

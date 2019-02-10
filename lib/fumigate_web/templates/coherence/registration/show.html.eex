@@ -4,6 +4,10 @@
     <strong><%= dgettext "coherence", "Name:" %></strong>
     <%= @user.name %>
   </li>
+  <li>
+    <strong><%= dgettext "coherence", "Username:" %></strong>
+    <%= @user.username %>
+  </li>
   <%= unless (login_field = Coherence.Config.login_field) == :email do %>
     <li>
       <strong><%= humanize login_field %></strong>

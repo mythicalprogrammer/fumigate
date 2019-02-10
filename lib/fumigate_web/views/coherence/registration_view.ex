@@ -6,6 +6,7 @@ defmodule FumigateWeb.Coherence.RegistrationView do
       user: %{
         id: user.id,
         name: user.name,
+        username: user.username,
         email: user.email
       }
     }
@@ -16,6 +17,7 @@ defmodule FumigateWeb.Coherence.RegistrationView do
       user: %{
         id: user.id,
         name: user.name,
+        username: user.username,
         email: user.email
       }
     }
