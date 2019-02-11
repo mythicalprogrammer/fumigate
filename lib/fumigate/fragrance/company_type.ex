@@ -10,8 +10,8 @@ defmodule Fumigate.Fragrance.Company_Type do
   end
 
   @doc false
-  def changeset(company__type, attrs) do
-    company__type
+  def changeset(company_type, attrs) do
+    company_type
     |> cast(attrs, [:company_type])
     |> validate_required([:company_type])
   end
