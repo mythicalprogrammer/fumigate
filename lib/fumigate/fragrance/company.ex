@@ -4,18 +4,18 @@ defmodule Fumigate.Fragrance.Company do
 
 
   schema "companies" do
+    field :company_name, :string, null: false
     field :company_description, :string
-    field :company_name, :string
     field :company_url, :string
     field :day_established, :integer
     field :logo_url, :string
     field :month_established, :integer
     field :year_established, :integer
-    field :country_id, :id
-    field :parent_company_id, :id
-    field :company_type_id, :id
-    field :company_main_activity_id, :id
 
+    many_to_many :company_types, Fumigate.Fragrance.Company_Type, join_through: Fumigate.Fragrance.Company_Type_Join
+    belongs_to :countries, Fumigate.Fragrance.Country, foreign_key: :country_id
+    has_one :companies, Fumigate.Fragrance.Company, foreign_key: :parent_company_id
+    belongs_to :company_main_activities, Fumigate.Fragrance.Company_Main_Activity, foreign_key: :company_main_activity_id
     timestamps()
   end
 
