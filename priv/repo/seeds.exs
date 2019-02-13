@@ -101,3 +101,14 @@ end
 for company_type <- ["niche designer", "celebrity brand"] do
   Fragrance.create_company_type(company_type)
 end
+
+for main_activity <- [ "Fragrances",
+                       "Cosmetics",
+                       "Celebrity",
+                       "Jewelry", 
+                       "Design",
+                       "Sport Fashion", 
+                       "Fashion" 
+] do
+    Fragrance.create_company_main_activity(main_activity)
+end
