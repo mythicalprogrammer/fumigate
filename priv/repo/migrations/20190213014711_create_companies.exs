@@ -2,12 +2,13 @@ defmodule Fumigate.Repo.Migrations.CreateCompanies do
   use Ecto.Migration
 
   def change do
+    MonthEnum.create_type
     create table(:companies) do
       add :company_name, :string
-      add :company_description, :string
+      add :company_description, :text
       add :logo_url, :string
       add :year_established, :integer
-      add :month_established, :integer
+      add :month_established, MonthEnum.type() 
       add :day_established, :integer
       add :company_url, :string
       add :country_id, references(:countries, on_delete: :nothing)
