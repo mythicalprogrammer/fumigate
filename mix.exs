@@ -45,7 +45,8 @@ defmodule Fumigate.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:coherence, 
         git: "https://github.com/appprova/coherence.git", 
-        branch: "upgrade-to-phoenix-1.4"}
+        branch: "upgrade-to-phoenix-1.4"},
+      {:ecto_enum, "~> 1.2"}
     ]
   end
 
