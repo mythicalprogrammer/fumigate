@@ -6,6 +6,7 @@ defmodule Fumigate.Fragrance.Country do
   schema "countries" do
     field :name, :string, null: false
 
+    has_many :companies, Fumigate.Fragrance.Company
     timestamps()
   end
 
