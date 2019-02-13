@@ -6,6 +6,11 @@ defmodule Fumigate.Fragrance do
   import Ecto.Query, warn: false
   alias Fumigate.Repo
   alias Fumigate.Fragrance.Country
+  alias Fumigate.Fragrance.Company_Type
+
+  def create_company_type(company_type) do
+    Repo.get_by(Company_Type, company_type: company_type) || Repo.insert!(%Company_Type{company_type: company_type})
+  end
 
   def create_country(name) do
     Repo.get_by(Country, name: name) || Repo.insert!(%Country{name: name})

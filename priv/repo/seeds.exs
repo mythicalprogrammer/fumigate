@@ -97,3 +97,7 @@ for country <- [
   ] do
   Fragrance.create_country(country)
 end
+
+for company_type <- ["niche designer", "celebrity brand"] do
+  Fragrance.create_company_type(company_type)
+end
