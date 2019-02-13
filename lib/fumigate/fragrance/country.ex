@@ -4,7 +4,7 @@ defmodule Fumigate.Fragrance.Country do
 
 
   schema "countries" do
-    field :name, :string
+    field :name, :string, null: false
 
     timestamps()
   end
