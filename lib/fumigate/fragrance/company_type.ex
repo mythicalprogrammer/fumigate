@@ -6,6 +6,7 @@ defmodule Fumigate.Fragrance.Company_Type do
   schema "company_types" do
     field :company_type, :string
 
+    many_to_many :companies, Fumigate.Fragrance.Company, join_through: Fumigate.Fragrance.Company_Type_Join
     timestamps()
   end
 
