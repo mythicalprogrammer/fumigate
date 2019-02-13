@@ -6,6 +6,7 @@ defmodule Fumigate.Fragrance.Company_Main_Activity do
   schema "company_main_activities" do
     field :main_activity, :string, null: false
 
+    has_many :companies, Fumigate.Fragrance.Company
     timestamps()
   end
 
