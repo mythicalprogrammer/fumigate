@@ -9,7 +9,7 @@ defmodule Fumigate.Fragrance.Company do
     field :company_url, :string
     field :day_established, :integer
     field :logo_url, :string
-    field :month_established, :integer
+    field :month_established, MonthEnum
     field :year_established, :integer
 
     many_to_many :company_types, Fumigate.Fragrance.Company_Type, join_through: Fumigate.Fragrance.Company_Type_Join
