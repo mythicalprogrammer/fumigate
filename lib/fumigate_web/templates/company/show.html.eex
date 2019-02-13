@@ -1,0 +1,43 @@
+<h1>Show Company</h1>
+
+<ul>
+
+  <li>
+    <strong>Company name:</strong>
+    <%= @company.company_name %>
+  </li>
+
+  <li>
+    <strong>Company description:</strong>
+    <%= @company.company_description %>
+  </li>
+
+  <li>
+    <strong>Logo url:</strong>
+    <%= @company.logo_url %>
+  </li>
+
+  <li>
+    <strong>Year established:</strong>
+    <%= @company.year_established %>
+  </li>
+
+  <li>
+    <strong>Month established:</strong>
+    <%= @company.month_established %>
+  </li>
+
+  <li>
+    <strong>Day established:</strong>
+    <%= @company.day_established %>
+  </li>
+
+  <li>
+    <strong>Company url:</strong>
+    <%= @company.company_url %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.company_path(@conn, :edit, @company) %></span>
+<span><%= link "Back", to: Routes.company_path(@conn, :index) %></span>
