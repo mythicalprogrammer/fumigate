@@ -14,7 +14,7 @@ defmodule Fumigate.Repo.Migrations.CreateCompanies do
       add :country_id, references(:countries, on_delete: :nothing)
       add :parent_company_id, references(:companies, on_delete: :nothing)
       add :company_type_id, references(:company_types, on_delete: :nothing)
-      add :company_main_activity_id, references(:company_main_acitivies, on_delete: :nothing)
+      add :company_main_activity_id, references(:company_main_activities, on_delete: :nothing)
 
       timestamps()
     end
