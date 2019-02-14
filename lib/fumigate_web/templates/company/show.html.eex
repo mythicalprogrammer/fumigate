@@ -7,10 +7,10 @@
     <%= @company.company_name %>
   </li>
 
-  <%= if @parent_company do %>
+  <%= if @company.parent_company do %>
   <li>
     <strong>Parent company:</strong>
-      <%= @parent_company.company_name %>
+      <%= @company.parent_company.company_name %>
   </li>
   <% end %>
 
