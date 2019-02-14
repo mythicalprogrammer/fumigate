@@ -18,7 +18,7 @@
   <%= error_tag f, :logo_url %>
 
   <%= label f, :year_established %>
-  <%= number_input f, :year_established %>
+  <%= select f, :year_established, 1700..2019 %>
   <%= error_tag f, :year_established %>
 
   <%= label f, :month_established %>
