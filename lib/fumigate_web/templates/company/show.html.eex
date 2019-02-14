@@ -15,6 +15,11 @@
   <% end %>
 
   <li>
+    <strong>Main Activity:</strong>
+    <%= @company.company_main_activities.main_activity%>
+  </li>
+
+  <li>
     <strong>Company description:</strong>
     <%= @company.company_description %>
   </li>
@@ -29,9 +34,7 @@
       <%= @company.countries.name %>
   </li>
 
-
-  <li>
-    <strong>Year established:</strong>
+  <li> <strong>Year established:</strong>
     <%= @company.year_established %>
   </li>
 
