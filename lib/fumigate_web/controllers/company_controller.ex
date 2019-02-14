@@ -27,10 +27,9 @@ defmodule FumigateWeb.CompanyController do
   end
 
   def show(conn, %{"id" => id}) do
-    company = Fragrance.get_company!(id)
-    company = company |> Fumigate.Repo.preload(:parent_company)
-    country = Fragrance.get_country!(company.country_id)
-    render(conn, "show.html", company: company, country: country)
+    company = Fragrance.get_company!(id) 
+              |> Fumigate.Repo.preload([:parent_company, :countries])
+    render(conn, "show.html", company: company)
   end
 
   def edit(conn, %{"id" => id}) do

@@ -9,8 +9,6 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Company_Type
   alias Fumigate.Fragrance.Company_Main_Activity
 
-  def get_country!(id), do: Repo.get!(Country, id)
-
   def create_company_main_activity(main_activity) do
     Repo.get_by(Company_Main_Activity, main_activity: main_activity) || Repo.insert!(%Company_Main_Activity{main_activity: main_activity})
   end
