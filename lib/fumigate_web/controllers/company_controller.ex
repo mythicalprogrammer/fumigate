@@ -6,6 +6,7 @@ defmodule FumigateWeb.CompanyController do
 
   def index(conn, _params) do
     companies = Fragrance.list_companies()
+    IO.inspect(Fragrance.get_company!(1))
     render(conn, "index.html", companies: companies)
   end
 
@@ -29,7 +30,6 @@ defmodule FumigateWeb.CompanyController do
   def show(conn, %{"id" => id}) do
     company = Fragrance.get_company!(id) 
               |> Fumigate.Repo.preload([:parent_company, :countries, :company_main_activities])
-    IO.inspect(company)
     render(conn, "show.html", company: company)
   end
 
