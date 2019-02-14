@@ -7,6 +7,13 @@
     <%= @company.company_name %>
   </li>
 
+  <%= if @parent_company do %>
+  <li>
+    <strong>Parent company:</strong>
+      <%= @parent_company.company_name %>
+  </li>
+  <% end %>
+
   <li>
     <strong>Company description:</strong>
     <%= @company.company_description %>
@@ -21,6 +28,7 @@
     <strong>Country:</strong>
       <%= @country.name %>
   </li>
+
 
   <li>
     <strong>Year established:</strong>

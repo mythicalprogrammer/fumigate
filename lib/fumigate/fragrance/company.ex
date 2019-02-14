@@ -7,8 +7,9 @@ defmodule Fumigate.Fragrance.Company do
     field :company_name, :string, null: false
     field :company_description, :string
     field :company_url, :string
-    field :day_established, :integer
+    field :parent_company_id, :integer
     field :logo_url, :string
+    field :day_established, :integer
     field :month_established, MonthEnum
     field :year_established, :integer
 
