@@ -10,7 +10,7 @@
   <%= if @company.parent_company do %>
   <li>
     <strong>Parent company:</strong>
-      <%= @company.parent_company.company_name %>
+      <%= link @company.parent_company.company_name, to: Routes.company_path(@conn, :show, @company.parent_company.id) %>
   </li>
   <% end %>
 
