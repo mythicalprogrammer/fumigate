@@ -22,12 +22,11 @@
   <%= error_tag f, :year_established %>
 
   <%= label f, :month_established %>
-  <%= #number_input f, :month_established %>
   <%= select f, :month_established, [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december] %>
   <%= error_tag f, :month_established %>
 
   <%= label f, :day_established %>
-  <%= number_input f, :day_established %>
+  <%= select f, :day_established, 1..31 %> 
   <%= error_tag f, :day_established %>
 
   <%= label f, :company_url %>
