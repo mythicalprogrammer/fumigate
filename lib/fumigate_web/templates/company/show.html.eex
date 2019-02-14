@@ -18,6 +18,11 @@
   </li>
 
   <li>
+    <strong>Country:</strong>
+      <%= @country.name %>
+  </li>
+
+  <li>
     <strong>Year established:</strong>
     <%= @company.year_established %>
   </li>
@@ -34,7 +39,9 @@
 
   <li>
     <strong>Company url:</strong>
-    <%= @company.company_url %>
+    <a href="<%= @company.company_url %>">
+      <%= @company.company_url%>
+    </a>
   </li>
 
 </ul>

@@ -28,7 +28,8 @@ defmodule FumigateWeb.CompanyController do
 
   def show(conn, %{"id" => id}) do
     company = Fragrance.get_company!(id)
-    render(conn, "show.html", company: company)
+    country = Fragrance.get_country!(company.country_id)
+    render(conn, "show.html", company: company, country: country)
   end
 
   def edit(conn, %{"id" => id}) do
