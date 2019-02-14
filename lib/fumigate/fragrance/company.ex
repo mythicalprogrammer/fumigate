@@ -24,6 +24,6 @@ defmodule Fumigate.Fragrance.Company do
   def changeset(company, attrs) do
     company
     |> cast(attrs, [:company_name, :company_description, :logo_url, :year_established, :month_established, :day_established, :company_url])
-    |> validate_required([:company_name, :company_description, :logo_url, :year_established, :month_established, :day_established, :company_url])
+    |> validate_required([:company_name])
   end
 end
