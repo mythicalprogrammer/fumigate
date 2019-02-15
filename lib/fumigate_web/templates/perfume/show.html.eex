@@ -1,0 +1,48 @@
+<h1>Show Perfume</h1>
+
+<ul>
+
+  <li>
+    <strong>Perfume name:</strong>
+    <%= @perfume.perfume_name %>
+  </li>
+
+  <li>
+    <strong>Concentration:</strong>
+    <%= @perfume.concentration %>
+  </li>
+
+  <li>
+    <strong>Gender:</strong>
+    <%= @perfume.gender %>
+  </li>
+
+  <li>
+    <strong>Perfume description:</strong>
+    <%= @perfume.perfume_description %>
+  </li>
+
+  <li>
+    <strong>Picture url:</strong>
+    <%= @perfume.picture_url %>
+  </li>
+
+  <li>
+    <strong>Year released:</strong>
+    <%= @perfume.year_released %>
+  </li>
+
+  <li>
+    <strong>Month released:</strong>
+    <%= @perfume.month_released %>
+  </li>
+
+  <li>
+    <strong>Day released:</strong>
+    <%= @perfume.day_released %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.perfume_path(@conn, :edit, @perfume) %></span>
+<span><%= link "Back", to: Routes.perfume_path(@conn, :index) %></span>

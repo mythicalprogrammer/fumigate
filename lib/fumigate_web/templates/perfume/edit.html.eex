@@ -1,0 +1,5 @@
+<h1>Edit Perfume</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.perfume_path(@conn, :update, @perfume)) %>
+
+<span><%= link "Back", to: Routes.perfume_path(@conn, :index) %></span>
