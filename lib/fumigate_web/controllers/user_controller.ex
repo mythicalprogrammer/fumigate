@@ -2,8 +2,6 @@ defmodule FumigateWeb.UserController do
   use FumigateWeb, :controller
   
   alias Fumigate.Coherence.Schemas
-  alias Fumigate.Coherence.User
-  #plug :authenticate_user when action in [:index, :show]
 
   def index(conn, _params) do
     users = Schemas.list_user()
