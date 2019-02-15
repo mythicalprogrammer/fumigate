@@ -20,6 +20,6 @@ defmodule Fumigate.Fragrance.Perfume do
   def changeset(perfume, attrs) do
     perfume
     |> cast(attrs, [:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released])
-    |> validate_required([:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released])
+    |> validate_required([:perfume_name, :gender, :perfume_description])
   end
 end
