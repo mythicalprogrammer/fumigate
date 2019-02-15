@@ -18,7 +18,7 @@
   <% end %>
 
   <%= label f, :company_description %>
-  <%= text_input f, :company_description %>
+  <%= textarea f, :company_description %>
   <%= error_tag f, :company_description %>
 
 
