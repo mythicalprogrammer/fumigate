@@ -28,7 +28,7 @@ defmodule FumigateWeb.Router do
 
   scope "/" do
     pipe_through :browser
-    coherence_routes
+    coherence_routes()
   end
 
   scope "/" do
