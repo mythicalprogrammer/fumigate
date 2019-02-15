@@ -9,6 +9,12 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Company_Type
   alias Fumigate.Fragrance.Company_Main_Activity
 
+  def list_alphabetical_countries do
+    Country
+    |> Country.alphabetical()
+    |> Repo.all()
+  end
+
   def list_company_main_activities do
     Repo.all(Company_Main_Activity)
   end

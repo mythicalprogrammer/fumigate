@@ -4,15 +4,15 @@ defmodule FumigateWeb.CompanyController do
   alias Fumigate.Fragrance
   alias Fumigate.Fragrance.Company
 
+  plug :load_countries when action in [:new, :create, :edit, :update]
+
   def index(conn, _params) do
-    companies = Fragrance.list_companies()
-    IO.inspect(Fragrance.get_company!(1))
-    render(conn, "index.html", companies: companies)
+    render(conn, "index.html")
   end
 
   def new(conn, _params) do
     changeset = Fragrance.change_company(%Company{
-      countries: %Fragrance.Country{}
+      country: %Fragrance.Country{}
     })
     render(conn, "new.html", changeset: changeset)
   end
@@ -31,17 +31,14 @@ defmodule FumigateWeb.CompanyController do
 
   def show(conn, %{"id" => id}) do
     company = Fragrance.get_company!(id) 
-              |> Fumigate.Repo.preload([:parent_company, :countries, :company_main_activities])
+              |> Fumigate.Repo.preload([:parent_company, :country, :company_main_activity])
     render(conn, "show.html", company: company)
   end
 
   def edit(conn, %{"id" => id}) do
     company = Fragrance.get_company!(id)
-              |> Fumigate.Repo.preload([:parent_company, :countries, :company_main_activities])
-    main_activities = Fragrance.list_company_main_activities()
     changeset = Fragrance.change_company(company)
-    IO.inspect(changeset)
-    render(conn, "edit.html", company: company, main_activities: main_activities, changeset: changeset)
+    render(conn, "edit.html", company: company, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "company" => company_params}) do
@@ -65,5 +62,9 @@ defmodule FumigateWeb.CompanyController do
     conn
     |> put_flash(:info, "Company deleted successfully.")
     |> redirect(to: Routes.company_path(conn, :index))
+  end
+  
+  defp load_countries(conn, _) do
+    assign(conn, :countries, Fragrance.list_alphabetical_countries())
   end
 end

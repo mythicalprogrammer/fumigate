@@ -13,18 +13,18 @@ defmodule Fumigate.Fragrance.Company do
     field :year_established, :integer
 
     many_to_many :company_types, Fumigate.Fragrance.Company_Type, join_through: Fumigate.Fragrance.Company_Type_Join
-    belongs_to :countries, Fumigate.Fragrance.Country, foreign_key: :country_id
+    belongs_to :country, Fumigate.Fragrance.Country
     belongs_to :parent_company, Fumigate.Fragrance.Company
     has_many :child_company, Fumigate.Fragrance.Company, foreign_key: :parent_company_id
-    belongs_to :company_main_activities, Fumigate.Fragrance.Company_Main_Activity, foreign_key: :company_main_activity_id
+    belongs_to :company_main_activity, Fumigate.Fragrance.Company_Main_Activity
     timestamps()
   end
 
   @doc false
   def changeset(company, attrs) do
     company
-    |> cast(attrs, [:company_name, :company_description, :logo_url, :year_established, :month_established, :day_established, :company_url])
-    |> cast_assoc(:countries)
+    |> cast(attrs, [:company_name, :company_description, :logo_url, :year_established, :month_established, :day_established, :company_url, :country_id])
     |> validate_required([:company_name])
+    |> assoc_constraint(:country)
   end
 end

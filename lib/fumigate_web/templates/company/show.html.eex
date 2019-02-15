@@ -16,7 +16,7 @@
 
   <li>
     <strong>Main Activity:</strong>
-    <%= @company.company_main_activities.main_activity%>
+    <%= @company.company_main_activity.main_activity%>
   </li>
 
   <li>
@@ -31,7 +31,7 @@
 
   <li>
     <strong>Country:</strong>
-      <%= @company.countries.name %>
+      <%= @company.country.name %>
   </li>
 
   <li> <strong>Year established:</strong>
