@@ -22,8 +22,10 @@ defmodule Fumigate.Fragrance do
     |> Repo.all()
   end
 
-  def list_company_main_activities do
-    Repo.all(Company_Main_Activity)
+  def list_alphabetical_company_main_activities do
+    Company_Main_Activity
+    |> Company_Main_Activity.alphabetical()
+    |> Repo.all()
   end
 
   def create_company_main_activity(main_activity) do

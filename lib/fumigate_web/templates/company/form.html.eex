@@ -19,6 +19,11 @@
       prompt: "Choose a country" %>
   <%= error_tag f, :country_id %>
 
+  <%= label f, :company_main_activity_id, "Company's Main Activity" %>
+  <%= select f, :company_main_activity_id, company_main_activity_select_options(@company_main_activities), 
+      prompt: "Choose a company's main activity" %>
+  <%= error_tag f, :company_main_activity_id%>
+
   <%= label f, :company_description %>
   <%= textarea f, :company_description %>
   <%= error_tag f, :company_description %>

@@ -24,10 +24,11 @@ defmodule Fumigate.Fragrance.Company do
   @doc false
   def changeset(company, attrs) do
     company
-    |> cast(attrs, [:company_name, :company_description, :logo_url, :year_established, :month_established, :day_established, :company_url, :country_id, :parent_company_id])
+    |> cast(attrs, [:company_name, :company_description, :logo_url, :year_established, :month_established, :day_established, :company_url, :country_id, :parent_company_id, :company_main_activity_id])
     |> validate_required([:company_name])
     |> assoc_constraint(:country)
     |> assoc_constraint(:parent_company)
+    |> assoc_constraint(:company_main_activity)
   end
 
   def alphabetical(query) do

@@ -6,6 +6,7 @@ defmodule FumigateWeb.CompanyController do
 
   plug :load_countries when action in [:new, :create, :edit, :update]
   plug :load_companies when action in [:new, :create, :edit, :update]
+  plug :load_company_main_activities when action in [:new, :create, :edit, :update]
 
   def index(conn, _params) do
     companies = Fragrance.list_companies()
@@ -72,5 +73,9 @@ defmodule FumigateWeb.CompanyController do
 
   defp load_companies(conn, _) do
     assign(conn, :companies, Fragrance.list_alphabetical_companies())
+  end
+
+  defp load_company_main_activities(conn, _) do
+    assign(conn, :company_main_activities, Fragrance.list_alphabetical_company_main_activities())
   end
 end
