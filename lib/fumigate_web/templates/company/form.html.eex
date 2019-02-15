@@ -27,15 +27,15 @@
   <%= error_tag f, :logo_url %>
 
   <%= label f, :year_established %>
-  <%= select f, :year_established, DateTime.utc_now.year..1700 %>
+  <%= select f, :year_established, DateTime.utc_now.year..1700, [prompt: ""] %>
   <%= error_tag f, :year_established %>
 
   <%= label f, :month_established %>
-  <%= select f, :month_established, [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december] %>
+  <%= select f, :month_established, [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december], [prompt: ""] %>
   <%= error_tag f, :month_established %>
 
   <%= label f, :day_established %>
-  <%= select f, :day_established, 1..31 %> 
+  <%= select f, :day_established, 1..31, [prompt: ""] %> 
   <%= error_tag f, :day_established %>
 
   <%= label f, :company_url %>
