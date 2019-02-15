@@ -7,7 +7,8 @@ defmodule FumigateWeb.CompanyController do
   plug :load_countries when action in [:new, :create, :edit, :update]
 
   def index(conn, _params) do
-    render(conn, "index.html")
+    companies = Fragrance.list_companies()
+    render(conn, "index.html", companies: companies)
   end
 
   def new(conn, _params) do
