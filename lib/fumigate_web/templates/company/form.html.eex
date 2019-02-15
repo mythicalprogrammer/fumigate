@@ -27,7 +27,7 @@
   <%= error_tag f, :logo_url %>
 
   <%= label f, :year_established %>
-  <%= select f, :year_established, 1700..2019 %>
+  <%= select f, :year_established, DateTime.utc_now.year..1700 %>
   <%= error_tag f, :year_established %>
 
   <%= label f, :month_established %>
