@@ -39,7 +39,7 @@
   <%= error_tag f, :day_established %>
 
   <%= label f, :company_url %>
-  <%= text_input f, :company_url %>
+  <%= url_input f, :company_url, [placeholder: "https://example.com"] %>
   <%= error_tag f, :company_url %>
 
   <div>
