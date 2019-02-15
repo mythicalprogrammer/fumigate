@@ -46,6 +46,7 @@ defmodule FumigateWeb.Router do
     get "/", PageController, :index
     resources "/users", UserController, only: [:index, :show]
     resources "/companies", CompanyController
+    resources "/perfumes", PerfumeController
   end
 
   # Other scopes may use custom stacks.
