@@ -4,6 +4,8 @@
   <thead>
     <tr>
       <th>Company name</th>
+      <th>Country</th>
+      <th>Main Activity</th>
       <th>Parent Company</th>
       <th>Company description</th>
       <th>Logo url</th>
@@ -19,6 +21,16 @@
 <%= for company <- @companies do %>
     <tr>
       <td><%= company.company_name %></td>
+      <%= if company.country do %>
+      <td><%= company.country.name %></td>
+      <%= else %>
+      <td>Unknown</td>
+      <% end %>
+      <%= if company.company_main_activity do %>
+      <td><%= company.company_main_activity.main_activity %></td>
+      <%= else %>
+      <td>Unknown</td>
+      <% end %>
       <%= if company.parent_company do %>
       <td><%= company.parent_company.company_name %></td>
       <%= else %>
