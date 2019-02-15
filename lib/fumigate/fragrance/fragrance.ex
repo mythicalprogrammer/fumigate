@@ -9,6 +9,10 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Company_Type
   alias Fumigate.Fragrance.Company_Main_Activity
 
+  def list_company_main_activities do
+    Repo.all(Company_Main_Activity)
+  end
+
   def create_company_main_activity(main_activity) do
     Repo.get_by(Company_Main_Activity, main_activity: main_activity) || Repo.insert!(%Company_Main_Activity{main_activity: main_activity})
   end

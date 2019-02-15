@@ -11,7 +11,9 @@ defmodule FumigateWeb.CompanyController do
   end
 
   def new(conn, _params) do
-    changeset = Fragrance.change_company(%Company{})
+    changeset = Fragrance.change_company(%Company{
+      countries: %Fragrance.Country{}
+    })
     render(conn, "new.html", changeset: changeset)
   end
 
@@ -35,8 +37,11 @@ defmodule FumigateWeb.CompanyController do
 
   def edit(conn, %{"id" => id}) do
     company = Fragrance.get_company!(id)
+              |> Fumigate.Repo.preload([:parent_company, :countries, :company_main_activities])
+    main_activities = Fragrance.list_company_main_activities()
     changeset = Fragrance.change_company(company)
-    render(conn, "edit.html", company: company, changeset: changeset)
+    IO.inspect(changeset)
+    render(conn, "edit.html", company: company, main_activities: main_activities, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "company" => company_params}) do

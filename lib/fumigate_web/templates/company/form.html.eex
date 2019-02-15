@@ -9,9 +9,18 @@
   <%= text_input f, :company_name %>
   <%= error_tag f, :company_name %>
 
+  <%= inputs_for f, :countries, fn p -> %>
+    <div class="form-group">
+    <%= label p, :country, class: "control-label" %>
+    <%= text_input p, :name, class: "form-control" %>
+    <%= error_tag p, :name %>
+   </div>
+  <% end %>
+
   <%= label f, :company_description %>
   <%= text_input f, :company_description %>
   <%= error_tag f, :company_description %>
+
 
   <%= label f, :logo_url %>
   <%= text_input f, :logo_url %>
