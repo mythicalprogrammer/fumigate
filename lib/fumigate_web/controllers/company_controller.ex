@@ -9,7 +9,8 @@ defmodule FumigateWeb.CompanyController do
   plug :load_company_main_activities when action in [:new, :create, :edit, :update]
 
   def index(conn, _params) do
-    companies = Fragrance.list_companies()
+    companies = Fragrance.list_companies() 
+      |> Fumigate.Repo.preload([:parent_company, :country, :company_main_activity])
     render(conn, "index.html", companies: companies)
   end
 
