@@ -6,7 +6,7 @@ defmodule Fumigate.Fragrance.Perfume do
   schema "perfumes" do
     field :concentration, :string
     field :day_released, :integer
-    field :gender, :string
+    field :gender, GenderEnum 
     field :month_released, :integer
     field :perfume_description, :string
     field :perfume_name, :string
