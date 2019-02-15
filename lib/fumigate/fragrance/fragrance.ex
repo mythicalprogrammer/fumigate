@@ -6,8 +6,15 @@ defmodule Fumigate.Fragrance do
   import Ecto.Query, warn: false
   alias Fumigate.Repo
   alias Fumigate.Fragrance.Country
+  alias Fumigate.Fragrance.Company
   alias Fumigate.Fragrance.Company_Type
   alias Fumigate.Fragrance.Company_Main_Activity
+
+  def list_alphabetical_companies do
+    Company
+    |> Company.alphabetical()
+    |> Repo.all()
+  end
 
   def list_alphabetical_countries do
     Country
@@ -31,7 +38,6 @@ defmodule Fumigate.Fragrance do
     Repo.get_by(Country, name: name) || Repo.insert!(%Country{name: name})
   end
 
-  alias Fumigate.Fragrance.Company
 
   @doc """
   Returns the list of companies.

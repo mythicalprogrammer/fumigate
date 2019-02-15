@@ -9,6 +9,11 @@
   <%= text_input f, :company_name %>
   <%= error_tag f, :company_name %>
 
+  <%= label f, :parent_company_id, "Parent Company" %>
+  <%= select f, :parent_company_id, company_select_options(@companies), 
+      prompt: "Choose a company" %>
+  <%= error_tag f, :parent_company_id %>
+
   <%= label f, :country_id, "Country" %>
   <%= select f, :country_id, country_select_options(@countries), 
       prompt: "Choose a country" %>
