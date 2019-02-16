@@ -24,4 +24,8 @@ defmodule Fumigate.Repo.Migrations.CreateCompanies do
     create index(:companies, [:company_type_id])
     create index(:companies, [:company_main_activity_id])
   end
+  def down do
+    drop table(:companies)
+    Ecto.Migration.execute "DROP TYPE month"
+  end
 end
