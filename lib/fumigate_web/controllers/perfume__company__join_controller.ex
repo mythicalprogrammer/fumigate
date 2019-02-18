@@ -4,6 +4,8 @@ defmodule FumigateWeb.Perfume_Company_JoinController do
   alias Fumigate.Fragrance
   alias Fumigate.Fragrance.Perfume_Company_Join
 
+  plug :load_companies when action in [:new, :create, :edit, :update]
+
   def index(conn, _params) do
     perfume_company_joins = Fragrance.list_perfume_company_joins()
     render(conn, "index.html", perfume_company_joins: perfume_company_joins)
@@ -58,5 +60,9 @@ defmodule FumigateWeb.Perfume_Company_JoinController do
     conn
     |> put_flash(:info, "Perfume  company  join deleted successfully.")
     |> redirect(to: Routes.perfume__company__join_path(conn, :index))
+  end
+
+  defp load_companies(conn, _) do
+    assign(conn, :companies, Fragrance.list_alphabetical_companies())
   end
 end
