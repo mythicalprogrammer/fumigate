@@ -9,6 +9,7 @@ defmodule FumigateWeb.Perfume_Company_JoinController do
 
   def index(conn, _params) do
     perfume_company_joins = Fragrance.list_perfume_company_joins()
+                            |> Fumigate.Repo.preload([:company, :perfume])
     render(conn, "index.html", perfume_company_joins: perfume_company_joins)
   end
 

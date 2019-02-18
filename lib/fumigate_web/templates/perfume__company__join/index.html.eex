@@ -3,13 +3,16 @@
 <table>
   <thead>
     <tr>
-
+      <th>Company name</th>
+      <th>Perfume name</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
 <%= for perfume__company__join <- @perfume_company_joins do %>
     <tr>
+      <td><%= perfume__company__join.company.company_name %></td>
+      <td><%= perfume__company__join.perfume.perfume_name %></td>
 
       <td>
         <%= link "Show", to: Routes.perfume__company__join_path(@conn, :show, perfume__company__join) %>
