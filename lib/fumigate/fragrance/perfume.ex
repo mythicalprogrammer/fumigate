@@ -13,6 +13,8 @@ defmodule Fumigate.Fragrance.Perfume do
     field :picture_url, :string
     field :year_released, :integer
 
+    many_to_many :companies, Fumigate.Fragrance.Company, join_through: Fumigate.Fragrance.Perfume_Company_Join
+
     timestamps()
   end
 

@@ -19,6 +19,7 @@ defmodule Fumigate.Fragrance.Company do
     has_many :child_company, Fumigate.Fragrance.Company, foreign_key: :parent_company_id
     belongs_to :company_main_activity, Fumigate.Fragrance.Company_Main_Activity
     timestamps()
+    many_to_many :perfumes, Fumigate.Fragrance.Perfume, join_through: Fumigate.Fragrance.Perfume_Company_Join
   end
 
   @doc false
