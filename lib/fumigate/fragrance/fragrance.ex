@@ -12,6 +12,12 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Perfume
   alias Fumigate.Fragrance.Perfume_Company_Join
 
+  def list_alphabetical_perfumes do
+    Perfume
+    |> Perfume.alphabetical()
+    |> Repo.all()
+  end
+
   def list_alphabetical_companies do
     Company
     |> Company.alphabetical()

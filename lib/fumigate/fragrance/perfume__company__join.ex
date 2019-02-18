@@ -4,9 +4,9 @@ defmodule Fumigate.Fragrance.Perfume_Company_Join do
 
 
   schema "perfume_company_joins" do
-    field :perfume_id, :id
 
     belongs_to :company, Fumigate.Fragrance.Company
+    belongs_to :perfume, Fumigate.Fragrance.Company
     timestamps()
   end
 
