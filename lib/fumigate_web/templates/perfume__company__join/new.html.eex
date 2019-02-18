@@ -1,0 +1,5 @@
+<h1>New Perfume  company  join</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.perfume__company__join_path(@conn, :create)) %>
+
+<span><%= link "Back", to: Routes.perfume__company__join_path(@conn, :index) %></span>

@@ -10,6 +10,7 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Company_Type
   alias Fumigate.Fragrance.Company_Main_Activity
   alias Fumigate.Fragrance.Perfume
+  alias Fumigate.Fragrance.Perfume_Company_Join
 
   def list_alphabetical_companies do
     Company
@@ -229,5 +230,99 @@ defmodule Fumigate.Fragrance do
   """
   def change_perfume(%Perfume{} = perfume) do
     Perfume.changeset(perfume, %{})
+  end
+
+  @doc """
+  Returns the list of perfume_company_joins.
+
+  ## Examples
+
+      iex> list_perfume_company_joins()
+      [%Perfume_Company_Join{}, ...]
+
+  """
+  def list_perfume_company_joins do
+    Repo.all(Perfume_Company_Join)
+  end
+
+  @doc """
+  Gets a single perfume__company__join.
+
+  Raises `Ecto.NoResultsError` if the Perfume  company  join does not exist.
+
+  ## Examples
+
+      iex> get_perfume__company__join!(123)
+      %Perfume_Company_Join{}
+
+      iex> get_perfume__company__join!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_perfume__company__join!(id), do: Repo.get!(Perfume_Company_Join, id)
+
+  @doc """
+  Creates a perfume__company__join.
+
+  ## Examples
+
+      iex> create_perfume__company__join(%{field: value})
+      {:ok, %Perfume_Company_Join{}}
+
+      iex> create_perfume__company__join(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_perfume__company__join(attrs \\ %{}) do
+    %Perfume_Company_Join{}
+    |> Perfume_Company_Join.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a perfume__company__join.
+
+  ## Examples
+
+      iex> update_perfume__company__join(perfume__company__join, %{field: new_value})
+      {:ok, %Perfume_Company_Join{}}
+
+      iex> update_perfume__company__join(perfume__company__join, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_perfume__company__join(%Perfume_Company_Join{} = perfume__company__join, attrs) do
+    perfume__company__join
+    |> Perfume_Company_Join.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a Perfume_Company_Join.
+
+  ## Examples
+
+      iex> delete_perfume__company__join(perfume__company__join)
+      {:ok, %Perfume_Company_Join{}}
+
+      iex> delete_perfume__company__join(perfume__company__join)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_perfume__company__join(%Perfume_Company_Join{} = perfume__company__join) do
+    Repo.delete(perfume__company__join)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking perfume__company__join changes.
+
+  ## Examples
+
+      iex> change_perfume__company__join(perfume__company__join)
+      %Ecto.Changeset{source: %Perfume_Company_Join{}}
+
+  """
+  def change_perfume__company__join(%Perfume_Company_Join{} = perfume__company__join) do
+    Perfume_Company_Join.changeset(perfume__company__join, %{})
   end
 end

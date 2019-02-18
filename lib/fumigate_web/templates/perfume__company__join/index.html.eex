@@ -1,0 +1,24 @@
+<h1>Listing Perfume company joins</h1>
+
+<table>
+  <thead>
+    <tr>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for perfume__company__join <- @perfume_company_joins do %>
+    <tr>
+
+      <td>
+        <%= link "Show", to: Routes.perfume__company__join_path(@conn, :show, perfume__company__join) %>
+        <%= link "Edit", to: Routes.perfume__company__join_path(@conn, :edit, perfume__company__join) %>
+        <%= link "Delete", to: Routes.perfume__company__join_path(@conn, :delete, perfume__company__join), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Perfume  company  join", to: Routes.perfume__company__join_path(@conn, :new) %></span>

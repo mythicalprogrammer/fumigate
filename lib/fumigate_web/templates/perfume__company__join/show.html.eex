@@ -1,0 +1,8 @@
+<h1>Show Perfume  company  join</h1>
+
+<ul>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.perfume__company__join_path(@conn, :edit, @perfume__company__join) %></span>
+<span><%= link "Back", to: Routes.perfume__company__join_path(@conn, :index) %></span>
