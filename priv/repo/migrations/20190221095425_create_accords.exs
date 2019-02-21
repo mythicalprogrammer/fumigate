@@ -3,7 +3,7 @@ defmodule Fumigate.Repo.Migrations.CreateAccords do
 
   def change do
     create table(:accords) do
-      add :accord_name, :string
+      add :accord_name, :string, null: false
 
       timestamps()
     end

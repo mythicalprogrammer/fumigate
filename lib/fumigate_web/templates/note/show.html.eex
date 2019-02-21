@@ -1,0 +1,13 @@
+<h1>Show Note</h1>
+
+<ul>
+
+  <li>
+    <strong>Note name:</strong>
+    <%= @note.note_name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.note_path(@conn, :edit, @note) %></span>
+<span><%= link "Back", to: Routes.note_path(@conn, :index) %></span>
