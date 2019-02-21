@@ -1,0 +1,26 @@
+<h1>Listing Accords</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Accord name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for accord <- @accords do %>
+    <tr>
+      <td><%= accord.accord_name %></td>
+
+      <td>
+        <%= link "Show", to: Routes.accord_path(@conn, :show, accord) %>
+        <%= link "Edit", to: Routes.accord_path(@conn, :edit, accord) %>
+        <%= link "Delete", to: Routes.accord_path(@conn, :delete, accord), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Accord", to: Routes.accord_path(@conn, :new) %></span>

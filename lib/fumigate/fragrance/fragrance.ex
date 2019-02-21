@@ -11,6 +11,7 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Company_Main_Activity
   alias Fumigate.Fragrance.Perfume
   alias Fumigate.Fragrance.Perfume_Company_Join
+  alias Fumigate.Fragrance.Accord
 
   def list_alphabetical_perfumes do
     Perfume
@@ -330,5 +331,99 @@ defmodule Fumigate.Fragrance do
   """
   def change_perfume__company__join(%Perfume_Company_Join{} = perfume__company__join) do
     Perfume_Company_Join.changeset(perfume__company__join, %{})
+  end
+
+  @doc """
+  Returns the list of accords.
+
+  ## Examples
+
+      iex> list_accords()
+      [%Accord{}, ...]
+
+  """
+  def list_accords do
+    Repo.all(Accord)
+  end
+
+  @doc """
+  Gets a single accord.
+
+  Raises `Ecto.NoResultsError` if the Accord does not exist.
+
+  ## Examples
+
+      iex> get_accord!(123)
+      %Accord{}
+
+      iex> get_accord!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_accord!(id), do: Repo.get!(Accord, id)
+
+  @doc """
+  Creates a accord.
+
+  ## Examples
+
+      iex> create_accord(%{field: value})
+      {:ok, %Accord{}}
+
+      iex> create_accord(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_accord(attrs \\ %{}) do
+    %Accord{}
+    |> Accord.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a accord.
+
+  ## Examples
+
+      iex> update_accord(accord, %{field: new_value})
+      {:ok, %Accord{}}
+
+      iex> update_accord(accord, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_accord(%Accord{} = accord, attrs) do
+    accord
+    |> Accord.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a Accord.
+
+  ## Examples
+
+      iex> delete_accord(accord)
+      {:ok, %Accord{}}
+
+      iex> delete_accord(accord)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_accord(%Accord{} = accord) do
+    Repo.delete(accord)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking accord changes.
+
+  ## Examples
+
+      iex> change_accord(accord)
+      %Ecto.Changeset{source: %Accord{}}
+
+  """
+  def change_accord(%Accord{} = accord) do
+    Accord.changeset(accord, %{})
   end
 end

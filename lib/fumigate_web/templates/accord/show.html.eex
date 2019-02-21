@@ -1,0 +1,13 @@
+<h1>Show Accord</h1>
+
+<ul>
+
+  <li>
+    <strong>Accord name:</strong>
+    <%= @accord.accord_name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.accord_path(@conn, :edit, @accord) %></span>
+<span><%= link "Back", to: Routes.accord_path(@conn, :index) %></span>

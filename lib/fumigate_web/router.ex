@@ -48,6 +48,7 @@ defmodule FumigateWeb.Router do
     resources "/companies", CompanyController
     resources "/perfumes", PerfumeController
     resources "/perfume_company_joins", Perfume_Company_JoinController
+    resources "/accords", AccordController
   end
 
   # Other scopes may use custom stacks.

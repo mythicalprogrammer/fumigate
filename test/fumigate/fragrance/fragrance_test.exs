@@ -203,4 +203,63 @@ defmodule Fumigate.FragranceTest do
       assert %Ecto.Changeset{} = Fragrance.change_perfume__company__join(perfume__company__join)
     end
   end
+
+  describe "accords" do
+    alias Fumigate.Fragrance.Accord
+
+    @valid_attrs %{accord_name: "some accord_name"}
+    @update_attrs %{accord_name: "some updated accord_name"}
+    @invalid_attrs %{accord_name: nil}
+
+    def accord_fixture(attrs \\ %{}) do
+      {:ok, accord} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Fragrance.create_accord()
+
+      accord
+    end
+
+    test "list_accords/0 returns all accords" do
+      accord = accord_fixture()
+      assert Fragrance.list_accords() == [accord]
+    end
+
+    test "get_accord!/1 returns the accord with given id" do
+      accord = accord_fixture()
+      assert Fragrance.get_accord!(accord.id) == accord
+    end
+
+    test "create_accord/1 with valid data creates a accord" do
+      assert {:ok, %Accord{} = accord} = Fragrance.create_accord(@valid_attrs)
+      assert accord.accord_name == "some accord_name"
+    end
+
+    test "create_accord/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Fragrance.create_accord(@invalid_attrs)
+    end
+
+    test "update_accord/2 with valid data updates the accord" do
+      accord = accord_fixture()
+      assert {:ok, %Accord{} = accord} = Fragrance.update_accord(accord, @update_attrs)
+      assert accord.accord_name == "some updated accord_name"
+    end
+
+    test "update_accord/2 with invalid data returns error changeset" do
+      accord = accord_fixture()
+      assert {:error, %Ecto.Changeset{}} = Fragrance.update_accord(accord, @invalid_attrs)
+      assert accord == Fragrance.get_accord!(accord.id)
+    end
+
+    test "delete_accord/1 deletes the accord" do
+      accord = accord_fixture()
+      assert {:ok, %Accord{}} = Fragrance.delete_accord(accord)
+      assert_raise Ecto.NoResultsError, fn -> Fragrance.get_accord!(accord.id) end
+    end
+
+    test "change_accord/1 returns a accord changeset" do
+      accord = accord_fixture()
+      assert %Ecto.Changeset{} = Fragrance.change_accord(accord)
+    end
+  end
 end

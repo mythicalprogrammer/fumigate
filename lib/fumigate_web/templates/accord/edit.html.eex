@@ -1,0 +1,5 @@
+<h1>Edit Accord</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.accord_path(@conn, :update, @accord)) %>
+
+<span><%= link "Back", to: Routes.accord_path(@conn, :index) %></span>
