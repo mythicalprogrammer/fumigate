@@ -4,8 +4,12 @@ defmodule FumigateWeb.Perfume_Accord_JoinController do
   alias Fumigate.Fragrance
   alias Fumigate.Fragrance.Perfume_Accord_Join
 
+  plug Fumigate.PerfumeList when action in [:new, :create, :edit, :update]
+  plug Fumigate.AccordList when action in [:new, :create, :edit, :update]
+
   def index(conn, _params) do
     perfume_accord_joins = Fragrance.list_perfume_accord_joins()
+                           |> Fumigate.Repo.preload([:accord, :perfume])
     render(conn, "index.html", perfume_accord_joins: perfume_accord_joins)
   end
 
@@ -28,6 +32,7 @@ defmodule FumigateWeb.Perfume_Accord_JoinController do
 
   def show(conn, %{"id" => id}) do
     perfume__accord__join = Fragrance.get_perfume__accord__join!(id)
+                            |> Fumigate.Repo.preload([:accord, :perfume])
     render(conn, "show.html", perfume__accord__join: perfume__accord__join)
   end
 

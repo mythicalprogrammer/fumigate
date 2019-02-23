@@ -5,7 +5,17 @@
     </div>
   <% end %>
 
+  <%= label f, :accord_id, "Accord" %>
+  <%= select f, :accord_id, accord_select_options(@accords), 
+    prompt: "Choose an accord" %>
+  <%= error_tag f, :accord_id %>
+
+  <%= label f, :perfume_id, "Perfume" %>
+  <%= select f, :perfume_id, perfume_select_options(@perfumes), 
+    prompt: "Choose a perfume" %>
+  <%= error_tag f, :perfume_id %>
   <div>
+
     <%= submit "Save" %>
   </div>
 <% end %>
