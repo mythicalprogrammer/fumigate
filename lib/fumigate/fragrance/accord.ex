@@ -7,6 +7,8 @@ defmodule Fumigate.Fragrance.Accord do
     field :accord_name, :string
 
     timestamps()
+
+    many_to_many :perfumes, Fumigate.Fragrance.Perfume, join_through: Fumigate.Fragrance.Perfume_Accord_Join
   end
 
   @doc false
