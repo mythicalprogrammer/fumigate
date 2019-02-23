@@ -8,7 +8,7 @@ defmodule Fumigate.Fragrance.Perfume do
     field :concentration, :string
     field :day_released, :integer
     field :gender, GenderEnum 
-    field :month_released, :integer
+    field :month_released, MonthEnum
     field :perfume_description, :string
     field :perfume_name, :string
     field :picture_url, :string
