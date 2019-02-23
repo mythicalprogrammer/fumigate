@@ -1,0 +1,24 @@
+<h1>Listing Perfume accord joins</h1>
+
+<table>
+  <thead>
+    <tr>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for perfume__accord__join <- @perfume_accord_joins do %>
+    <tr>
+
+      <td>
+        <%= link "Show", to: Routes.perfume__accord__join_path(@conn, :show, perfume__accord__join) %>
+        <%= link "Edit", to: Routes.perfume__accord__join_path(@conn, :edit, perfume__accord__join) %>
+        <%= link "Delete", to: Routes.perfume__accord__join_path(@conn, :delete, perfume__accord__join), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Perfume  accord  join", to: Routes.perfume__accord__join_path(@conn, :new) %></span>

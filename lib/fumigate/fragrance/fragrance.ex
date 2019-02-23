@@ -14,6 +14,7 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Accord
   alias Fumigate.Fragrance.Note
   alias Fumigate.Fragrance.Perfume_Note_Join
+  alias Fumigate.Fragrance.Perfume_Accord_Join
 
   def list_alphabetical_notes do
     Note
@@ -621,5 +622,99 @@ defmodule Fumigate.Fragrance do
   """
   def change_perfume__note__join(%Perfume_Note_Join{} = perfume__note__join) do
     Perfume_Note_Join.changeset(perfume__note__join, %{})
+  end
+
+  @doc """
+  Returns the list of perfume_accord_joins.
+
+  ## Examples
+
+      iex> list_perfume_accord_joins()
+      [%Perfume_Accord_Join{}, ...]
+
+  """
+  def list_perfume_accord_joins do
+    Repo.all(Perfume_Accord_Join)
+  end
+
+  @doc """
+  Gets a single perfume__accord__join.
+
+  Raises `Ecto.NoResultsError` if the Perfume  accord  join does not exist.
+
+  ## Examples
+
+      iex> get_perfume__accord__join!(123)
+      %Perfume_Accord_Join{}
+
+      iex> get_perfume__accord__join!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_perfume__accord__join!(id), do: Repo.get!(Perfume_Accord_Join, id)
+
+  @doc """
+  Creates a perfume__accord__join.
+
+  ## Examples
+
+      iex> create_perfume__accord__join(%{field: value})
+      {:ok, %Perfume_Accord_Join{}}
+
+      iex> create_perfume__accord__join(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_perfume__accord__join(attrs \\ %{}) do
+    %Perfume_Accord_Join{}
+    |> Perfume_Accord_Join.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a perfume__accord__join.
+
+  ## Examples
+
+      iex> update_perfume__accord__join(perfume__accord__join, %{field: new_value})
+      {:ok, %Perfume_Accord_Join{}}
+
+      iex> update_perfume__accord__join(perfume__accord__join, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_perfume__accord__join(%Perfume_Accord_Join{} = perfume__accord__join, attrs) do
+    perfume__accord__join
+    |> Perfume_Accord_Join.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a Perfume_Accord_Join.
+
+  ## Examples
+
+      iex> delete_perfume__accord__join(perfume__accord__join)
+      {:ok, %Perfume_Accord_Join{}}
+
+      iex> delete_perfume__accord__join(perfume__accord__join)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_perfume__accord__join(%Perfume_Accord_Join{} = perfume__accord__join) do
+    Repo.delete(perfume__accord__join)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking perfume__accord__join changes.
+
+  ## Examples
+
+      iex> change_perfume__accord__join(perfume__accord__join)
+      %Ecto.Changeset{source: %Perfume_Accord_Join{}}
+
+  """
+  def change_perfume__accord__join(%Perfume_Accord_Join{} = perfume__accord__join) do
+    Perfume_Accord_Join.changeset(perfume__accord__join, %{})
   end
 end
