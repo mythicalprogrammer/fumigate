@@ -10,7 +10,7 @@ defmodule Fumigate.Repo.Migrations.CreatePerfumes do
       add :perfume_description, :text
       add :picture_url, :string
       add :year_released, :integer
-      add :month_released, :integer
+      add :month_released, MonthEnum.type() 
       add :day_released, :integer
 
       timestamps()
@@ -21,5 +21,6 @@ defmodule Fumigate.Repo.Migrations.CreatePerfumes do
   def down do
     drop table(:perfumes)
     Ecto.Migration.execute "DROP TYPE gender"
+    Ecto.Migration.execute "DROP TYPE month"
   end
 end
