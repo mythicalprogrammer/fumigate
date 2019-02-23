@@ -8,7 +8,7 @@
   <li>
     <strong>Perfume:</strong>
       <%= link @perfume__company__join.perfume.perfume_name, to: Routes.perfume_path(@conn, :show, @perfume__company__join.perfume.id) %>
-
+  </li>
 </ul>
 
 <span><%= link "Edit", to: Routes.perfume__company__join_path(@conn, :edit, @perfume__company__join) %></span>
