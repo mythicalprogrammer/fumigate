@@ -49,6 +49,7 @@ defmodule FumigateWeb.Router do
     resources "/perfumes", PerfumeController
     resources "/perfume_company_joins", Perfume_Company_JoinController
     resources "/perfume_note_joins", Perfume_Note_JoinController
+    resources "/perfume_accord_joins", Perfume_Accord_JoinController
     resources "/accords", AccordController
     resources "/notes", NoteController
   end
