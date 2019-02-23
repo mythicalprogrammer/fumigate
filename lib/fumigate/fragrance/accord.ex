@@ -1,6 +1,7 @@
 defmodule Fumigate.Fragrance.Accord do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
 
 
   schema "accords" do
@@ -16,5 +17,9 @@ defmodule Fumigate.Fragrance.Accord do
     accord
     |> cast(attrs, [:accord_name])
     |> validate_required([:accord_name])
+  end
+
+  def alphabetical(query) do
+    from c in query, order_by: c.accord_name
   end
 end

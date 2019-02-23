@@ -16,6 +16,12 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Perfume_Note_Join
   alias Fumigate.Fragrance.Perfume_Accord_Join
 
+  def list_alphabetical_accords do
+    Accord
+    |> Accord.alphabetical()
+    |> Repo.all()
+  end
+
   def list_alphabetical_notes do
     Note
     |> Note.alphabetical()
