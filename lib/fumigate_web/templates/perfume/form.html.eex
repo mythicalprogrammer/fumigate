@@ -14,7 +14,7 @@
   <%= error_tag f, :concentration %>
 
   <%= label f, :gender %>
-  <%= text_input f, :gender %>
+  <%= select f, :gender, [:men, :women, :unisex] %> 
   <%= error_tag f, :gender %>
 
   <%= label f, :perfume_description %>
@@ -26,15 +26,15 @@
   <%= error_tag f, :picture_url %>
 
   <%= label f, :year_released %>
-  <%= number_input f, :year_released %>
+  <%= select f, :year_released, DateTime.utc_now.year..1700, [prompt: "Select a year."] %>
   <%= error_tag f, :year_released %>
 
   <%= label f, :month_released %>
-  <%= number_input f, :month_released %>
+  <%= select f, :month_released, [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december], [prompt: "Select a month."] %>
   <%= error_tag f, :month_released %>
 
   <%= label f, :day_released %>
-  <%= number_input f, :day_released %>
+  <%= select f, :day_released, 1..31, [prompt: "Select a day."] %> 
   <%= error_tag f, :day_released %>
 
   <div>
