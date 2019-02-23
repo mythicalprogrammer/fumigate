@@ -4,9 +4,9 @@ defmodule Fumigate.Fragrance.Perfume_Note_Join do
 
 
   schema "perfume_note_joins" do
-    field :note_id, :id
-    field :perfume_id, :id
     field :pyramid_note, PyramidNoteEnum 
+    belongs_to :note, Fumigate.Fragrance.Note
+    belongs_to :perfume, Fumigate.Fragrance.Perfume
 
     timestamps()
   end
@@ -16,5 +16,7 @@ defmodule Fumigate.Fragrance.Perfume_Note_Join do
     perfume__note__join
     |> cast(attrs, [:note_id, :perfume_id])
     |> validate_required([:note_id, :perfume_id])
+    |> assoc_constraint(:perfume)
+    |> assoc_constraint(:note)
   end
 end

@@ -16,6 +16,7 @@ defmodule Fumigate.Fragrance.Perfume do
 
     many_to_many :companies, Fumigate.Fragrance.Company, join_through: Fumigate.Fragrance.Perfume_Company_Join
 
+    many_to_many :notes, Fumigate.Fragrance.Note, join_through: Fumigate.Fragrance.Perfume_Note_Join
     timestamps()
   end
 
