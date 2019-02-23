@@ -1,6 +1,7 @@
 defmodule Fumigate.Fragrance.Note do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
 
 
   schema "notes" do
@@ -15,5 +16,9 @@ defmodule Fumigate.Fragrance.Note do
     note
     |> cast(attrs, [:note_name])
     |> validate_required([:note_name])
+  end
+
+  def alphabetical(query) do
+    from c in query, order_by: c.note_name
   end
 end

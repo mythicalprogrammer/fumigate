@@ -1,11 +1,15 @@
 defmodule FumigateWeb.Perfume_Note_JoinController do
   use FumigateWeb, :controller
 
+  plug Fumigate.PerfumeList when action in [:new, :create, :edit, :update]
+  plug Fumigate.NoteList when action in [:new, :create, :edit, :update]
+
   alias Fumigate.Fragrance
   alias Fumigate.Fragrance.Perfume_Note_Join
 
   def index(conn, _params) do
     perfume_note_joins = Fragrance.list_perfume_note_joins()
+                            |> Fumigate.Repo.preload([:note, :perfume])
     render(conn, "index.html", perfume_note_joins: perfume_note_joins)
   end
 
@@ -28,6 +32,7 @@ defmodule FumigateWeb.Perfume_Note_JoinController do
 
   def show(conn, %{"id" => id}) do
     perfume__note__join = Fragrance.get_perfume__note__join!(id)
+                             |> Fumigate.Repo.preload([:note, :perfume])
     render(conn, "show.html", perfume__note__join: perfume__note__join)
   end
 

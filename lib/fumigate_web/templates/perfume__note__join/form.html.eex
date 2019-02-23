@@ -5,6 +5,20 @@
     </div>
   <% end %>
 
+  <%= label f, :note_id, "Note" %>
+  <%= select f, :note_id, note_select_options(@notes), 
+    prompt: "Choose a note" %>
+  <%= error_tag f, :note_id %>
+
+  <%= label f, :perfume_id, "Perfume" %>
+  <%= select f, :perfume_id, perfume_select_options(@perfumes), 
+    prompt: "Choose a perfume" %>
+  <%= error_tag f, :perfume_id %>
+
+  <%= label f, :pyramid_note %>
+  <%= select f, :pyramid_note, [:top, :middle, :base], [prompt: "Choose a pyramid"] %>
+  <%= error_tag f, :pyramid_note %>
+
   <div>
     <%= submit "Save" %>
   </div>

@@ -14,7 +14,7 @@ defmodule Fumigate.Fragrance.Perfume_Note_Join do
   @doc false
   def changeset(perfume__note__join, attrs) do
     perfume__note__join
-    |> cast(attrs, [:note_id, :perfume_id])
+    |> cast(attrs, [:note_id, :perfume_id, :pyramid_note])
     |> validate_required([:note_id, :perfume_id])
     |> assoc_constraint(:perfume)
     |> assoc_constraint(:note)
