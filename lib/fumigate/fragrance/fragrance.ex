@@ -13,6 +13,7 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Perfume_Company_Join
   alias Fumigate.Fragrance.Accord
   alias Fumigate.Fragrance.Note
+  alias Fumigate.Fragrance.Perfume_Note_Join
 
   def list_alphabetical_perfumes do
     Perfume
@@ -520,5 +521,99 @@ defmodule Fumigate.Fragrance do
   """
   def change_note(%Note{} = note) do
     Note.changeset(note, %{})
+  end
+
+  @doc """
+  Returns the list of perfume_note_joins.
+
+  ## Examples
+
+      iex> list_perfume_note_joins()
+      [%Perfume_Note_Join{}, ...]
+
+  """
+  def list_perfume_note_joins do
+    Repo.all(Perfume_Note_Join)
+  end
+
+  @doc """
+  Gets a single perfume__note__join.
+
+  Raises `Ecto.NoResultsError` if the Perfume  note  join does not exist.
+
+  ## Examples
+
+      iex> get_perfume__note__join!(123)
+      %Perfume_Note_Join{}
+
+      iex> get_perfume__note__join!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_perfume__note__join!(id), do: Repo.get!(Perfume_Note_Join, id)
+
+  @doc """
+  Creates a perfume__note__join.
+
+  ## Examples
+
+      iex> create_perfume__note__join(%{field: value})
+      {:ok, %Perfume_Note_Join{}}
+
+      iex> create_perfume__note__join(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_perfume__note__join(attrs \\ %{}) do
+    %Perfume_Note_Join{}
+    |> Perfume_Note_Join.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a perfume__note__join.
+
+  ## Examples
+
+      iex> update_perfume__note__join(perfume__note__join, %{field: new_value})
+      {:ok, %Perfume_Note_Join{}}
+
+      iex> update_perfume__note__join(perfume__note__join, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_perfume__note__join(%Perfume_Note_Join{} = perfume__note__join, attrs) do
+    perfume__note__join
+    |> Perfume_Note_Join.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a Perfume_Note_Join.
+
+  ## Examples
+
+      iex> delete_perfume__note__join(perfume__note__join)
+      {:ok, %Perfume_Note_Join{}}
+
+      iex> delete_perfume__note__join(perfume__note__join)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_perfume__note__join(%Perfume_Note_Join{} = perfume__note__join) do
+    Repo.delete(perfume__note__join)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking perfume__note__join changes.
+
+  ## Examples
+
+      iex> change_perfume__note__join(perfume__note__join)
+      %Ecto.Changeset{source: %Perfume_Note_Join{}}
+
+  """
+  def change_perfume__note__join(%Perfume_Note_Join{} = perfume__note__join) do
+    Perfume_Note_Join.changeset(perfume__note__join, %{})
   end
 end

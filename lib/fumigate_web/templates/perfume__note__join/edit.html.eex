@@ -1,0 +1,5 @@
+<h1>Edit Perfume  note  join</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.perfume__note__join_path(@conn, :update, @perfume__note__join)) %>
+
+<span><%= link "Back", to: Routes.perfume__note__join_path(@conn, :index) %></span>

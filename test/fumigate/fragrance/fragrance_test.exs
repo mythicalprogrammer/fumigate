@@ -321,4 +321,61 @@ defmodule Fumigate.FragranceTest do
       assert %Ecto.Changeset{} = Fragrance.change_note(note)
     end
   end
+
+  describe "perfume_note_joins" do
+    alias Fumigate.Fragrance.Perfume_Note_Join
+
+    @valid_attrs %{}
+    @update_attrs %{}
+    @invalid_attrs %{}
+
+    def perfume__note__join_fixture(attrs \\ %{}) do
+      {:ok, perfume__note__join} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Fragrance.create_perfume__note__join()
+
+      perfume__note__join
+    end
+
+    test "list_perfume_note_joins/0 returns all perfume_note_joins" do
+      perfume__note__join = perfume__note__join_fixture()
+      assert Fragrance.list_perfume_note_joins() == [perfume__note__join]
+    end
+
+    test "get_perfume__note__join!/1 returns the perfume__note__join with given id" do
+      perfume__note__join = perfume__note__join_fixture()
+      assert Fragrance.get_perfume__note__join!(perfume__note__join.id) == perfume__note__join
+    end
+
+    test "create_perfume__note__join/1 with valid data creates a perfume__note__join" do
+      assert {:ok, %Perfume_Note_Join{} = perfume__note__join} = Fragrance.create_perfume__note__join(@valid_attrs)
+    end
+
+    test "create_perfume__note__join/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Fragrance.create_perfume__note__join(@invalid_attrs)
+    end
+
+    test "update_perfume__note__join/2 with valid data updates the perfume__note__join" do
+      perfume__note__join = perfume__note__join_fixture()
+      assert {:ok, %Perfume_Note_Join{} = perfume__note__join} = Fragrance.update_perfume__note__join(perfume__note__join, @update_attrs)
+    end
+
+    test "update_perfume__note__join/2 with invalid data returns error changeset" do
+      perfume__note__join = perfume__note__join_fixture()
+      assert {:error, %Ecto.Changeset{}} = Fragrance.update_perfume__note__join(perfume__note__join, @invalid_attrs)
+      assert perfume__note__join == Fragrance.get_perfume__note__join!(perfume__note__join.id)
+    end
+
+    test "delete_perfume__note__join/1 deletes the perfume__note__join" do
+      perfume__note__join = perfume__note__join_fixture()
+      assert {:ok, %Perfume_Note_Join{}} = Fragrance.delete_perfume__note__join(perfume__note__join)
+      assert_raise Ecto.NoResultsError, fn -> Fragrance.get_perfume__note__join!(perfume__note__join.id) end
+    end
+
+    test "change_perfume__note__join/1 returns a perfume__note__join changeset" do
+      perfume__note__join = perfume__note__join_fixture()
+      assert %Ecto.Changeset{} = Fragrance.change_perfume__note__join(perfume__note__join)
+    end
+  end
 end

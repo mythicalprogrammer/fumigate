@@ -1,0 +1,24 @@
+<h1>Listing Perfume note joins</h1>
+
+<table>
+  <thead>
+    <tr>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for perfume__note__join <- @perfume_note_joins do %>
+    <tr>
+
+      <td>
+        <%= link "Show", to: Routes.perfume__note__join_path(@conn, :show, perfume__note__join) %>
+        <%= link "Edit", to: Routes.perfume__note__join_path(@conn, :edit, perfume__note__join) %>
+        <%= link "Delete", to: Routes.perfume__note__join_path(@conn, :delete, perfume__note__join), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Perfume  note  join", to: Routes.perfume__note__join_path(@conn, :new) %></span>
