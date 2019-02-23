@@ -3,6 +3,9 @@
 <table>
   <thead>
     <tr>
+      <th>Perfume name</th>
+      <th>Note name</th>
+      <th>Pyramid</th>
 
       <th></th>
     </tr>
@@ -10,6 +13,9 @@
   <tbody>
 <%= for perfume__note__join <- @perfume_note_joins do %>
     <tr>
+      <td><%= perfume__note__join.perfume.perfume_name %></td>
+      <td><%= perfume__note__join.note.note_name %></td>
+      <td><%= perfume__note__join.pyramid_note %></td>
 
       <td>
         <%= link "Show", to: Routes.perfume__note__join_path(@conn, :show, perfume__note__join) %>
