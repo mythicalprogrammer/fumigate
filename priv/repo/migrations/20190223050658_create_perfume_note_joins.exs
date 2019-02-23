@@ -13,6 +13,7 @@ defmodule Fumigate.Repo.Migrations.CreatePerfumeNoteJoins do
 
     create index(:perfume_note_joins, [:note_id])
     create index(:perfume_note_joins, [:perfume_id])
+    create unique_index(:perfume_note_joins, [:note_id, :perfume_id, :pyramid_note])
   end
 
   def down do
