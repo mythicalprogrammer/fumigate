@@ -6,6 +6,7 @@ defmodule FumigateWeb.PerfumeController do
 
   def index(conn, _params) do
     perfumes = Fragrance.list_perfumes()
+               |> Fumigate.Repo.preload([:companies])
     render(conn, "index.html", perfumes: perfumes)
   end
 

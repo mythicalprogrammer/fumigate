@@ -18,7 +18,12 @@
   <tbody>
 <%= for perfume <- @perfumes do %>
     <tr>
-      <td><%= perfume.perfume_name %></td>
+      <td>
+        <%= perfume.perfume_name %>
+        (by <%= for company <- perfume.companies do %>
+          <%= company.company_name %>
+        <% end %>)
+      </td>
       <td><%= perfume.concentration %></td>
       <td><%= perfume.gender %></td>
       <td><%= perfume.perfume_description %></td>
