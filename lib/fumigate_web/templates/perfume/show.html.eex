@@ -24,6 +24,20 @@
   </li>
 
   <li>
+   <strong>Notes:</strong>
+   <%= for note <- @perfume.notes do %>
+     <%= note.note_name %>,
+   <% end %>
+  </li>
+
+  <li>
+   <strong>Accords:</strong>
+   <%= for accord <- @perfume.accords do %>
+     <%= accord.accord_name %>,
+   <% end %>
+  </li>
+
+  <li>
     <strong>Perfume description:</strong>
     <%= @perfume.perfume_description %>
   </li>
