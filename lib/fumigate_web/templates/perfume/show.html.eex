@@ -6,6 +6,12 @@
     <strong>Perfume name:</strong>
     <%= @perfume.perfume_name %>
   </li>
+  <li>
+   <strong>Company:</strong>
+   <%= for company <- @perfume.companies do %>
+     <%= company.company_name %>
+   <% end %>
+  </li>
 
   <li>
     <strong>Concentration:</strong>

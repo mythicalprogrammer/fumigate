@@ -28,6 +28,7 @@ defmodule FumigateWeb.PerfumeController do
 
   def show(conn, %{"id" => id}) do
     perfume = Fragrance.get_perfume!(id)
+              |> Fumigate.Repo.preload([:notes, :accords, :companies])
     render(conn, "show.html", perfume: perfume)
   end
 
