@@ -2,7 +2,7 @@
 
   <div class="mb-12">
     <h1 class="display-3">Edit Perfume </h1> 
-    <h3 class="display-5"><%= link "Back", to: Routes.perfume_path(@conn, :index) %></h3>
+    <h3 class="display-5"><%= link "Back", to: Routes.perfume_path(@conn, :index), class: "btn btn-outline-secondary" %></h3>
   </div>
 
   <hr/>
