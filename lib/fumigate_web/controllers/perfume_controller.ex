@@ -3,11 +3,12 @@ defmodule FumigateWeb.PerfumeController do
 
   alias Fumigate.Fragrance
   alias Fumigate.Fragrance.Perfume
+  import Ecto.Query
 
-  def index(conn, _params) do
-    perfumes = Fragrance.list_perfumes()
-               |> Fumigate.Repo.preload([:companies])
-    render(conn, "index.html", perfumes: perfumes)
+  def index(conn, params) do
+    query = from p in Perfume, order_by: p.perfume_name, preload: [:companies]
+    perfumes = Fumigate.Repo.paginate(query, params)
+    render(conn, "index.html", perfumes: perfumes.entries, page: perfumes.page_number)
   end
 
   def new(conn, _params) do
