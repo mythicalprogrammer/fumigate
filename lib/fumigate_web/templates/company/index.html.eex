@@ -3,6 +3,9 @@
 <h1 class="display-3">Listing Companies</h1>
 <span><%= link "New Company", to: Routes.company_path(@conn, :new), class: "btn btn-primary" %></span>
 
+<%= link "Prev Page", to: Routes.company_path(@conn, :index, page: @page - 1), class: "btn btn-outline-info" %>
+<%= link "Next Page", to: Routes.company_path(@conn, :index, page: @page + 1), class: "btn btn-outline-info ml-1" %>
+
 <table class="table table-striped mt-5">
   <thead>
     <tr>
