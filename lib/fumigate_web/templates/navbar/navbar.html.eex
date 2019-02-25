@@ -17,14 +17,21 @@
         <% else %>
           <li class="nav-item">
         <% end %>
-          <a class="nav-link" href="perfumes">Perfumes</a>
+          <a class="nav-link" href="/perfumes">Perfumes</a>
         </li>
         <%= if to_string(assigns.conn.private.phoenix_controller) == "Elixir.FumigateWeb.CompanyController" do %>
           <li class="nav-item active">
         <% else %>
           <li class="nav-item">
         <% end %>
-          <a class="nav-link" href="companies">Companies</a>
+          <a class="nav-link" href="/companies">Companies</a>
+        </li>
+        <%= if to_string(assigns.conn.private.phoenix_controller) == "Elixir.FumigateWeb.CompanyController" do %>
+          <li class="nav-item active">
+        <% else %>
+          <li class="nav-item">
+        <% end %>
+          <a class="nav-link" href="/sessions/new">Login</a>
         </li>
       <li class="nav-item">
       <form class="form-inline mt-2 mt-md-0 ml-5">
