@@ -38,7 +38,7 @@ defmodule FumigateWeb.PerfumeController do
   def edit(conn, %{"id" => id}) do
     perfume = Fragrance.get_perfume!(id)
     changeset = Fragrance.change_perfume(perfume)
-    accords_select = Fragrance.select_all_accords_by_perfume_id(id)
+    accords_select = Fragrance.select_all_accords_by_perfume_id(perfume.id)
     render(conn, "edit.html", perfume: perfume, changeset: changeset, accords_select: accords_select)
   end
 
@@ -48,10 +48,10 @@ defmodule FumigateWeb.PerfumeController do
     case Fragrance.update_perfume(perfume, perfume_params) do
       {:ok, perfume} ->
         if perfume_params["accord_id"] != nil do
+          #Fragrance.delete_all_accord_joins_by_perfume_id(perfume.id)
           perfume_params["accord_id"] 
           |> Fragrance.insert_all_accords(perfume)
         end
-        
         conn
         |> put_flash(:info, "Perfume updated successfully.")
         |> redirect(to: Routes.perfume_path(conn, :show, perfume))

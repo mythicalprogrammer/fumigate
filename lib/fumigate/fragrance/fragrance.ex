@@ -16,10 +16,24 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Perfume_Note_Join
   alias Fumigate.Fragrance.Perfume_Accord_Join
 
+  def delete_all_accord_joins_by_perfume_id(perfume_id) do
+    queryable = Perfume_Accord_Join |> Perfume_Accord_Join.delete_all_accord_joins_by_perfume_id(perfume_id) 
+    Ecto.Multi.new()
+    |> Ecto.Multi.delete_all(:delete_all, queryable)
+    |> Repo.transaction()
+  end
+
   def select_all_accords_by_perfume_id(perfume_id) do
-    Perfume_Accord_Join
-    |> Perfume_Accord_Join.get_all_accords_by_perfume_id(perfume_id) 
-    |> Repo.all()
+    #check = Perfume_Accord_Join
+    #|> Perfume_Accord_Join.get_all_accords_by_perfume_id(perfume_id) 
+    #|> Repo.get()
+    check = Repo.all(
+    from c in Perfume_Accord_Join, 
+    where: c.perfume_id == ^perfume_id,
+    select: c.id 
+    )
+    IO.inspect(check)
+    #check
   end
   
   def insert_all_accords(accords, perfume) do
