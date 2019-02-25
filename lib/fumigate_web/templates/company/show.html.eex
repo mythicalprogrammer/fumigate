@@ -1,54 +1,58 @@
-<h1>Show Company</h1>
+<div class="jumbotron p-4 p-md-5 mt-3 rounded bg-light"> 
+<h1 class="display-3">Show Company</h1>
+<span><%= link "Edit", to: Routes.company_path(@conn, :edit, @company), class: "btn btn-outline-primary" %></span>
+<span><%= link "Back", to: Routes.company_path(@conn, :index), class: "btn btn-outline-primary" %></span>
 
-<ul>
+<ul class="list-group mt-2">
 
-  <li>
+  <li class="list-group-item">
     <strong>Company name:</strong>
     <%= @company.company_name %>
   </li>
 
   <%= if @company.parent_company do %>
-  <li>
+  <li class="list-group-item">
     <strong>Parent company:</strong>
       <%= link @company.parent_company.company_name, to: Routes.company_path(@conn, :show, @company.parent_company.id) %>
   </li>
   <% end %>
 
-  <li>
+  <li class="list-group-item">
     <strong>Main Activity:</strong>
     <%= @company.company_main_activity.main_activity%>
   </li>
 
-  <li>
+  <li class="list-group-item">
     <strong>Company description:</strong>
     <%= @company.company_description %>
   </li>
 
-  <li>
+  <li class="list-group-item">
     <strong>Logo url:</strong>
     <%= @company.logo_url %>
   </li>
 
-  <li>
+  <li class="list-group-item">
     <strong>Country:</strong>
       <%= @company.country.name %>
   </li>
 
-  <li> <strong>Year established:</strong>
+  <li class="list-group-item">
+  <strong>Year established:</strong>
     <%= @company.year_established %>
   </li>
 
-  <li>
+  <li class="list-group-item">
     <strong>Month established:</strong>
     <%= @company.month_established %>
   </li>
 
-  <li>
+  <li class="list-group-item">
     <strong>Day established:</strong>
     <%= @company.day_established %>
   </li>
 
-  <li>
+  <li class="list-group-item">
     <strong>Company url:</strong>
     <a href="<%= @company.company_url %>">
       <%= @company.company_url%>
@@ -57,5 +61,4 @@
 
 </ul>
 
-<span><%= link "Edit", to: Routes.company_path(@conn, :edit, @company) %></span>
-<span><%= link "Back", to: Routes.company_path(@conn, :index) %></span>
+</div>
