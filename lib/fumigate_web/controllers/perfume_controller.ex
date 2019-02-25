@@ -48,7 +48,7 @@ defmodule FumigateWeb.PerfumeController do
     case Fragrance.update_perfume(perfume, perfume_params) do
       {:ok, perfume} ->
         if perfume_params["accord_id"] != nil do
-          #Fragrance.delete_all_accord_joins_by_perfume_id(perfume.id)
+          Fragrance.delete_all_accord_joins_by_perfume_id(perfume.id)
           perfume_params["accord_id"] 
           |> Fragrance.insert_all_accords(perfume)
         end

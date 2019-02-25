@@ -23,7 +23,7 @@ defmodule Fumigate.Fragrance.Perfume_Accord_Join do
   def get_all_accords_by_perfume_id(query, id) do
     from c in query, 
     where: c.perfume_id == ^id,
-    select: c.id 
+    select: c.accord_id 
   end
 
   def delete_all_accord_joins_by_perfume_id(query, id) do

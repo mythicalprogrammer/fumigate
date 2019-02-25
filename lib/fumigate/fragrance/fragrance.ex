@@ -24,16 +24,9 @@ defmodule Fumigate.Fragrance do
   end
 
   def select_all_accords_by_perfume_id(perfume_id) do
-    #check = Perfume_Accord_Join
-    #|> Perfume_Accord_Join.get_all_accords_by_perfume_id(perfume_id) 
-    #|> Repo.get()
-    check = Repo.all(
-    from c in Perfume_Accord_Join, 
-    where: c.perfume_id == ^perfume_id,
-    select: c.id 
-    )
-    IO.inspect(check)
-    #check
+    Perfume_Accord_Join
+    |> Perfume_Accord_Join.get_all_accords_by_perfume_id(perfume_id) 
+    |> Repo.all()
   end
   
   def insert_all_accords(accords, perfume) do
