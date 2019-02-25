@@ -1,3 +1,6 @@
+<div class="row">
+
+<div class="col-md-8 order-md-1"> 
 <%= form_for @changeset, @action, fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
@@ -6,50 +9,72 @@
   <% end %>
 
   <%= label f, :company_name %>
-  <%= text_input f, :company_name %>
+  <%= if message = f.errors[:company_name] do %>
+  <%= text_input f, :company_name, class: "form-control is-invalid" %>
+<% else %>
+  <%= text_input f, :company_name, class: "form-control" %>
+<% end %>
   <%= error_tag f, :company_name %>
 
   <%= label f, :parent_company_id, "Parent Company" %>
   <%= select f, :parent_company_id, company_select_options(@companies), 
-      prompt: "Choose a company" %>
+      [prompt: "Choose a company", class: "custom-select d-block"] %>
   <%= error_tag f, :parent_company_id %>
 
+  <div class="row">
+  <div class="col-md-6">
   <%= label f, :country_id, "Country" %>
   <%= select f, :country_id, country_select_options(@countries), 
-      prompt: "Choose a country" %>
+      [prompt: "Choose a country", class: "custom-select d-block"] %>
   <%= error_tag f, :country_id %>
+  </div>
 
+  <div class="col-md-6">
   <%= label f, :company_main_activity_id, "Company's Main Activity" %>
   <%= select f, :company_main_activity_id, company_main_activity_select_options(@company_main_activities), 
-      prompt: "Choose a company's main activity" %>
+      [prompt: "Choose a company's main activity", class: "custom-select d-block"] %>
   <%= error_tag f, :company_main_activity_id%>
+  </div>
+  </div>
 
   <%= label f, :company_description %>
-  <%= textarea f, :company_description %>
+  <%= textarea f, :company_description, [class: "form-control", rows: 6] %>
   <%= error_tag f, :company_description %>
 
 
   <%= label f, :logo_url %>
-  <%= text_input f, :logo_url %>
+  <%= text_input f, :logo_url, class: "form-control" %>
   <%= error_tag f, :logo_url %>
 
+  <div class="row">
+  <div class="col-md-4">
   <%= label f, :year_established %>
-  <%= select f, :year_established, DateTime.utc_now.year..1700, [prompt: ""] %>
+  <%= select f, :year_established, DateTime.utc_now.year..1700, [prompt: "Select a year", class: "custom-select d-block"] %>
   <%= error_tag f, :year_established %>
+  </div>
 
+  <div class="col-md-4">
   <%= label f, :month_established %>
-  <%= select f, :month_established, [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december], [prompt: ""] %>
+  <%= select f, :month_established, [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december], [prompt: "Select a month", class: "custom-select d-block"] %>
   <%= error_tag f, :month_established %>
+  </div>
+
+  <div class="col-md-4">
 
   <%= label f, :day_established %>
-  <%= select f, :day_established, 1..31, [prompt: ""] %> 
+  <%= select f, :day_established, 1..31, [prompt: "Select a day", class: "custom-select d-block"] %> 
   <%= error_tag f, :day_established %>
+  </div>
+</div>
 
   <%= label f, :company_url %>
-  <%= url_input f, :company_url, [placeholder: "https://example.com"] %>
+  <%= url_input f, :company_url, [placeholder: "https://example.com", class: "form-control"] %>
   <%= error_tag f, :company_url %>
 
   <div>
-    <%= submit "Save" %>
+    <%= submit "Save", [class: "mt-3 btn btn-primary btn-lg btn-block"]%>
   </div>
+</div>
 <% end %>
+
+</div>
