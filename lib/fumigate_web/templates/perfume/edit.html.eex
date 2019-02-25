@@ -7,11 +7,7 @@
 
   <hr/>
 
-  <div class="row">
-    <div class="col-md-12">
       <%= render "form.html", Map.put(assigns, :action, Routes.perfume_path(@conn, :update, @perfume)) %>
-    </div>
-  </div>
 </div>
 
 <hr />
