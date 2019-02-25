@@ -1,6 +1,7 @@
 defmodule Fumigate.Fragrance.Perfume_Note_Join do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
 
 
   schema "perfume_note_joins" do
@@ -18,5 +19,16 @@ defmodule Fumigate.Fragrance.Perfume_Note_Join do
     |> validate_required([:note_id, :perfume_id])
     |> assoc_constraint(:perfume)
     |> assoc_constraint(:note)
+  end
+
+  def get_all_notes_by_perfume_id(query, id, pyramid_note) do
+    from c in query, 
+    where: c.perfume_id == ^id and c.pyramid_note == ^pyramid_note,
+    select: c.note_id 
+  end
+
+  def delete_all_top_note_joins_by_perfume_id(query, id) do
+    from c in query, 
+    where: c.perfume_id == ^id
   end
 end

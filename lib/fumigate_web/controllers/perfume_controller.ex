@@ -39,7 +39,12 @@ defmodule FumigateWeb.PerfumeController do
     perfume = Fragrance.get_perfume!(id)
     changeset = Fragrance.change_perfume(perfume)
     accords_select = Fragrance.select_all_accords_by_perfume_id(perfume.id)
-    render(conn, "edit.html", perfume: perfume, changeset: changeset, accords_select: accords_select)
+    top_notes_select = Fragrance.select_all_top_notes_by_perfume_id(perfume.id)
+    middle_notes_select = Fragrance.select_all_middle_notes_by_perfume_id(perfume.id)
+    base_notes_select = Fragrance.select_all_base_notes_by_perfume_id(perfume.id)
+    render(conn, "edit.html", perfume: perfume, changeset: changeset, accords_select: accords_select, 
+           top_notes_select: top_notes_select, middle_notes_select: middle_notes_select,
+           base_notes_select: base_notes_select)
   end
 
   def update(conn, %{"id" => id, "perfume" => perfume_params}) do

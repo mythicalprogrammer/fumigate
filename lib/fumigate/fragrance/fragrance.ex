@@ -16,6 +16,24 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Perfume_Note_Join
   alias Fumigate.Fragrance.Perfume_Accord_Join
 
+  def select_all_top_notes_by_perfume_id(id) do
+    select_all_notes_by_perfume_id(id, "top") 
+  end
+
+  def select_all_middle_notes_by_perfume_id(id) do
+    select_all_notes_by_perfume_id(id, "middle") 
+  end
+
+  def select_all_base_notes_by_perfume_id(id) do
+    select_all_notes_by_perfume_id(id, "base") 
+  end
+
+  defp select_all_notes_by_perfume_id(perfume_id, pyramid_note) do
+    Perfume_Note_Join
+    |> Perfume_Note_Join.get_all_notes_by_perfume_id(perfume_id, pyramid_note) 
+    |> Repo.all()
+  end
+
   def delete_all_accord_joins_by_perfume_id(perfume_id) do
     queryable = Perfume_Accord_Join |> Perfume_Accord_Join.delete_all_accord_joins_by_perfume_id(perfume_id) 
     Ecto.Multi.new()
