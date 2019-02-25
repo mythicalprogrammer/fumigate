@@ -1,43 +1,72 @@
-<%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+
+ <div class="row">
+<div class="col-md-8 order-md-1"> 
+  <%= form_for @changeset, @action, fn f -> %>
+    <%= if @changeset.action do %>
+      <div class="alert alert-danger">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+    <% end %>
+
+
+    <div class="row">
+      <div class="col-md-8">
+      <%= label f, :perfume_name %>
+      <%= text_input f, :perfume_name, [class: "form-control"] %>
+      <%= error_tag f, :perfume_name %>
+      </div>
+
+      <div class="col-md-4">
+      <%= label f, :concentration %>
+      <%= text_input f, :concentration, [class: "form-control"] %>
+      <%= error_tag f, :concentration %>
+      </div>
     </div>
-  <% end %>
 
-  <%= label f, :perfume_name %>
-  <%= text_input f, :perfume_name %>
-  <%= error_tag f, :perfume_name %>
+    <div class="row">
+      <div class="col-md-3">
+      <%= label f, :gender %>
+      <%= select f, :gender, [:men, :women, :unisex], [class: "custom-select d-block w-100"] %>  
+      <%= error_tag f, :gender %>
+      </div>
 
-  <%= label f, :concentration %>
-  <%= text_input f, :concentration %>
-  <%= error_tag f, :concentration %>
+      <div class="col-md-3">
+      <%= label f, :year_released %>
+      <%= select f, :year_released, DateTime.utc_now.year..1700, [prompt: "Select a year.", class: "custom-select d-block w-100"] %> 
+      <%= error_tag f, :year_released %>
+      </div>
 
-  <%= label f, :gender %>
-  <%= select f, :gender, [:men, :women, :unisex] %> 
-  <%= error_tag f, :gender %>
+      <div class="col-md-3">
+      <%= label f, :month_released %>
+      <%= select f, :month_released, [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december], [prompt: "Select a month.", class: "custom-select d-block"] %>  
+      <%= error_tag f, :month_released %>
+      </div>
+       
+      <div class="col-md-3">
+      <%= label f, :day_released %>
+      <%= select f, :day_released, 1..31, [prompt: "Select a day.", class: "custom-select d-block"] %> 
+      <%= error_tag f, :day_released %>
+      </div>
+    </div>
 
-  <%= label f, :perfume_description %>
-  <%= text_input f, :perfume_description %>
-  <%= error_tag f, :perfume_description %>
+    <div class="row">
+      <div class="col-md-12">
+      <%= label f, :perfume_description %>
+      <%= textarea f, :perfume_description, [class: "form-control", rows: 4] %>  
+      <%= error_tag f, :perfume_description %>
+      </div>
+    </div>
 
   <%= label f, :picture_url %>
-  <%= text_input f, :picture_url %>
+  <%= text_input f, :picture_url, [class: "form-control"] %>  
   <%= error_tag f, :picture_url %>
 
-  <%= label f, :year_released %>
-  <%= select f, :year_released, DateTime.utc_now.year..1700, [prompt: "Select a year."] %>
-  <%= error_tag f, :year_released %>
 
-  <%= label f, :month_released %>
-  <%= select f, :month_released, [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december], [prompt: "Select a month."] %>
-  <%= error_tag f, :month_released %>
 
-  <%= label f, :day_released %>
-  <%= select f, :day_released, 1..31, [prompt: "Select a day."] %> 
-  <%= error_tag f, :day_released %>
 
   <div>
-    <%= submit "Save" %>
+    <%= submit "Save", [class: "mt-3 btn btn-primary btn-lg btn-block"]%>
   </div>
+
+  </div> <!-- end div col-md-8 order-md-1 -->
 <% end %>
