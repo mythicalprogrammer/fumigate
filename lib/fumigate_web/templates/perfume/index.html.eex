@@ -1,7 +1,8 @@
 <div class="jumbotron p-4 p-md-5 mt-5 rounded bg-light"> 
 <h1 class="display-3">Listing Perfumes</h1>
+<span><%= link "Add New Perfume", to: Routes.perfume_path(@conn, :new), class: "btn btn-primary" %></span>
 
-<table class="table table-striped">
+<table class="table table-striped mt-5">
   <thead>
     <tr>
       <th>Perfume name</th>
@@ -9,8 +10,6 @@
       <th>Perfume description</th>
       <th>Picture url</th>
       <th>Year released</th>
-      <th>Month released</th>
-      <th>Day released</th>
 
       <th></th>
     </tr>
@@ -34,20 +33,23 @@
       </td>
       <td><%= perfume.gender %></td>
       <td><%= perfume.perfume_description %></td>
-      <td><%= perfume.picture_url %></td>
+
+      <%= if to_string(perfume.picture_url) != "" do %>
+        <td>✔️</td>
+      <% else %>
+        <td>❌</td>
+      <% end %>
+
       <td><%= perfume.year_released %></td>
-      <td><%= perfume.month_released %></td>
-      <td><%= perfume.day_released %></td>
 
       <td>
-        <%= link "Show", to: Routes.perfume_path(@conn, :show, perfume) %>
-        <%= link "Edit", to: Routes.perfume_path(@conn, :edit, perfume) %>
-        <%= link "Delete", to: Routes.perfume_path(@conn, :delete, perfume), method: :delete, data: [confirm: "Are you sure?"] %>
+        <%= link "Show", to: Routes.perfume_path(@conn, :show, perfume), class: "btn btn-outline-secondary" %>
+        <%= link "Edit", to: Routes.perfume_path(@conn, :edit, perfume), class: "btn btn-outline-secondary" %>
+        <%= link "Delete", to: Routes.perfume_path(@conn, :delete, perfume), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-outline-secondary" %>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Perfume", to: Routes.perfume_path(@conn, :new) %></span>
 </div>
