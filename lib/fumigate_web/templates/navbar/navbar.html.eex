@@ -26,10 +26,17 @@
         <% end %>
           <a class="nav-link" href="companies">Companies</a>
         </li>
-      </ul>
-      <form class="form-inline mt-2 mt-md-0">
+      <li class="nav-item">
+      <form class="form-inline mt-2 mt-md-0 ml-5">
         <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
+      </li>
+      </ul>
+      <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex social-media">
+        <li class="nav-item"><a class="nav-link" href="https://github.com/mythicalprogrammer"><i class="fab fa-github-alt"></i></a></li>
+        <li class="nav-item"><a class="nav-link" href="https://twitter.com/AnthonyDoan20"><i class="fab fa-twitter"></i></a></li>
+        <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/urmyheartbstopr/"><i class="fab fa-instagram"></i></a></li>
+      </ul>
     </div>
   </nav>
