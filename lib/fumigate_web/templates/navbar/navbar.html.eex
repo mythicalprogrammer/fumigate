@@ -26,7 +26,7 @@
         <% end %>
           <a class="nav-link" href="/companies">Companies</a>
         </li>
-        <%= if to_string(assigns.conn.private.phoenix_controller) == "Elixir.FumigateWeb.CompanyController" do %>
+        <%= if to_string(assigns.conn.private.phoenix_controller) == "Elixir.Coherence.SessionController" do %>
           <li class="nav-item active">
         <% else %>
           <li class="nav-item">
