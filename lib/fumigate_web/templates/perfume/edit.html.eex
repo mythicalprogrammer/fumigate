@@ -1,4 +1,4 @@
-<div class="container mt-5 pt-5">
+<div class="jumbotron p-4 p-md-5 mt-5 rounded bg-light"> 
 
   <div class="mb-12">
     <h1 class="display-3">Edit Perfume </h1> 
