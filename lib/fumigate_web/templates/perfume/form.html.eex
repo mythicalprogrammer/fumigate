@@ -8,7 +8,7 @@
   <div class="col-md-4 order-md-2 mb-4"> 
     <%= label f, :accord_id, "Accord" %>
     <%= multiple_select f, :accord_id, accord_select_options(@accords), 
-      [prompt: "Choose one or more accord.", class: "custom-select d-block w-100"] %>
+      [prompt: "Choose one or more accord.", class: "custom-select d-block w-100", selected: @accords_select] %>
     <%= error_tag f, :accord_id %>
 
     <%= label f, :top_note_id, "Note (Top)" %>

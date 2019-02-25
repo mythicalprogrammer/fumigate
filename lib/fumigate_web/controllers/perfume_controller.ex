@@ -38,7 +38,8 @@ defmodule FumigateWeb.PerfumeController do
   def edit(conn, %{"id" => id}) do
     perfume = Fragrance.get_perfume!(id)
     changeset = Fragrance.change_perfume(perfume)
-    render(conn, "edit.html", perfume: perfume, changeset: changeset)
+    accords_select = Fragrance.select_all_accords_by_perfume_id(id)
+    render(conn, "edit.html", perfume: perfume, changeset: changeset, accords_select: accords_select)
   end
 
   def update(conn, %{"id" => id, "perfume" => perfume_params}) do
