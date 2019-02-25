@@ -16,6 +16,12 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Perfume_Note_Join
   alias Fumigate.Fragrance.Perfume_Accord_Join
 
+  def insert_all_accords(accords, perfume) do
+    records = accords |> Enum.map(fn(x) -> [perfume_id: perfume.id, accord_id: String.to_integer(x), inserted_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second), updated_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)] end)
+    Perfume_Accord_Join
+    |> Repo.insert_all(records)
+  end
+
   def list_perfumes_paginate(params) do
     Perfume
     |> Perfume.sort_by_name_preload() 

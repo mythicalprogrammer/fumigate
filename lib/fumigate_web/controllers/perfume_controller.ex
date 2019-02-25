@@ -46,6 +46,11 @@ defmodule FumigateWeb.PerfumeController do
 
     case Fragrance.update_perfume(perfume, perfume_params) do
       {:ok, perfume} ->
+        if perfume_params["accord_id"] != nil do
+          perfume_params["accord_id"] 
+          |> Fragrance.insert_all_accords(perfume)
+        end
+        
         conn
         |> put_flash(:info, "Perfume updated successfully.")
         |> redirect(to: Routes.perfume_path(conn, :show, perfume))
