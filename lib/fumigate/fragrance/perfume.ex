@@ -33,4 +33,8 @@ defmodule Fumigate.Fragrance.Perfume do
   def alphabetical(query) do
     from c in query, order_by: c.perfume_name
   end
+
+  def sort_by_name_preload(query) do
+    from c in query, order_by: c.perfume_name, preload: [:companies, :accords, :notes] 
+  end
 end
