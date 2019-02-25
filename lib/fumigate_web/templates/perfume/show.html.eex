@@ -1,70 +1,67 @@
-<div class="jumbotron p-4 p-md-5 mt-5 rounded bg-light"> 
-<h1>Show Perfume</h1>
+<div class="jumbotron p-4 p-md-5 mt-3 rounded bg-light"> 
+<h1 class="display-3">Show Perfume</h1>
+<span><%= link "Edit", to: Routes.perfume_path(@conn, :edit, @perfume), class: "btn btn-outline-primary" %></span>
+<span><%= link "Back", to: Routes.perfume_path(@conn, :index), class: "btn btn-outline-primary" %></span>
 
-<ul>
+<ul class="list-group mt-2">
 
-  <li>
+  <li class="list-group-item">
     <strong>Perfume name:</strong>
     <%= @perfume.perfume_name %>
   </li>
-  <li>
+
+  <li class="list-group-item">
    <strong>Company:</strong>
    <%= for company <- @perfume.companies do %>
      <%= company.company_name %>
    <% end %>
   </li>
 
-  <li>
+  <li class="list-group-item">
     <strong>Concentration:</strong>
     <%= @perfume.concentration %>
   </li>
 
-  <li>
+  <li class="list-group-item">
     <strong>Gender:</strong>
     <%= @perfume.gender %>
   </li>
 
-  <li>
+  <li class="list-group-item">
    <strong>Notes:</strong>
    <%= for note <- @perfume.notes do %>
      <%= note.note_name %>,
    <% end %>
   </li>
 
-  <li>
+  <li class="list-group-item">
    <strong>Accords:</strong>
    <%= for accord <- @perfume.accords do %>
      <%= accord.accord_name %>,
    <% end %>
   </li>
 
-  <li>
+  <li class="list-group-item">
     <strong>Perfume description:</strong>
     <%= @perfume.perfume_description %>
   </li>
 
-  <li>
+  <li class="list-group-item">
     <strong>Picture url:</strong>
     <%= @perfume.picture_url %>
   </li>
 
-  <li>
+  <li class="list-group-item">
     <strong>Year released:</strong>
     <%= @perfume.year_released %>
-  </li>
 
-  <li>
     <strong>Month released:</strong>
     <%= @perfume.month_released %>
-  </li>
 
-  <li>
     <strong>Day released:</strong>
     <%= @perfume.day_released %>
   </li>
 
 </ul>
 
-<span><%= link "Edit", to: Routes.perfume_path(@conn, :edit, @perfume) %></span>
-<span><%= link "Back", to: Routes.perfume_path(@conn, :index) %></span>
 </div>
