@@ -1,11 +1,10 @@
 <div class="jumbotron p-4 p-md-5 mt-5 rounded bg-light"> 
-<h1>Listing Perfumes</h1>
+<h1 class="display-3">Listing Perfumes</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Perfume name</th>
-      <th>Concentration</th>
       <th>Gender</th>
       <th>Perfume description</th>
       <th>Picture url</th>
@@ -21,11 +20,18 @@
     <tr>
       <td>
         <%= perfume.perfume_name %>
-        (by <%= for company <- perfume.companies do %>
-          <%= company.company_name %>
-        <% end %>)
+        
+        <%= if perfume.companies != [] do %>
+
+          (by <%= for company <- perfume.companies do %>
+               <%= company.company_name %>
+              <% end %> 
+          <%= if to_string(perfume.concentration) != "" do %>
+            concentration: <%= perfume.concentration %>
+          <% end %>)
+
+        <% end %>
       </td>
-      <td><%= perfume.concentration %></td>
       <td><%= perfume.gender %></td>
       <td><%= perfume.perfume_description %></td>
       <td><%= perfume.picture_url %></td>
