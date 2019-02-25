@@ -24,17 +24,17 @@
       (Country:
       <%= if company.country do %>
         <%= company.country.name %>
-      <%= else %>
+      <% else %>
       Unknown</td>
       <% end %>)
       <%= if company.company_main_activity do %>
       <td><%= company.company_main_activity.main_activity %></td>
-      <%= else %>
+      <% else %>
       <td>Unknown</td>
       <% end %>
       <%= if company.parent_company do %>
       <td><%= company.parent_company.company_name %></td>
-      <%= else %>
+      <% else %>
       <td>None</td>
       <% end %>
       <td><%= company.company_description %></td>

@@ -9,7 +9,7 @@
   <% end %>
 
   <%= label f, :company_name %>
-  <%= if message = f.errors[:company_name] do %>
+  <%= if f.errors[:company_name] do %>
   <%= text_input f, :company_name, class: "form-control is-invalid" %>
 <% else %>
   <%= text_input f, :company_name, class: "form-control" %>
