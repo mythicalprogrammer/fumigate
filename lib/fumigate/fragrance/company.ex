@@ -35,4 +35,8 @@ defmodule Fumigate.Fragrance.Company do
   def alphabetical(query) do
     from c in query, order_by: c.company_name
   end
+
+  def sort_by_name_preload(query) do
+    from c in query, order_by: c.company_name, preload: [:parent_company, :country, :company_main_activity] 
+  end
 end

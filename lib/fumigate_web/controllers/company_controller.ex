@@ -3,17 +3,13 @@ defmodule FumigateWeb.CompanyController do
 
   alias Fumigate.Fragrance
   alias Fumigate.Fragrance.Company
-  import Ecto.Query
 
   plug :load_countries when action in [:new, :create, :edit, :update]
   plug Fumigate.CompanyList when action in [:new, :create, :edit, :update]
   plug :load_company_main_activities when action in [:new, :create, :edit, :update]
 
   def index(conn, params) do
-    query = from c in Company, order_by: c.company_name, preload: [:parent_company, :country, :company_main_activity]
-    companies = Fumigate.Repo.paginate(query, params)
-    #companies = Fragrance.list_companies() 
-    #  |> Fumigate.Repo.preload([:parent_company, :country, :company_main_activity])
+    companies = Fragrance.list_companies_paginate(params) 
     render(conn, "index.html", companies: companies.entries, page: companies.page_number)
   end
 
