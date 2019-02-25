@@ -36,7 +36,7 @@
 
   <li class="list-group-item">
    <strong>Accords:</strong>
-   <%= for accord <- @perfume.accords do %>
+   <%= for accord <- Enum.sort(@perfume.accords) do %>
      <%= accord.accord_name %>,
    <% end %>
   </li>
