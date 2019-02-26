@@ -6,6 +6,7 @@ defmodule FumigateWeb.PerfumeController do
 
   plug Fumigate.AccordList when action in [:new, :create, :edit, :update]
   plug Fumigate.NoteList when action in [:new, :create, :edit, :update]
+  plug Fumigate.CompanyList when action in [:new, :create, :edit, :update]
 
   def index(conn, params) do
     perfumes = Fragrance.list_perfumes_paginate(params) 
