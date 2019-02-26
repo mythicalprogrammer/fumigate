@@ -27,8 +27,8 @@ defmodule Fumigate.Fragrance.Perfume_Note_Join do
     select: c.note_id 
   end
 
-  def delete_all_top_note_joins_by_perfume_id(query, id) do
+  def delete_all_note_joins_by_perfume_id(query, id, pyramid_note) do
     from c in query, 
-    where: c.perfume_id == ^id
+    where: c.perfume_id == ^id and c.pyramid_note == ^pyramid_note
   end
 end
