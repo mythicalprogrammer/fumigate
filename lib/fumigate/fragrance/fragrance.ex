@@ -16,6 +16,19 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Perfume_Note_Join
   alias Fumigate.Fragrance.Perfume_Accord_Join
 
+  def get_perfumes_by_company_id(id) do
+    perfume_ids = get_perfume_id_by_company_id(id) 
+    Perfume
+    |> Perfume.get_all_perfumes(perfume_ids)
+    |> Repo.all()
+  end
+
+  def get_perfume_id_by_company_id(id) do
+    Perfume_Company_Join
+    |> Perfume_Company_Join.get_perfume_id_by_company_id(id)
+    |> Repo.all()
+  end
+
   def insert_all_companies(company_id, perfume_id) do
     records = company_id |> Enum.map(fn(x) -> [perfume_id: perfume_id, company_id: String.to_integer(x), inserted_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second), updated_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)] end)
     Perfume_Company_Join

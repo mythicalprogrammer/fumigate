@@ -37,4 +37,11 @@ defmodule Fumigate.Fragrance.Perfume do
   def sort_by_name_preload(query) do
     from c in query, order_by: c.perfume_name, preload: [:companies, :accords, :notes] 
   end
+
+  def get_all_perfumes(query, perfume_ids) do 
+    from c in query,
+      order_by: c.perfume_name,
+      preload: [:accords, :notes],
+      where: c.id in ^perfume_ids
+  end
 end

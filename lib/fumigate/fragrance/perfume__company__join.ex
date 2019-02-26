@@ -30,4 +30,10 @@ defmodule Fumigate.Fragrance.Perfume_Company_Join do
     from c in query, 
     where: c.perfume_id == ^id
   end
+
+  def get_perfume_id_by_company_id(query, id) do
+    from c in query, 
+    where: c.company_id == ^id,
+    select: c.perfume_id 
+  end
 end
