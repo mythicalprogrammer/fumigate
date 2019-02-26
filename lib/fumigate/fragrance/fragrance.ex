@@ -16,6 +16,20 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Perfume_Note_Join
   alias Fumigate.Fragrance.Perfume_Accord_Join
 
+  def insert_all_companies(company_id, perfume_id) do
+    records = company_id |> Enum.map(fn(x) -> [perfume_id: perfume_id, company_id: String.to_integer(x), inserted_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second), updated_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)] end)
+    Perfume_Company_Join
+    |> Repo.insert_all(records)
+  end
+
+  def delete_all_company_joins_by_perfume_id(id) do
+    queryable = Perfume_Company_Join |> Perfume_Company_Join.delete_all_company_joins_by_perfume_id(id) 
+    Ecto.Multi.new()
+    |> Ecto.Multi.delete_all(:delete_all, queryable)
+    |> Repo.transaction()
+  end
+
+
   def select_all_companies_by_perfume_id(id) do
     Perfume_Company_Join
     |> Perfume_Company_Join.get_all_companies_by_perfume_id(id) 
