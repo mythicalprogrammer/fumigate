@@ -13,7 +13,7 @@
   <li class="list-group-item">
    <strong>Company:</strong>
    <%= for company <- @perfume.companies do %>
-     <%= company.company_name %>
+     <%= company.company_name <> ", " %>
    <% end %>
   </li>
 
