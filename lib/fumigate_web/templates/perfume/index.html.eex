@@ -21,7 +21,9 @@
 <%= for perfume <- @perfumes do %>
     <tr>
       <td>
+        <a href="/perfumes/<%= perfume.id %>">
         <%= perfume.perfume_name %>
+        </a>
         
         <%= if perfume.companies != [] do %>
 
