@@ -3,6 +3,35 @@
 <span><%= link "Edit", to: Routes.perfume_path(@conn, :edit, @perfume), class: "btn btn-outline-primary" %></span>
 <span><%= link "Back", to: Routes.perfume_path(@conn, :index), class: "btn btn-outline-primary" %></span>
 
+<div class="row">
+
+  <div class="col-md-4 order-md-2 mb-4"> 
+    <ul class="list-group mt-2">
+  <li class="list-group-item">
+    <strong>Perfume description:</strong>
+    <%= @perfume.perfume_description %>
+  </li>
+
+  <li class="list-group-item">
+    <strong>Picture url:</strong>
+    <%= @perfume.picture_url %>
+  </li>
+  <li class="list-group-item">
+    <strong>Year released:</strong>
+    <%= @perfume.year_released %>
+
+    <strong>Month released:</strong>
+    <%= @perfume.month_released %>
+
+    <strong>Day released:</strong>
+    <%= @perfume.day_released %>
+  </li>
+
+    </ul>
+  </div>
+
+  <div class="col-md-4 order-md-1"> 
+
 <ul class="list-group mt-2">
 
   <li class="list-group-item">
@@ -52,27 +81,9 @@
    <% end %>
   </li>
 
-  <li class="list-group-item">
-    <strong>Perfume description:</strong>
-    <%= @perfume.perfume_description %>
-  </li>
-
-  <li class="list-group-item">
-    <strong>Picture url:</strong>
-    <%= @perfume.picture_url %>
-  </li>
-
-  <li class="list-group-item">
-    <strong>Year released:</strong>
-    <%= @perfume.year_released %>
-
-    <strong>Month released:</strong>
-    <%= @perfume.month_released %>
-
-    <strong>Day released:</strong>
-    <%= @perfume.day_released %>
-  </li>
 
 </ul>
+  </div>
 
+</div>
 </div>
