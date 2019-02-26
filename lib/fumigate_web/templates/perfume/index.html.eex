@@ -26,7 +26,7 @@
         <%= if perfume.companies != [] do %>
 
           (by <%= for company <- perfume.companies do %>
-               <%= company.company_name %>
+              <%= company.company_name <> ", "%> 
               <% end %> 
           <%= if to_string(perfume.concentration) != "" do %>
             concentration: <%= perfume.concentration %>
