@@ -29,9 +29,20 @@
 
   <li class="list-group-item">
    <strong>Notes:</strong>
-   <%= for note <- @perfume.notes do %>
-     <%= note.note_name %>,
-   <% end %>
+   <ul>
+     <li>
+       Top Notes: 
+        <%= parse_note(@top_notes) |> note_list_to_string() %> 
+     </li>
+     <li>
+       Middle Notes: 
+        <%= parse_note(@middle_notes) |> note_list_to_string() %> 
+     </li>
+     <li>
+       Base Notes: 
+        <%= parse_note(@base_notes) |> note_list_to_string() %> 
+     </li>
+   </ul>
   </li>
 
   <li class="list-group-item">

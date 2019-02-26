@@ -21,4 +21,10 @@ defmodule Fumigate.Fragrance.Note do
   def alphabetical(query) do
     from c in query, order_by: c.note_name
   end
+
+  def get_all_by_id(query, ids) do
+    from c in query,
+    order_by: c.note_name,
+    where: c.id in ^ids
+  end
 end

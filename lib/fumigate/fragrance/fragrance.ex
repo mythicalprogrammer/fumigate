@@ -16,6 +16,27 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Perfume_Note_Join
   alias Fumigate.Fragrance.Perfume_Accord_Join
 
+  def get_all_base_notes_by_perfume_id(id) do
+      base_note_ids = select_all_base_notes_by_perfume_id(id) 
+      Note
+      |> Note.get_all_by_id(base_note_ids) 
+      |> Repo.all()
+  end
+
+  def get_all_middle_notes_by_perfume_id(id) do
+      middle_note_ids = select_all_middle_notes_by_perfume_id(id) 
+      Note
+      |> Note.get_all_by_id(middle_note_ids) 
+      |> Repo.all()
+  end
+
+  def get_all_top_notes_by_perfume_id(id) do
+      top_note_ids = select_all_top_notes_by_perfume_id(id) 
+      Note
+      |> Note.get_all_by_id(top_note_ids) 
+      |> Repo.all()
+  end
+
   def insert_all_notes_by_perfume_id(notes, perfume_id, pyramid_note) do
     records = notes |> Enum.map(fn(x) -> [perfume_id: perfume_id, note_id: String.to_integer(x), pyramid_note: pyramid_note, inserted_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second), updated_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)] end)
     Perfume_Note_Join
@@ -28,6 +49,7 @@ defmodule Fumigate.Fragrance do
     |> Ecto.Multi.delete_all(:delete_all, queryable)
     |> Repo.transaction()
   end
+
 
   def select_all_top_notes_by_perfume_id(id) do
     select_all_notes_by_perfume_id(id, "top") 
