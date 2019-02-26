@@ -16,6 +16,12 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Perfume_Note_Join
   alias Fumigate.Fragrance.Perfume_Accord_Join
 
+  def select_all_companies_by_perfume_id(id) do
+    Perfume_Company_Join
+    |> Perfume_Company_Join.get_all_companies_by_perfume_id(id) 
+    |> Repo.all()
+  end
+
   def get_all_base_notes_by_perfume_id(id) do
       base_note_ids = select_all_base_notes_by_perfume_id(id) 
       Note

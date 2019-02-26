@@ -33,7 +33,7 @@
       <div class="col-md-8">
     <%= label f, :company_id, "Company" %>
     <%= multiple_select f, :company_id, company_select_options(@companies), 
-      [prompt: "Choose one or more company.", class: "custom-select d-block w-100", selected: nil] %>
+      [prompt: "Choose one or more company.", class: "custom-select d-block w-100", selected: @companies_select] %>
     <%= error_tag f, :company_id %>
       </div>
     </div>
