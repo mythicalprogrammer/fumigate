@@ -15,7 +15,12 @@ defmodule FumigateWeb.PerfumeController do
 
   def new(conn, _params) do
     changeset = Fragrance.change_perfume(%Perfume{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset,
+           accords_select: nil, 
+           top_notes_select: nil, 
+           middle_notes_select: nil,
+           base_notes_select: nil, 
+           companies_select: nil)
   end
 
   def create(conn, %{"perfume" => perfume_params}) do
@@ -48,8 +53,10 @@ defmodule FumigateWeb.PerfumeController do
     top_notes_select = Fragrance.select_all_top_notes_by_perfume_id(perfume.id)
     middle_notes_select = Fragrance.select_all_middle_notes_by_perfume_id(perfume.id)
     base_notes_select = Fragrance.select_all_base_notes_by_perfume_id(perfume.id)
-    render(conn, "edit.html", perfume: perfume, changeset: changeset, accords_select: accords_select, 
-           top_notes_select: top_notes_select, middle_notes_select: middle_notes_select,
+    render(conn, "edit.html", perfume: perfume, changeset: changeset, 
+           accords_select: accords_select, 
+           top_notes_select: top_notes_select, 
+           middle_notes_select: middle_notes_select,
            base_notes_select: base_notes_select, 
            companies_select: companies_select)
   end
