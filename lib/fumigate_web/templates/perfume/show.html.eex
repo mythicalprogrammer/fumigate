@@ -42,7 +42,7 @@
   <li class="list-group-item">
    <strong>Company:</strong>
    <%= for company <- @perfume.companies do %>
-     <%= company.company_name <> ", " %>
+     <a href="/companies/<%= company.id %>"><%= company.company_name %></a>,
    <% end %>
   </li>
 
