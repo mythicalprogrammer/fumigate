@@ -76,6 +76,9 @@ defmodule FumigateWeb.PerfumeController do
           perfume_params["base_note_id"] 
           |> Fragrance.insert_all_notes_by_perfume_id(perfume.id,"base")
         end
+        if perfume_params["accord_id"] == nil do
+          Fragrance.delete_all_accord_joins_by_perfume_id(perfume.id)
+        end
         if perfume_params["accord_id"] != nil do
           Fragrance.delete_all_accord_joins_by_perfume_id(perfume.id)
           perfume_params["accord_id"] 
