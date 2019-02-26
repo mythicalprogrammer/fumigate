@@ -39,7 +39,9 @@
       <td>Unknown</td>
       <% end %>
       <%= if company.parent_company do %>
-      <td><%= company.parent_company.company_name %></td>
+        <td>
+          <a href="/companies/<%= company.parent_company.id %>"><%= company.parent_company.company_name %></a>
+        </td>
       <% else %>
       <td>None</td>
       <% end %>
