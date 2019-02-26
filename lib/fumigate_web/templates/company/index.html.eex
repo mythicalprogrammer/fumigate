@@ -23,7 +23,10 @@
   <tbody>
 <%= for company <- @companies do %>
     <tr>
-      <td><%= company.company_name %>
+      <td>
+        <a href="/companies/<%= company.id %>">
+        <%= company.company_name %>
+        </a>
       (Country:
       <%= if company.country do %>
         <%= company.country.name %>
