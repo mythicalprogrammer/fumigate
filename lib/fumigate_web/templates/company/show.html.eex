@@ -1,14 +1,11 @@
 <div class="jumbotron p-4 p-md-5 mt-3 rounded bg-light"> 
-<h1 class="display-3">Show Company</h1>
+  <h1 class="display-3">
+    <%= @company.company_name %>
+  </h1>
 <span><%= link "Edit", to: Routes.company_path(@conn, :edit, @company), class: "btn btn-outline-primary" %></span>
 <span><%= link "Back", to: Routes.company_path(@conn, :index), class: "btn btn-outline-primary" %></span>
 
 <ul class="list-group mt-2">
-
-  <li class="list-group-item">
-    <strong>Company name:</strong>
-    <%= @company.company_name %>
-  </li>
 
   <%= if @company.parent_company do %>
   <li class="list-group-item">
