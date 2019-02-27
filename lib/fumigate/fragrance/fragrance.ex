@@ -16,6 +16,12 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Perfume_Note_Join
   alias Fumigate.Fragrance.Perfume_Accord_Join
 
+  def list_notes_paginate(params) do
+    Note
+    |> Note.alphabetical() 
+    |> Repo.paginate(params)
+  end 
+
   def list_accords_paginate(params) do
     Accord 
     |> Accord.alphabetical() 

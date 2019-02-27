@@ -2,6 +2,9 @@
 <h1 class="display-3">Listing Notes</h1>
 <span><%= link "New Note", to: Routes.note_path(@conn, :new), class: "btn btn-primary" %></span>
 
+<%= link "Prev Page", to: Routes.note_path(@conn, :index, page: @page - 1), class: "btn btn-outline-info" %>
+<%= link "Next Page", to: Routes.note_path(@conn, :index, page: @page + 1), class: "btn btn-outline-info ml-1" %>
+
 <table class="table table-striped mt-5">
   <thead>
     <tr>
