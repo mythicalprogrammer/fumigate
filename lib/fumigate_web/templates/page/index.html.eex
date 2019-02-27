@@ -3,8 +3,32 @@
   <div class="jumbotron">
     <div class="container">
       <h1 class="display-3">Hello, good looking people!</h1>
-      <p>This is a web application to look up all your fragrance and perfume needs.</p> 
-      <p><a class="btn btn-primary btn-lg" href="#" role="button">Find your perfume &raquo;</a></p>
+      <p>Look up all your fragrance and perfume needs.</p> 
+      <p><a class="btn btn-primary btn-lg" href="/perfumes" role="button">Find your perfume &raquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="second-section">
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="container mb-5">
+      <h1 class="display-3">Coming soon...</h1>
+      <ul class="list-group">
+        <li class="list-group-item">Responsive Design for Mobile support</li>
+        <li class="list-group-item">Designers</li>
+        <li class="list-group-item">Ratings</li>
+      </ul>
+    </div>
+</section>
+
+<section class="second-section">
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">The near future...</h1>
+      <ul class="list-group">
+        <li class="list-group-item">AI tools</li>
+        <li class="list-group-item">Community</li>
+      </ul>
     </div>
   </div>
 </section>
