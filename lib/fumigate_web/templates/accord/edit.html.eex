@@ -1,5 +1,11 @@
-<h1>Edit Accord</h1>
+<div class="jumbotron p-4 p-md-5 mt-5 rounded bg-light"> 
+  <div class="mb-12">
+    <h1 class="display-3">Edit Accord</h1>
+    <h3 class="display-5"><%= link "Back", to: Routes.accord_path(@conn, :index), class: "btn btn-outline-secondary" %></h3> 
+  </div>
 
-<%= render "form.html", Map.put(assigns, :action, Routes.accord_path(@conn, :update, @accord)) %>
+  <hr/>
 
-<span><%= link "Back", to: Routes.accord_path(@conn, :index) %></span>
+  <%= render "form.html", Map.put(assigns, :action, Routes.accord_path(@conn, :update, @accord)) %>
+</div>
+

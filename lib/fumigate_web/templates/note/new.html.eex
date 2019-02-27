@@ -1,5 +1,10 @@
-<h1>New Note</h1>
+<div class="jumbotron p-4 p-md-5 mt-5 rounded bg-light"> 
+  <div class="mb-12">
+    <h1 class="display-3">New Note</h1>
+    <h3 class="display-5"><%= link "Back", to: Routes.note_path(@conn, :index), class: "btn btn-outline-secondary" %></h3>
+  </div>
+
+  <hr/>
 
 <%= render "form.html", Map.put(assigns, :action, Routes.note_path(@conn, :create)) %>
-
-<span><%= link "Back", to: Routes.note_path(@conn, :index) %></span>
+</div>
