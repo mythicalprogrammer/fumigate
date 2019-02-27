@@ -1,29 +1,39 @@
-<h2><%= dgettext "coherence", "Show account" %></h2>
-<ul>
-  <li>
+<div class="jumbotron p-4 p-md-5 mt-3 rounded bg-light"> 
+<h2 class="display-2"><%= dgettext "coherence", "Show account" %></h2>
+<%= link dgettext("coherence", "Edit"), to: Routes.registration_path(@conn, :edit), class: "btn btn-outline-primary" %> |
+<%= link dgettext("coherence", "Delete"),
+        to: Routes.registration_path(@conn, :delete),
+        method: :delete,
+data: [confirm: dgettext("coherence", "Are you sure?")], 
+class: "btn btn-outline-primary" %>
+
+
+<hr />
+
+<ul class="list-group mt-2">
+  <li class="list-group-item">
     <strong><%= dgettext "coherence", "Name:" %></strong>
     <%= @user.name %>
   </li>
-  <li>
+  <li class="list-group-item">
     <strong><%= dgettext "coherence", "Username:" %></strong>
     <%= @user.username %>
   </li>
   <%= unless (login_field = Coherence.Config.login_field) == :email do %>
-    <li>
+    <li class="list-group-item">
       <strong><%= humanize login_field %></strong>
       <%= Map.get(@user, login_field) %>
     </li>
   <% end %>
 
-  <li>
+    <li class="list-group-item">
     <strong><%= dgettext "coherence", "Email:" %></strong>
     <%= @user.email %>
   </li>
 
 </ul>
 
-<%= link dgettext("coherence", "Edit"), to: Routes.registration_path(@conn, :edit) %> |
-<%= link dgettext("coherence", "Delete"),
-        to: Routes.registration_path(@conn, :delete),
-        method: :delete,
-        data: [confirm: dgettext("coherence", "Are you sure?")] %>
+
+</div>
+
+<hr />
