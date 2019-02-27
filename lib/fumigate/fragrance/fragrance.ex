@@ -16,6 +16,12 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Perfume_Note_Join
   alias Fumigate.Fragrance.Perfume_Accord_Join
 
+  def list_accords_paginate(params) do
+    Accord 
+    |> Accord.alphabetical() 
+    |> Repo.paginate(params)
+  end 
+
   def get_perfumes_by_company_id(id) do
     perfume_ids = get_perfume_id_by_company_id(id) 
     Perfume
@@ -82,7 +88,6 @@ defmodule Fumigate.Fragrance do
     |> Ecto.Multi.delete_all(:delete_all, queryable)
     |> Repo.transaction()
   end
-
 
   def select_all_top_notes_by_perfume_id(id) do
     select_all_notes_by_perfume_id(id, "top") 
