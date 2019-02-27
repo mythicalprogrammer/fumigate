@@ -41,7 +41,10 @@
     <footer class="container">
     <div class="container about-us">
       <h2 class="display-4">About Us</h2>
-      <p> This is a web application created by Anthony Anh Quoc Doan. It is created to practice his skillset and to create a useful tool for his casual passion of smelling good.
+      <p> This web application was created by Anthony Anh Quoc Doan. It was created to practice his skillset and to create useful tools for his casual passion for smelling good.
+      </p>
+      <p>
+      I hope you enjoy the web application.
       </p>
     </div>
         <p>&copy; Fumigate 2019</p>
