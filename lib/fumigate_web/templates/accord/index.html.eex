@@ -20,9 +20,9 @@
       </td>
 
       <td>
-        <%= link "Show", to: Routes.accord_path(@conn, :show, accord), class: "btn btn-primary"  %>
-        <%= link "Edit", to: Routes.accord_path(@conn, :edit, accord), class: "btn btn-primary" %>
-        <%= link "Delete", to: Routes.accord_path(@conn, :delete, accord), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-primary"  %>
+        <%= link "Show", to: Routes.accord_path(@conn, :show, accord), class: "btn btn-outline-primary"  %>
+        <%= link "Edit", to: Routes.accord_path(@conn, :edit, accord), class: "btn btn-outline-primary" %>
+        <%= link "Delete", to: Routes.accord_path(@conn, :delete, accord), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-outline-primary"  %>
       </td>
     </tr>
 <% end %>
