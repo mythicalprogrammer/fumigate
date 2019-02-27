@@ -10,7 +10,15 @@
     <ul class="list-group mt-2">
      <%= for perfume <- Enum.sort(@perfumes) do %>
      <li class="list-group-item">
-     <a href="/perfumes/<%= perfume.id %>"><%= perfume.perfume_name%></a>
+       <div class="row">
+         <div class="col-md-6"> 
+           <a href="/perfumes/<%= perfume.id %>"><%= perfume.perfume_name%></a>
+         </div>
+         <div class="col-md-6"> 
+           <%= perfume.year_released %>
+           For <%= perfume.gender%>.
+         </div>
+       </div>
      </li>
      <% end %>
     </ul>
