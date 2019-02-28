@@ -2,7 +2,7 @@
 
 APP="fumigate"
 
-BUILD_HOST="fumigate.app"
+BUILD_HOST="104.248.188.179"
 BUILD_USER="deploy"
 BUILD_AT="/tmp/edeliver/$APP/builds"
 
@@ -12,7 +12,7 @@ CLEAN_DEPLOY=true
 # prevent re-installing node modules; this defaults to "."
 GIT_CLEAN_PATHS="_build rel priv/static"
 
-PRODUCTION_HOSTS="fumigate.app"
+PRODUCTION_HOSTS="104.248.188.179"
 PRODUCTION_USER="deploy"
 DELIVER_TO="/home/deploy/apps"
 
