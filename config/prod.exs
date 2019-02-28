@@ -11,8 +11,10 @@ use Mix.Config
 # before starting your production server.
 config :fumigate, FumigateWeb.Endpoint,
   http: [:inet6, port: System.get_env("PORT") || 4000],
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  url: [host: "fumigate.app", port: 80],
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  server: true,
+  code_reloader: false
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -56,7 +58,7 @@ config :logger, level: :info
 # If you are doing OTP releases, you need to instruct Phoenix
 # to start the server for all endpoints:
 #
-#     config :phoenix, :serve_endpoints, true
+config :phoenix, :serve_endpoints, true
 #
 # Alternatively, you can configure exactly which server to
 # start per endpoint:
