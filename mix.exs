@@ -20,7 +20,7 @@ defmodule Fumigate.MixProject do
   def application do
     [
       mod: {Fumigate.Application, []},
-      extra_applications: [:logger, :runtime_tools, :scrivener_ecto]
+      extra_applications: [:logger, :runtime_tools, :scrivener_ecto, :edeliver]
     ]
   end
 
@@ -47,7 +47,9 @@ defmodule Fumigate.MixProject do
         git: "https://github.com/appprova/coherence.git", 
         branch: "upgrade-to-phoenix-1.4"},
       {:ecto_enum, "~> 1.2"},
-      {:scrivener_ecto, "~> 2.0"}
+      {:scrivener_ecto, "~> 2.0"},
+      {:edeliver, ">= 1.6.0"},
+      {:distillery, "~> 2.0", warn_missing: false},
     ]
   end
 
