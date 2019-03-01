@@ -19,6 +19,7 @@ defmodule FumigateWeb.PerfumeView do
          fn company -> "<a href='/companies/'#{company.id}>#{company.company_name}</a>" 
     end)
     |> Enum.join(", ")
+    |> HtmlSanitizeEx.basic_html 
     |> raw 
   end
 end

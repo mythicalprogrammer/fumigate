@@ -27,10 +27,10 @@
         
         <%= if perfume.companies != [] do %>
 
-          (by <%= company_parse(perfume.companies) %>)
+          by <%= company_parse(perfume.companies) %>
           <%= if to_string(perfume.concentration) != "" do %>
-            concentration: <%= perfume.concentration %>
-          <% end %>)
+            (Concentration: <%= perfume.concentration %>)
+          <% end %>
 
         <% end %>
       </td>
