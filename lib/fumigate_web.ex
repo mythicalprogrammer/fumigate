@@ -42,6 +42,7 @@ defmodule FumigateWeb do
       import FumigateWeb.ErrorHelpers
       import FumigateWeb.Gettext
       alias FumigateWeb.Router.Helpers, as: Routes
+      import Scrivener.HTML
     end
   end
 

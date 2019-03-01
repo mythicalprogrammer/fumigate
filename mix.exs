@@ -20,7 +20,7 @@ defmodule Fumigate.MixProject do
   def application do
     [
       mod: {Fumigate.Application, []},
-      extra_applications: [:logger, :runtime_tools, :scrivener_ecto, :edeliver]
+      extra_applications: [:logger, :runtime_tools, :scrivener_ecto, :edeliver, :scrivener_html]
     ]
   end
 
@@ -53,6 +53,7 @@ defmodule Fumigate.MixProject do
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:sobelow, "~> 0.7.6"},
       {:html_sanitize_ex, "~> 1.3.0-rc3"},
+      {:scrivener_html, "~> 1.8"}
     ]
   end
 

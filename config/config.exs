@@ -70,3 +70,7 @@ config :coherence, FumigateWeb.Coherence.Mailer,
   api_key: "your api key here"
 
 # %% End Coherence Configuration %%
+
+config :scrivener_html,
+  routes_helper: Fumigate.Router.Helpers,
+  view_style: :bootstrap
