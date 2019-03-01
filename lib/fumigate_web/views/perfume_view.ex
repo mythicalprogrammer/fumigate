@@ -34,4 +34,15 @@ defmodule FumigateWeb.PerfumeView do
     |> HtmlSanitizeEx.basic_html 
     |> raw 
   end
+
+  def accord_parse(accords) do
+    accords
+    |> Enum.map( 
+         fn accord -> "<a href='/accords/#{accord.id}'>#{accord.accord_name}</a>" 
+    end)
+    |> Enum.sort
+    |> Enum.join(", ")
+    |> HtmlSanitizeEx.basic_html 
+    |> raw 
+  end
 end

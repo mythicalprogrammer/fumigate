@@ -72,11 +72,8 @@
 
   <li class="list-group-item">
    <strong>Accords:</strong>
-   <%= for accord <- Enum.sort(@perfume.accords) do %>
-     <a href="/accords/<%= accord.id %>"><%= accord.accord_name %></a>,
-   <% end %>
+   <%= accord_parse(@perfume.accords) %>
   </li>
-
 
 </ul>
   </div>
