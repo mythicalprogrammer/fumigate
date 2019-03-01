@@ -11,10 +11,10 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
-## Learn more
+## Toolings
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+1. [Credo](https://hexdocs.pm/credo/readme.html#content)
+  * `mix credo --strict`
+  * `mix credo list`
+  * `mix credo explain lib/my_app/server.ex:10:24 `
+  * `mix credo info --verbose`
