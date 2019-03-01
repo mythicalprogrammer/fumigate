@@ -18,6 +18,7 @@ defmodule FumigateWeb.PerfumeView do
     |> Enum.map( 
          fn company -> "<a href='/companies/#{company.id}'>#{company.company_name}</a>" 
     end)
+    |> Enum.sort
     |> Enum.join(", ")
     |> HtmlSanitizeEx.basic_html 
     |> raw 
@@ -28,6 +29,7 @@ defmodule FumigateWeb.PerfumeView do
     |> Enum.map( 
          fn note -> "<a href='/notes/#{note.id}'>#{note.note_name}</a>" 
     end)
+    |> Enum.sort
     |> Enum.join(", ")
     |> HtmlSanitizeEx.basic_html 
     |> raw 
