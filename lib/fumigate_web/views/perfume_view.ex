@@ -12,4 +12,13 @@ defmodule FumigateWeb.PerfumeView do
   def accord_select_options(accords) do
     for accord <- accords, do: {accord.accord_name, accord.id}
   end
+
+  def company_parse(companies) do
+    companies
+    |> Enum.map( 
+         fn company -> "<a href='/companies/'#{company.id}>#{company.company_name}</a>" 
+    end)
+    |> Enum.join(", ")
+    |> raw 
+  end
 end
