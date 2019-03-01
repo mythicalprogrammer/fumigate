@@ -5,9 +5,8 @@ defmodule FumigateWeb.NoteController do
   alias Fumigate.Fragrance.Note
 
   def index(conn, params) do
-    notes = Fragrance.list_notes_paginate(params) 
-    render(conn, "index.html", notes: notes.entries,
-      page: notes.page_number)
+    page = Fragrance.list_notes_paginate(params) 
+    render(conn, "index.html", page: page) 
   end
 
   def new(conn, _params) do
