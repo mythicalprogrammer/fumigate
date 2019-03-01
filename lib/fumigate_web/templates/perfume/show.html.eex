@@ -61,15 +61,11 @@
      </li>
      <li>
        Middle Notes: 
-        <%= for note <- @middle_notes do %>
-          <a href="/notes/<%= note.id %>"><%= note.note_name %></a>,
-        <% end %>
+        <%= note_parse(@middle_notes) %>
      </li>
      <li>
        Base Notes: 
-        <%= for note <- @base_notes do %>
-          <a href="/notes/<%= note.id %>"><%= note.note_name %></a>,
-        <% end %>
+        <%= note_parse(@base_notes) %>
      </li>
    </ul>
   </li>

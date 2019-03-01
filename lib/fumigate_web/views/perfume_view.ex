@@ -26,7 +26,7 @@ defmodule FumigateWeb.PerfumeView do
   def note_parse(notes) do
     notes 
     |> Enum.map( 
-         fn note -> "<a href='/notes/'#{note.id}>#{note.note_name}</a>" 
+         fn note -> "<a href='/notes/#{note.id}'>#{note.note_name}</a>" 
     end)
     |> Enum.join(", ")
     |> HtmlSanitizeEx.basic_html 
