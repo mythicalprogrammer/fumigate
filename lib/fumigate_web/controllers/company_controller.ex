@@ -9,8 +9,8 @@ defmodule FumigateWeb.CompanyController do
   plug :load_company_main_activities when action in [:new, :create, :edit, :update]
 
   def index(conn, params) do
-    companies = Fragrance.list_companies_paginate(params) 
-    render(conn, "index.html", companies: companies.entries, page: companies.page_number)
+    page = Fragrance.list_companies_paginate(params) 
+    render(conn, "index.html", page: page) 
   end
 
   def new(conn, _params) do
