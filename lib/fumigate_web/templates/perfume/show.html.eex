@@ -57,9 +57,7 @@
    <ul>
      <li>
        Top Notes: 
-        <%= for note <- @top_notes do %>
-          <a href="/notes/<%= note.id %>"><%= note.note_name %></a>,
-        <% end %>
+        <%= note_parse(@top_notes) %>
      </li>
      <li>
        Middle Notes: 

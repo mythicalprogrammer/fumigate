@@ -16,7 +16,17 @@ defmodule FumigateWeb.PerfumeView do
   def company_parse(companies) do
     companies
     |> Enum.map( 
-         fn company -> "<a href='/companies/'#{company.id}>#{company.company_name}</a>" 
+         fn company -> "<a href='/companies/#{company.id}'>#{company.company_name}</a>" 
+    end)
+    |> Enum.join(", ")
+    |> HtmlSanitizeEx.basic_html 
+    |> raw 
+  end
+
+  def note_parse(notes) do
+    notes 
+    |> Enum.map( 
+         fn note -> "<a href='/notes/'#{note.id}>#{note.note_name}</a>" 
     end)
     |> Enum.join(", ")
     |> HtmlSanitizeEx.basic_html 
