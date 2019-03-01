@@ -5,9 +5,8 @@ defmodule FumigateWeb.AccordController do
   alias Fumigate.Fragrance.Accord
 
   def index(conn, params) do
-    accords = Fragrance.list_accords_paginate(params) 
-    render(conn, "index.html", accords: accords.entries,
-      page: accords.page_number)
+    page = Fragrance.list_accords_paginate(params) 
+    render(conn, "index.html", page: page) 
   end
 
   def new(conn, _params) do

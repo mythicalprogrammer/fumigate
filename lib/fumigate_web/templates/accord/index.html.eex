@@ -1,9 +1,8 @@
 <div class="jumbotron p-4 p-md-5 mt-5 rounded bg-light"> 
 <h1 class="display-3">Listing Accords</h1>
-<span><%= link "New Accord", to: Routes.accord_path(@conn, :new), class: "btn btn-primary" %></span>
+<span><%= link "New Accord", to: Routes.accord_path(@conn, :new), class: "btn btn-primary mb-5" %></span>
 
-<%= link "Prev Page", to: Routes.accord_path(@conn, :index, page: @page - 1), class: "btn btn-outline-info" %>
-<%= link "Next Page", to: Routes.accord_path(@conn, :index, page: @page + 1), class: "btn btn-outline-info ml-1" %>
+<%= pagination_links @page, previous: Phoenix.HTML.raw("&leftarrow;"), next: Phoenix.HTML.raw("&rightarrow;") %>
 
 <table class="table table-striped mt-5">
   <thead>
@@ -14,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-<%= for accord <- @accords do %>
+<%= for accord <- @page.entries do %>
     <tr>
       <td>
         <a href="/accords/<%= accord.id %>">
