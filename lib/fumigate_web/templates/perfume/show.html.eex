@@ -39,9 +39,7 @@
 
   <li class="list-group-item">
    <strong>Company:</strong>
-   <%= for company <- @perfume.companies do %>
-     <a href="/companies/<%= company.id %>"><%= company.company_name %></a>,
-   <% end %>
+   <%= company_parse(@perfume.companies) %>
   </li>
 
   <li class="list-group-item">
