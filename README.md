@@ -18,3 +18,5 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * `mix credo list`
   * `mix credo explain lib/my_app/server.ex:10:24 `
   * `mix credo info --verbose`
+2. [Sobelow](https://github.com/nccgroup/sobelow)
+  * `mix sobelow`

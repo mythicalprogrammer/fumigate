@@ -51,6 +51,7 @@ defmodule Fumigate.MixProject do
       {:edeliver, ">= 1.6.0"},
       {:distillery, "~> 2.0", warn_missing: false},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
+      {:sobelow, "~> 0.7.6"},
     ]
   end
 
