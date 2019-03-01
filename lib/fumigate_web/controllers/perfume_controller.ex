@@ -9,8 +9,8 @@ defmodule FumigateWeb.PerfumeController do
   plug Fumigate.CompanyList when action in [:new, :create, :edit, :update]
 
   def index(conn, params) do
-    perfumes = Fragrance.list_perfumes_paginate(params) 
-    render(conn, "index.html", perfumes: perfumes.entries, page: perfumes.page_number)
+    page = Fragrance.list_perfumes_paginate(params) 
+    render(conn, "index.html", page: page)
   end
 
   def new(conn, _params) do

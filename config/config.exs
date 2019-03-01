@@ -73,4 +73,4 @@ config :coherence, FumigateWeb.Coherence.Mailer,
 
 config :scrivener_html,
   routes_helper: Fumigate.Router.Helpers,
-  view_style: :bootstrap
+  view_style: :bootstrap_v4 
