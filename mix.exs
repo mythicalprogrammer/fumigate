@@ -50,6 +50,7 @@ defmodule Fumigate.MixProject do
       {:scrivener_ecto, "~> 2.0"},
       {:edeliver, ">= 1.6.0"},
       {:distillery, "~> 2.0", warn_missing: false},
+      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
     ]
   end
 
