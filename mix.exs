@@ -49,8 +49,13 @@ defmodule Fumigate.MixProject do
       {:distillery, "~> 2.0", warn_missing: false},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:sobelow, "~> 0.7.6"},
-      {:html_sanitize_ex, "~> 1.3.0-rc3"},
-      {:scrivener_html, "~> 1.8"}
+      {:html_sanitize_ex, "~> 1.3"},
+      {:scrivener_html, "~> 1.8"},
+      {:ueberauth, "~> 0.5"},
+      {:ueberauth_identity, "~> 0.2"},
+      {:guardian, "~> 1.2"},
+      {:comeonin, "~> 5.1"},
+      {:bcrypt_elixir, "~> 2.0"}
     ]
   end
 
