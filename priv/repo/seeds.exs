@@ -112,3 +112,28 @@ for main_activity <- [ "Fragrances",
 ] do
     Fragrance.create_company_main_activity(main_activity)
 end
+
+{:ok, _user} = Fumigate.Accounts.create_user(%{
+    username: "writer",
+    email: "writer@example.com",
+    password: "easy1234",
+    permissions: %{default: [:read_users, :write_users]}
+
+})
+
+{:ok, _user} = Fumigate.Accounts.create_user(%{
+    username: "reader",
+    email: "reader@example.com",
+    password: "easy1234",
+    permissions: %{default: [:read_users]}
+
+})
+
+{:ok, _user} = Fumigate.Accounts.create_user(%{
+    username: "rubbish",
+    email: "rubbish@example.com",
+    password: "easy1234",
+    permissions: %{default: []}
+
+})
+

@@ -101,4 +101,19 @@ defmodule Fumigate.Accounts do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
+
+  def get_user_by_email_and_password(nil, password), do: {:error, :invalid}
+  def get_user_by_email_and_password(email, nil), do: {:error, :invalid}
+
+  def get_user_by_email_and_password(email, password) do
+    with  %User{} = user <- Repo.get_by(User, email: String.downcase(email)),
+          true <- Bcrypt.verify_pass(password, user.password_hash) do
+      {:ok, user}
+    else
+      _ ->
+        # Help to mitigate timing attacks
+        Bcrypt.no_user_verify
+        {:error, :unauthorised}
+    end
+  end
 end
