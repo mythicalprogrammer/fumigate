@@ -14,9 +14,8 @@ defmodule FumigateWeb.AuthenticationController do
   defp handle_user_conn(user, conn) do
 	case user do
 	  {:ok, user} ->
-        Fumigate.Guardian.encode_and_sign(user, %{})
         {:ok, jwt, _full_claims} =
-          Fumigate.Guardian.encode_and_sign(user, %{})
+          Fumigate.Guardian.encode_and_sign(user, %{}, permissions: user.permissions)
 
         conn
         |> put_resp_header("authorization", "Bearer #{jwt}")
