@@ -20,7 +20,13 @@ defmodule Fumigate.MixProject do
   def application do
     [
       mod: {Fumigate.Application, []},
-      extra_applications: [:logger, :runtime_tools, :scrivener_ecto, :edeliver, :scrivener_html]
+      extra_applications: [:logger, 
+                           :runtime_tools, 
+                           :scrivener_ecto, 
+                           :edeliver, 
+                           :scrivener_html,
+                           :ueberauth_identity,
+      ]
     ]
   end
 

@@ -102,8 +102,8 @@ defmodule Fumigate.Accounts do
     User.changeset(user, %{})
   end
 
-  def get_user_by_email_and_password(nil, password), do: {:error, :invalid}
-  def get_user_by_email_and_password(email, nil), do: {:error, :invalid}
+  def get_user_by_email_and_password(nil, _password), do: {:error, :invalid}
+  def get_user_by_email_and_password(_email, nil), do: {:error, :invalid}
 
   def get_user_by_email_and_password(email, password) do
     with  %User{} = user <- Repo.get_by(User, email: String.downcase(email)),

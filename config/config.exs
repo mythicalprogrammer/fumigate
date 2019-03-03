@@ -1,6 +1,5 @@
 # This file is responsible for configuring your application
 # and its dependencies with the aid of the Mix.Config module.
-#
 # This configuration file is loaded before any dependency and
 # is restricted to this project.
 
@@ -32,3 +31,21 @@ import_config "#{Mix.env()}.exs"
 config :scrivener_html,
   routes_helper: Fumigate.Router.Helpers,
   view_style: :bootstrap_v4 
+
+config :ueberauth, Ueberauth,
+  base_path: "/api/auth",
+  providers: [
+    identity: {Ueberauth.Strategy.Identity, [
+      callback_methods: ["POST"],
+      uid_field: :email,
+      nickname_field: :email,
+      param_nesting: "user"
+    ]}
+  ]
+
+config :fumigate, Fumigate.Guardian,
+  issuer: "fumigate",
+  secret_key: "j7MrsfqrAbtc9pFB7t8SJN8VgBzizH9wnwWImMQrpJEUpeqHjWAn5u734cLzMGtO",
+  permissions: %{
+    default: [:read_users, :write_users]
+  }

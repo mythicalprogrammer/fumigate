@@ -27,7 +27,13 @@ defmodule FumigateWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", FumigateWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", FumigateWeb do
+    pipe_through :api
+
+    scope "/auth" do
+      post "/identity/callback", AuthenticationController, :identity_callback
+    end
+
+    resources "/users", UserController, except: [:new, :edit]
+  end
 end
