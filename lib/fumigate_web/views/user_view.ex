@@ -13,7 +13,7 @@ defmodule FumigateWeb.UserView do
   def render("user.json", %{user: user}) do
     %{id: user.id,
       username: user.username,
-      hashed_password: user.hashed_password,
+      password_has: user.password_hash,
       permissions: user.permissions}
   end
 end

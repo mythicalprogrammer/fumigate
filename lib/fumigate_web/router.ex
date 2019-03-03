@@ -9,6 +9,9 @@ defmodule FumigateWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :authenticated do
+    plug FumigateWeb.AuthAccessPipeline
+  end
 
   pipeline :api do
     plug :accepts, ["json"]
@@ -33,6 +36,8 @@ defmodule FumigateWeb.Router do
     scope "/auth" do
       post "/identity/callback", AuthenticationController, :identity_callback
     end
+
+    pipe_through :authenticated
 
     resources "/users", UserController, except: [:new, :edit]
   end

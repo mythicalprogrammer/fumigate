@@ -49,3 +49,8 @@ config :fumigate, Fumigate.Guardian,
   permissions: %{
     default: [:read_users, :write_users]
   }
+
+# Configure the authentication plug pipeline
+config :fumigate, FumigateWeb.AuthAccessPipeline,
+  module: Fumigate.Guardian,
+  error_handler: FumigateWeb.AuthErrorHandler
