@@ -18,7 +18,6 @@ defmodule Fumigate.Accounts.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:username, :name, :password, :email, :permissions])
-    |> validate_required([:username, :email, :password])
     |> validate_changeset
   end
 
