@@ -27,7 +27,8 @@ defmodule FumigateWeb.Router do
     resources "/perfume_accord_joins", Perfume_Accord_JoinController
     resources "/accords", AccordController
     resources "/notes", NoteController
-    get "/login", LoginController, :index
+    get "/login", LoginController, :new
+    post "/login", LoginController, :login
   end
 
   # Other scopes may use custom stacks.

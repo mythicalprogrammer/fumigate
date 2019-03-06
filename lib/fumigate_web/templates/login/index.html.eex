@@ -1,4 +1,7 @@
 <style>
+  .alert-danger {
+    margin-top: 50px;
+  }
   .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
@@ -119,24 +122,26 @@ body {
 
 </style>
 
-<form class="form-signin mt-5">
+<div class="jumbotron p-4 p-md-5 mt-5 rounded bg-light"> 
+<%= form_for @changeset, @action, [class: "form-signin mt-5"], fn f -> %>
   <div class="text-center mb-4">
     <h1 class="h1 mb-3 font-weight-normal">Good to see you again!</h1>
     <p>Need an account? <code>Sign up here.</code></p> 
   </div>
 
   <div class="form-label-group">
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputEmail">Email address</label>
+    <%= email_input f, :email, [class: "form-control", placeholder: "Email address", required: true, autofocus: true] %>
+    <%= label f, :email%>
   </div>
 
   <div class="form-label-group">
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <label for="inputPassword">Password</label>
+    <%= password_input f, :password, [class: "form-control", placeholder: "Password", required: true] %>
+    <%= label f, :password %>
   </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  <%= submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
   <div class="text-center mb-4">
     <p>Did you <code>forget your password?</code></p>
   </div>
   <p class="mt-5 mb-3 text-muted text-center">&copy; Fumigate</p>
-</form>
+<% end %>
+</div>
