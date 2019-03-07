@@ -40,6 +40,7 @@ defmodule FumigateWeb do
       use Phoenix.HTML
 
       import FumigateWeb.ErrorHelpers
+      import FumigateWeb.ViewHelpers
       import FumigateWeb.Gettext
       alias FumigateWeb.Router.Helpers, as: Routes
       import Scrivener.HTML

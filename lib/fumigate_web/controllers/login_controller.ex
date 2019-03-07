@@ -1,8 +1,7 @@
 defmodule FumigateWeb.LoginController do
   use FumigateWeb, :controller
 
-  alias Fumigate.Accounts
-  alias Fumigate.Accounts.User
+  alias Fumigate.{Accounts, Accounts.User}
 
   def new(conn, _params) do
     changeset = Fumigate.Accounts.change_user(%User{})
@@ -15,10 +14,15 @@ defmodule FumigateWeb.LoginController do
   end
 
   defp login_reply({:ok, user}, conn, remember_me) do
+    {:ok, claim} = Fumigate.Guardian.build_claims(%{}, user, permissions: user.permissions)
     conn
     |> put_flash(:success, "Welcome back!")
-    |> Fumigate.Guardian.Plug.sign_in(user, %{}, [ttl: {24, :hour}, permissions: user.permissions])
+    |> Fumigate.Guardian.Plug.sign_in(
+      user, 
+      claim,
+      ttl: {1, :days})
     |> remember_me(user, remember_me)
+    |> assign(:current_user, user)
     |> redirect(to: "/")
   end
 

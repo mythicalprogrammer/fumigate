@@ -25,7 +25,6 @@ defmodule Fumigate.MixProject do
                            :scrivener_ecto, 
                            :edeliver, 
                            :scrivener_html,
-                           :ueberauth_identity,
       ]
     ]
   end
