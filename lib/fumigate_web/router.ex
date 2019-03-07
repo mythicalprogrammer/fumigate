@@ -13,9 +13,6 @@ defmodule FumigateWeb.Router do
     plug FumigateWeb.AuthAccessPipeline
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
 
   scope "/", FumigateWeb do
     pipe_through :browser
@@ -33,16 +30,7 @@ defmodule FumigateWeb.Router do
     resources "/notes", NoteController
   end
 
-  # Other scopes may use custom stacks.
-  scope "/api", FumigateWeb do
-    pipe_through :api
-
-    scope "/auth" do
-      post "/identity/callback", AuthenticationController, :identity_callback
-    end
-
-    pipe_through :authenticated
-
-    resources "/users", UserController, except: [:new, :edit]
-  end
+  #pipeline :api do
+  #  plug :accepts, ["json"]
+  #end
 end
