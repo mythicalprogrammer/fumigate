@@ -57,7 +57,6 @@ defmodule Fumigate.MixProject do
       {:html_sanitize_ex, "~> 1.3"},
       {:scrivener_html, "~> 1.8"},
       {:ueberauth, "~> 0.5"},
-      {:guardian, "~> 1.2"},
       {:comeonin, "~> 5.1"},
       {:bcrypt_elixir, "~> 2.0"}
     ]

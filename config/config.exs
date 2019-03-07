@@ -31,15 +31,3 @@ import_config "#{Mix.env()}.exs"
 config :scrivener_html,
   routes_helper: Fumigate.Router.Helpers,
   view_style: :bootstrap_v4 
-
-config :fumigate, Fumigate.Guardian,
-  issuer: "fumigate",
-  secret_key: "j7MrsfqrAbtc9pFB7t8SJN8VgBzizH9wnwWImMQrpJEUpeqHjWAn5u734cLzMGtO",
-  permissions: %{
-    default: [:read_users, :write_users]
-  }
-
-# Configure the authentication plug pipeline
-config :fumigate, FumigateWeb.AuthAccessPipeline,
-  module: Fumigate.Guardian,
-  error_handler: FumigateWeb.AuthErrorHandler
