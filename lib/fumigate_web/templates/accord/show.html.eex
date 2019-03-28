@@ -2,9 +2,5 @@
   <h1 class="display-3">
     <%= @accord.accord_name %>
   </h1>
-  <span>
-    <%= link "Edit", to: Routes.accord_path(@conn, :edit, @accord), class: "btn btn-outline-primary" %>
-  </span>
   <span><%= link "Back", to: Routes.accord_path(@conn, :index), class: "btn btn-outline-primary"  %></span>
-
 </div>
