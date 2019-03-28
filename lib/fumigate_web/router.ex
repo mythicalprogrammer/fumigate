@@ -18,8 +18,9 @@ defmodule FumigateWeb.Router do
     resources "/perfume_note_joins", Perfume_Note_JoinController
     resources "/perfume_accord_joins", Perfume_Accord_JoinController
     resources "/accords", AccordController, only: [:index, :show]
+    resources "/notes", NoteController, only: [:index, :show]
     resources "/manage_accords", ManageAccordController
-    resources "/notes", NoteController
+    resources "/manage_notes", ManageNoteController
   end
 
   #pipeline :api do
