@@ -12,15 +12,19 @@ defmodule FumigateWeb.Router do
   scope "/", FumigateWeb do
     pipe_through :browser
     get "/", PageController, :index
-    resources "/companies", CompanyController
+
+    resources "/accords", AccordController, only: [:index, :show]
+    resources "/notes", NoteController, only: [:index, :show]
+    resources "/companies", CompanyController, only: [:index, :show]
     resources "/perfumes", PerfumeController
+
+    resources "/manage_accords", ManageAccordController
+    resources "/manage_notes", ManageNoteController
+    resources "/manage_companies", ManageCompanyController
+
     resources "/perfume_company_joins", Perfume_Company_JoinController
     resources "/perfume_note_joins", Perfume_Note_JoinController
     resources "/perfume_accord_joins", Perfume_Accord_JoinController
-    resources "/accords", AccordController, only: [:index, :show]
-    resources "/notes", NoteController, only: [:index, :show]
-    resources "/manage_accords", ManageAccordController
-    resources "/manage_notes", ManageNoteController
   end
 
   #pipeline :api do
