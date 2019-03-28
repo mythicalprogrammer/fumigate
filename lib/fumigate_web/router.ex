@@ -9,11 +9,6 @@ defmodule FumigateWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :authenticated do
-    plug FumigateWeb.AuthAccessPipeline
-  end
-
-
   scope "/", FumigateWeb do
     pipe_through :browser
     get "/", PageController, :index
@@ -26,8 +21,6 @@ defmodule FumigateWeb.Router do
     get "/login", LoginController, :new
     post "/login", LoginController, :login
 
-    pipe_through :authenticated
-    resources "/notes", NoteController
   end
 
   #pipeline :api do
