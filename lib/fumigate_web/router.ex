@@ -18,9 +18,6 @@ defmodule FumigateWeb.Router do
     resources "/perfume_note_joins", Perfume_Note_JoinController
     resources "/perfume_accord_joins", Perfume_Accord_JoinController
     resources "/accords", AccordController
-    get "/login", LoginController, :new
-    post "/login", LoginController, :login
-
   end
 
   #pipeline :api do
