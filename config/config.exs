@@ -31,3 +31,7 @@ import_config "#{Mix.env()}.exs"
 config :scrivener_html,
   routes_helper: Fumigate.Router.Helpers,
   view_style: :bootstrap_v4 
+
+config :fumigate, :pow,
+  user: Fumigate.Users.User,
+  repo: Fumigate.Repo
