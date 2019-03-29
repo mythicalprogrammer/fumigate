@@ -2,7 +2,8 @@
   <h1 class="display-3">
     <%= @perfume.perfume_name %>
   </h1>
-<span><%= link "Back", to: Routes.perfume_path(@conn, :index), class: "btn btn-outline-primary" %></span>
+<span><%= link "Edit", to: Routes.manage_perfume_path(@conn, :edit, @perfume), class: "btn btn-outline-primary" %></span>
+<span><%= link "Back", to: Routes.manage_perfume_path(@conn, :index), class: "btn btn-outline-primary" %></span>
 
 <div class="row">
 
