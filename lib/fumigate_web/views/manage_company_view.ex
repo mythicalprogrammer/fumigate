@@ -12,4 +12,10 @@ defmodule FumigateWeb.ManageCompanyView do
   def company_main_activity_select_options(company_main_activities) do
     for company_main_activity <- company_main_activities, do: {company_main_activity.main_activity, company_main_activity.id}
   end
+
+  def country_name(%{country: %{name: name}}), do: name
+  def country_name(_), do: "Unknown" 
+
+  def main_activity(%{company_main_activity: %{main_activity: main_activity}}), do: main_activity 
+  def main_activity(_), do: "Unknown" 
 end
