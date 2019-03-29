@@ -1,4 +1,4 @@
-defmodule FumigateWeb.ManagePerfumeController do
+defmodule FumigateWeb.Admin.PerfumeController do
   use FumigateWeb, :controller
 
   alias Fumigate.Fragrance
@@ -28,7 +28,7 @@ defmodule FumigateWeb.ManagePerfumeController do
       {:ok, perfume} ->
         conn
         |> put_flash(:info, "Perfume created successfully.")
-        |> redirect(to: Routes.manage_perfume_path(conn, :show, perfume))
+        |> redirect(to: Routes.admin_perfume_path(conn, :show, perfume))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset,
@@ -113,7 +113,7 @@ defmodule FumigateWeb.ManagePerfumeController do
         end
         conn
         |> put_flash(:info, "Perfume updated successfully.")
-        |> redirect(to: Routes.manage_perfume_path(conn, :show, perfume))
+        |> redirect(to: Routes.admin_perfume_path(conn, :show, perfume))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", perfume: perfume, changeset: changeset)
@@ -126,6 +126,6 @@ defmodule FumigateWeb.ManagePerfumeController do
 
     conn
     |> put_flash(:info, "Perfume deleted successfully.")
-    |> redirect(to: Routes.manage_perfume_path(conn, :index))
+    |> redirect(to: Routes.admin_perfume_path(conn, :index))
   end
 end

@@ -36,13 +36,13 @@ defmodule FumigateWeb.Router do
     resources "/perfume_accord_joins", Perfume_Accord_JoinController
   end
 
-  scope "/admin",FumigateWeb do
+  scope "/admin", FumigateWeb.Admin, as: :admin do
     pipe_through [:browser, :protected]
 
-    resources "/manage_accords", ManageAccordController
-    resources "/manage_notes", ManageNoteController
-    resources "/manage_companies", ManageCompanyController
-    resources "/manage_perfumes", ManagePerfumeController
+    resources "/accords", AccordController
+    resources "/notes", NoteController
+    resources "/companies", CompanyController
+    resources "/perfumes", PerfumeController
 
   end
 

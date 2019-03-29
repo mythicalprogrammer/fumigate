@@ -1,4 +1,4 @@
-defmodule FumigateWeb.ManageCompanyController do
+defmodule FumigateWeb.Admin.CompanyController do
   use FumigateWeb, :controller
 
   alias Fumigate.Fragrance
@@ -25,7 +25,7 @@ defmodule FumigateWeb.ManageCompanyController do
       {:ok, company} ->
         conn
         |> put_flash(:info, "Company created successfully.")
-        |> redirect(to: Routes.manage_company_path(conn, :show, company))
+        |> redirect(to: Routes.admin_company_path(conn, :show, company))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -52,7 +52,7 @@ defmodule FumigateWeb.ManageCompanyController do
       {:ok, company} ->
         conn
         |> put_flash(:info, "Company updated successfully.")
-        |> redirect(to: Routes.manage_company_path(conn, :show, company))
+        |> redirect(to: Routes.admin_company_path(conn, :show, company))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", company: company, changeset: changeset)
@@ -65,7 +65,7 @@ defmodule FumigateWeb.ManageCompanyController do
 
     conn
     |> put_flash(:info, "Company deleted successfully.")
-    |> redirect(to: Routes.manage_company_path(conn, :index))
+    |> redirect(to: Routes.admin_company_path(conn, :index))
   end
   
   defp load_countries(conn, _) do

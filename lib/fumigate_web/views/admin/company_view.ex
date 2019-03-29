@@ -1,4 +1,4 @@
-defmodule FumigateWeb.ManageCompanyView do
+defmodule FumigateWeb.Admin.CompanyView do
   use FumigateWeb, :view
 
   def country_select_options(countries) do

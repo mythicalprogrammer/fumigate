@@ -1,4 +1,4 @@
-defmodule FumigateWeb.ManagePerfumeView do
+defmodule FumigateWeb.Admin.PerfumeView do
   use FumigateWeb, :view
 
   def company_select_options(companies) do

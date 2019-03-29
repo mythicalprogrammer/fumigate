@@ -1,4 +1,4 @@
-defmodule FumigateWeb.ManageNoteController do
+defmodule FumigateWeb.Admin.NoteController do
   use FumigateWeb, :controller
 
   alias Fumigate.Fragrance
@@ -19,7 +19,7 @@ defmodule FumigateWeb.ManageNoteController do
       {:ok, note} ->
         conn
         |> put_flash(:info, "Note created successfully.")
-        |> redirect(to: Routes.manage_note_path(conn, :show, note))
+        |> redirect(to: Routes.admin_note_path(conn, :show, note))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule FumigateWeb.ManageNoteController do
       {:ok, note} ->
         conn
         |> put_flash(:info, "Note updated successfully.")
-        |> redirect(to: Routes.manage_note_path(conn, :show, note))
+        |> redirect(to: Routes.admin_note_path(conn, :show, note))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", note: note, changeset: changeset)
@@ -57,6 +57,6 @@ defmodule FumigateWeb.ManageNoteController do
 
     conn
     |> put_flash(:info, "Note deleted successfully.")
-    |> redirect(to: Routes.manage_note_path(conn, :index))
+    |> redirect(to: Routes.admin_note_path(conn, :index))
   end
 end

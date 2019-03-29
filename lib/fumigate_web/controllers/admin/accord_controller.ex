@@ -1,4 +1,4 @@
-defmodule FumigateWeb.ManageAccordController do
+defmodule FumigateWeb.Admin.AccordController do
   use FumigateWeb, :controller
 
   alias Fumigate.Fragrance
@@ -19,7 +19,7 @@ defmodule FumigateWeb.ManageAccordController do
       {:ok, accord} ->
         conn
         |> put_flash(:info, "Accord created successfully.")
-        |> redirect(to: Routes.manage_accord_path(conn, :show, accord))
+        |> redirect(to: Routes.admin_accord_path(conn, :show, accord))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule FumigateWeb.ManageAccordController do
       {:ok, accord} ->
         conn
         |> put_flash(:info, "Accord updated successfully.")
-        |> redirect(to: Routes.manage_accord_path(conn, :show, accord))
+        |> redirect(to: Routes.admin_accord_path(conn, :show, accord))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", accord: accord, changeset: changeset)
@@ -57,6 +57,6 @@ defmodule FumigateWeb.ManageAccordController do
 
     conn
     |> put_flash(:info, "Accord deleted successfully.")
-    |> redirect(to: Routes.manage_accord_path(conn, :index))
+    |> redirect(to: Routes.admin_accord_path(conn, :index))
   end
 end
