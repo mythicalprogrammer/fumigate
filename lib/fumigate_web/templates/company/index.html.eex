@@ -29,8 +29,8 @@
       <%= if company.country do %>
         <%= company.country.name %>
       <% else %>
-      Unknown</td>
-      <% end %>)
+      Unknown
+      <% end %>)</td>
       <%= if company.company_main_activity do %>
       <td><%= company.company_main_activity.main_activity %></td>
       <% else %>

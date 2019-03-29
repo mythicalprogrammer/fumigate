@@ -34,7 +34,11 @@
 
   <li class="list-group-item">
     <strong>Main Activity:</strong>
+    <%= if @company.company_main_activity do %>
     <%= @company.company_main_activity.main_activity%>
+    <% else %>
+      Unknown
+    <% end%>
   </li>
 
   <li class="list-group-item">
@@ -49,7 +53,9 @@
 
   <li class="list-group-item">
     <strong>Country:</strong>
-      <%= @company.country.name %>
+      <%= if @company.country do %>
+        <%= @company.country.name %>
+      <% end %>
   </li>
 
   <li class="list-group-item">
