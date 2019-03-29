@@ -26,16 +26,9 @@
         <%= company.company_name %>
         </a>
       (Country:
-      <%= if company.country do %>
-        <%= company.country.name %>
-      <% else %>
-      Unknown
-      <% end %>)</td>
-      <%= if company.company_main_activity do %>
-      <td><%= company.company_main_activity.main_activity %></td>
-      <% else %>
-      <td>Unknown</td>
-      <% end %>
+      <%= country_name(company)%>)
+      </td>
+      <td><%= main_activity(company) %></td>
       <%= if company.parent_company do %>
         <td>
           <a href="/companies/<%= company.parent_company.id %>"><%= company.parent_company.company_name %></a>
