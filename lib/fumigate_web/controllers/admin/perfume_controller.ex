@@ -4,9 +4,9 @@ defmodule FumigateWeb.Admin.PerfumeController do
   alias Fumigate.Fragrance
   alias Fumigate.Fragrance.Perfume
 
-  plug Fumigate.AccordList when action in [:new, :create, :edit, :update]
-  plug Fumigate.NoteList when action in [:new, :create, :edit, :update]
-  plug Fumigate.CompanyList when action in [:new, :create, :edit, :update]
+  plug Fumigate.Plug.AccordList when action in [:new, :create, :edit, :update]
+  plug Fumigate.Plug.NoteList when action in [:new, :create, :edit, :update]
+  plug Fumigate.Plug.CompanyList when action in [:new, :create, :edit, :update]
 
   def index(conn, params) do
     page = Fragrance.list_perfumes_paginate(params) 

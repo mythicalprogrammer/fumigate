@@ -5,7 +5,7 @@ defmodule FumigateWeb.Admin.CompanyController do
   alias Fumigate.Fragrance.Company
 
   plug :load_countries when action in [:new, :create, :edit, :update]
-  plug Fumigate.CompanyList when action in [:new, :create, :edit, :update]
+  plug Fumigate.Plug.CompanyList when action in [:new, :create, :edit, :update]
   plug :load_company_main_activities when action in [:new, :create, :edit, :update]
 
   def index(conn, params) do

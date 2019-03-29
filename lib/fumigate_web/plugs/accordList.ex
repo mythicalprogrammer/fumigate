@@ -1,4 +1,4 @@
-defmodule Fumigate.AccordList do
+defmodule Fumigate.Plug.AccordList do
   import Plug.Conn
   alias Fumigate.Fragrance
 

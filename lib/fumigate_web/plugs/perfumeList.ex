@@ -1,4 +1,4 @@
-defmodule Fumigate.PerfumeList do
+defmodule Fumigate.Plug.PerfumeList do
   import Plug.Conn
   alias Fumigate.Fragrance
 
