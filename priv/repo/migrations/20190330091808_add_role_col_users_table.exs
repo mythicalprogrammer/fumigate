@@ -3,7 +3,7 @@ defmodule Fumigate.Repo.Migrations.AddRoleColUsersTable do
 
   def change do
     alter table(:users) do
-        add :role, :string
+        add :role, :string, null: false
     end
   end
 end
