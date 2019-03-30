@@ -15,9 +15,14 @@ defmodule FumigateWeb.Router do
       error_handler: Pow.Phoenix.PlugErrorHandler
   end
 
+  pipeline :admin_only do
+    plug Pow.Plug.RequireAuthenticated,
+      error_handler: Pow.Phoenix.PlugErrorHandler
+    plug Fumigate.Plug.EnsureRole, :admin
+  end
+
   scope "/" do
     pipe_through :browser
-
     pow_routes()
   end
 
@@ -37,7 +42,7 @@ defmodule FumigateWeb.Router do
   end
 
   scope "/admin", FumigateWeb.Admin, as: :admin do
-    pipe_through [:browser, :protected]
+    pipe_through [:browser, :protected, :admin_only]
 
     resources "/accords", AccordController
     resources "/notes", NoteController
