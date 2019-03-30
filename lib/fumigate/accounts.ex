@@ -6,7 +6,7 @@ defmodule Fumigate.Accounts do
   import Ecto.Query, warn: false
   alias Fumigate.Repo
 
-  alias Fumigate.Accounts.User
+  alias Fumigate.Users.User
 
   @doc """
   Returns the list of users.

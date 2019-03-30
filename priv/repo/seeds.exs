@@ -112,3 +112,22 @@ for main_activity <- [ "Fragrances",
 ] do
     Fragrance.create_company_main_activity(main_activity)
 end
+
+{:ok, _user} = Fumigate.Accounts.create_user(%{
+    username: "admin",
+    email: "admin@example.com",
+    password: "easy123456",
+    confirm_password: "easy123456",
+    password_hash: Pow.Ecto.Schema.Password.pbkdf2_hash("easy123456"),
+    role: "admin"
+})
+
+{:ok, _user} = Fumigate.Accounts.create_user(%{
+    username: "user",
+    email: "user@example.com",
+    password: "easy123456",
+    confirm_password: "easy123456",
+    password_hash: Pow.Ecto.Schema.Password.pbkdf2_hash("easy123456"),
+    role: "user"
+})
+
