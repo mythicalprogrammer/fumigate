@@ -34,4 +34,5 @@ config :scrivener_html,
 
 config :fumigate, :pow,
   user: Fumigate.Users.User,
-  repo: Fumigate.Repo
+  repo: Fumigate.Repo,
+  web_module: FumigateWeb
