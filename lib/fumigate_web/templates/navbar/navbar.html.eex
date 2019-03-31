@@ -27,12 +27,17 @@
           <a class="nav-link" href="/companies">Companies</a>
         </li>
         <%= if login?(@conn) == false do %> 
-        <%= if to_string(assigns.conn.private.phoenix_controller) == "Elixir.Coherence.SessionController" do %>
-          <li class="nav-item active">
+          <%= if to_string(assigns.conn.private.phoenix_controller) == "Elixir.Coherence.SessionController" do %>
+            <li class="nav-item active">
+          <% else %>
+            <li class="nav-item">
+          <% end %>
+          <a class="nav-link" href="/session/new">Login</a>
+          </li>
         <% else %>
           <li class="nav-item">
-        <% end %>
-          <a class="nav-link" href="/session/new">Login</a>
+            <%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), 
+                method: :delete, class: "btn btn-secondary" %>
           </li>
         <% end %>
       </ul>
