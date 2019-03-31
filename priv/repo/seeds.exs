@@ -118,7 +118,6 @@ end
     email: "admin@example.com",
     password: "easy123456",
     confirm_password: "easy123456",
-    password_hash: Pow.Ecto.Schema.Password.pbkdf2_hash("easy123456"),
     role: "admin"
 })
 
@@ -127,7 +126,6 @@ end
     email: "user@example.com",
     password: "easy123456",
     confirm_password: "easy123456",
-    password_hash: Pow.Ecto.Schema.Password.pbkdf2_hash("easy123456"),
     role: "user"
 })
 
