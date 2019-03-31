@@ -4,7 +4,5 @@
 @import "./phoenix.css";
 */
 
-html {
-  position: relative;
-  min-height: 100%;
-}
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
