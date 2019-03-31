@@ -16,8 +16,6 @@ defmodule FumigateWeb.Router do
   end
 
   pipeline :admin_only do
-    plug Pow.Plug.RequireAuthenticated,
-      error_handler: Pow.Phoenix.PlugErrorHandler
     plug Fumigate.Plug.EnsureRole, :admin
   end
 
