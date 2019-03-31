@@ -12,19 +12,29 @@
         <% end %>
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
-        <%= if to_string(assigns.conn.private.phoenix_controller) == "Elixir.FumigateWeb.PerfumeController" do %>
+        <%= if to_string(assigns.conn.private.phoenix_controller) == "Elixir.FumigateWeb.PerfumeController" 
+            || to_string(assigns.conn.private.phoenix_controller) == "Elixir.FumigateWeb.Admin.PerfumeController" do %>
           <li class="nav-item active">
         <% else %>
           <li class="nav-item">
         <% end %>
-          <a class="nav-link" href="/perfumes">Perfumes</a>
+          <%= if role(@conn) == "admin" do %>
+            <a class="nav-link" href="/admin/perfumes">Perfumes</a>
+          <% else %>
+            <a class="nav-link" href="/perfumes">Perfumes</a>
+          <% end %>
         </li>
-        <%= if to_string(assigns.conn.private.phoenix_controller) == "Elixir.FumigateWeb.CompanyController" do %>
+        <%= if to_string(assigns.conn.private.phoenix_controller) == "Elixir.FumigateWeb.CompanyController"
+            || to_string(assigns.conn.private.phoenix_controller) == "Elixir.FumigateWeb.Admin.CompanyController" do %>
           <li class="nav-item active">
         <% else %>
           <li class="nav-item">
         <% end %>
-          <a class="nav-link" href="/companies">Companies</a>
+          <%= if role(@conn) == "admin" do %>
+            <a class="nav-link" href="/admin/companies">Companies</a>
+          <% else %>
+            <a class="nav-link" href="/companies">Companies</a>
+          <% end %>
         </li>
         <%= if login?(@conn) == false do %> 
           <%= if to_string(assigns.conn.private.phoenix_controller) == "Elixir.Pow.Phoenix.SessionController" do %>
