@@ -1,5 +1,0 @@
-<h1>Edit Perfume  accord  join</h1>
-
-<%= render "form.html", Map.put(assigns, :action, Routes.perfume__accord__join_path(@conn, :update, @perfume__accord__join)) %>
-
-<span><%= link "Back", to: Routes.perfume__accord__join_path(@conn, :index) %></span>
