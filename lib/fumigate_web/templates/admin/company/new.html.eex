@@ -1,4 +1,4 @@
-<div class="jumbotron" style="padding-top: 80px;"> 
+<div class="container" style="padding-top: 80px;"> 
 <h1 class="display-3">New Company</h1>
 <h3 class="display-5"><%= link "Back", to: Routes.admin_company_path(@conn, :index), class: "btn btn-outline-secondary" %></h3>
 
@@ -8,4 +8,3 @@
 
 </div>
 
-<hr />

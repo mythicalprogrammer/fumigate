@@ -35,7 +35,7 @@
 
 
 <!-- Footer -->
-<footer class="page-footer font-small unique-color-dark" style="margin-top:-32px;">
+<footer class="page-footer font-small unique-color-dark mt-5">
 
     <div style="background-color: #deecff;">
       <div class="container">

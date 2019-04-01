@@ -22,7 +22,6 @@
 </section>
 
 <section class="second-section">
-  <div class="jumbotron">
     <div class="container">
       <h1 class="display-3">The near future...</h1>
       <ul class="list-group">
@@ -30,5 +29,4 @@
         <li class="list-group-item">Community</li>
       </ul>
     </div>
-  </div>
 </section>

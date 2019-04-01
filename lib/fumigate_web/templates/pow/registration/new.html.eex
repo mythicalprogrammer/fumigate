@@ -1,4 +1,4 @@
-<div class="jumbotron" style="padding-top: 80px;"> 
+<div class="container" style="padding-top: 80px;"> 
   <div class="text-center">
     <h1 class="display-4">Register</h1>
   </div>

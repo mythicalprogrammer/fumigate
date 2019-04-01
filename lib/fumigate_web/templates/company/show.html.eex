@@ -1,4 +1,4 @@
-<div class="jumbotron" style="padding-top: 80px;"> 
+<div class="container" style="padding-top: 80px;"> 
   <h1 class="display-3">
     <%= @company.company_name %>
   </h1>

@@ -1,4 +1,4 @@
-<div class="jumbotron" style="padding-top: 80px;"> 
+<div class="container" style="padding-top: 80px;"> 
 <h1 class="display-3">Listing Perfumes</h1>
 <span><%= link "Add New Perfume", to: Routes.admin_perfume_path(@conn, :new), class: "btn btn-primary mb-5" %></span>
 
