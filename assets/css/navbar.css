@@ -1,16 +1,16 @@
 .navbar-fixed-top.scrolled {
-  background-color: #11ffee00 !important;
-  transition: background-color 200ms linear;
+  background-color: #11ffee00;
 }
 
 .navbar-custom {
-  background-color: #e8d3ff;
+  background-color: #c6cfff;
+  transition: background-color 270ms linear;
 }
 
 /* change the brand and text color */
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text {
-  color: #c6cfff;
+  color: #e8d3ff;
   font-size: 1.8em;
   font-family: 'Lobster', cursive;
 }
