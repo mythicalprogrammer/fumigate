@@ -33,11 +33,11 @@
       <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex social-media">
         <%= if login?(@conn) == false do %> 
           <li class="nav-item">
-            <a class="btn btn-outline-info nav-link" href="/session/new">Login</a>
+            <a class="btn btn-outline-secondary nav-link rounded-0 mr-5" href="/session/new">Login</a>
           </li>
         <% else %>
           <div class="dropdown dropleft">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle rounded-0 mr-5" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%= username(@conn) %>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
