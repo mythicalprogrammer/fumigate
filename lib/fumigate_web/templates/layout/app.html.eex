@@ -64,6 +64,10 @@
             <a class="ins-ic">
               <i class="fab fa-instagram white-text mr-4"></i>
             </a>
+            <!--Reddit-->
+            <a class="ins-ic">
+              <i class="fab fa-reddit-alien white-text mr-4"></i>
+            </a>
             <!--Youtube-->
             <a class="ins-ic">
               <i class="fab fa-youtube white-text mr-4"></i>
