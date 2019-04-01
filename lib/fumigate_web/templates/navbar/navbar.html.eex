@@ -1,4 +1,4 @@
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark navbar-fixed-top scrolled">
+  <nav class="navbar navbar-expand-md fixed-top navbar-fixed-top scrolled navbar-custom">
     <a class="navbar-brand" href="/">Fumigate</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

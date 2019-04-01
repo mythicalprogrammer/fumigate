@@ -2,3 +2,28 @@
   background-color: #11ffee00 !important;
   transition: background-color 200ms linear;
 }
+
+.navbar-custom {
+  background-color: #e8d3ff;
+}
+
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+  color: #c6cfff;
+  font-weight: 700;
+  font-size: 1.3em;
+}
+
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+  color: #1a2a3a; 
+}
+
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link {
+  font-weight: 600;
+}
+.navbar-custom .nav-item:hover .nav-link {
+  color: #7a8a9a;
+}
