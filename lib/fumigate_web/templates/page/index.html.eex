@@ -1,6 +1,6 @@
 <section class="first-section">
   <!-- Main jumbotron for a primary marketing message or call to action -->
-  <div class="jumbotron">
+  <div class="jumbotron" style="padding-top:80px;">
     <div class="container">
       <h1 class="display-3">Hello, good looking people!</h1>
       <p>Look up all your fragrance and perfume needs.</p> 
