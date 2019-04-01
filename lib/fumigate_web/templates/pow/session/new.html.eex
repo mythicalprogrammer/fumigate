@@ -1,29 +1,4 @@
 <style>
-:root {
-  --input-padding-x: .75rem;
-  --input-padding-y: .75rem;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: flex;
-  -ms-flex-align: center;
-  -ms-flex-pack: center;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #f5f5f5;
-}
-
 .form-signin {
   width: 100%;
   max-width: 420px;
@@ -88,10 +63,10 @@ body {
 }
 </style>
 
-      <div class="text-center mb-4 mt-5">
-        <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h1 class="h1 mb-1 font-weight-normal">Sign in</h1>
-        <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a></p>
+      <div class="text-center mb-4 mt-5" style="padding-top: 80px;">
+        <h1 class="display-4">Login</h1>
+        <p>Welcome back.</p>
+        <p>Need an account? <%= link "Register here.", to: Routes.pow_registration_path(@conn, :new) %></p>
       </div>
 
 <%= form_for @changeset, @action, [as: :user, class: "form-signin" ], fn f -> %>
@@ -101,20 +76,33 @@ body {
     </div>
   <% end %>
 
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text">
+      <i class="far fa-envelope"></i>
+    </span>
+  </div>
   <%= text_input f, @changeset.data.__struct__.pow_user_id_field(), 
       [class: "form-control", 
       placeholder: "Email address",
       required: "true",
       autofocus: "autofocus"] %>
   <%= error_tag f, @changeset.data.__struct__.pow_user_id_field() %>
-  <div class="form-label-group">
-  </div>
+</div>
 
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text">
+      <i class="fas fa-lock"></i>
+    </span>
+  </div>
   <%= password_input f, :password, 
       [class: "form-control",
        placeholder: "Password",
        required: "true"] %>
   <%= error_tag f, :password %>
+</div>
 
       <div class="checkbox mb-3 mt-2">
         <label>
@@ -123,9 +111,9 @@ body {
       </div>
 
   <div>
-    <%= submit "Sign in", [class: "btn btn-lg btn-primary btn-block mt-2"] %>
+    <%= submit "Login", [class: "btn btn-lg btn-primary btn-block mt-2"] %>
   </div>
+        <p>Forgot your password?</p>
 <% end %>
 
 
-<span><%= link "Register", to: Routes.pow_registration_path(@conn, :new) %></span>
