@@ -1,8 +1,8 @@
+<div class="jumbotron" style="padding-top: 80px;"> 
 <style>
 .form-signin {
   width: 100%;
   max-width: 420px;
-  padding: 15px;
   margin: 0 auto;
 }
 
@@ -63,7 +63,7 @@
 }
 </style>
 
-      <div class="text-center mt-5" style="padding-top: 80px;">
+      <div class="text-center">
         <h1 class="display-4">Login</h1>
         <p>Welcome back.</p>
         <p>Need an account? <%= link "Register here.", to: Routes.pow_registration_path(@conn, :new) %></p>
@@ -116,4 +116,4 @@
         <p>Forgot your password?</p>
 <% end %>
 
-
+</div>
