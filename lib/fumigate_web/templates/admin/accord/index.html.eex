@@ -1,4 +1,4 @@
-<div class="jumbotron p-4 p-md-5 mt-5 rounded bg-light"> 
+<div class="jumbotron" style="padding-top: 80px;"> 
 <h1 class="display-3">Listing Accords</h1>
 <span><%= link "New Accord", to: Routes.admin_accord_path(@conn, :new), class: "btn btn-primary mb-5" %></span>
 
