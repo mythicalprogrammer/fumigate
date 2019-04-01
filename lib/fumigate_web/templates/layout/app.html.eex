@@ -54,19 +54,23 @@
 
             <!-- Facebook -->
             <a class="fb-ic">
-              <i class="fab fa-facebook-f white-text mr-4"> </i>
+              <i class="fab fa-facebook-f white-text mr-4"></i>
             </a>
             <!-- Twitter -->
             <a class="tw-ic">
-              <i class="fab fa-twitter white-text mr-4"> </i>
-            </a>
-            <!--Linkedin -->
-            <a class="li-ic">
-              <i class="fab fa-linkedin-in white-text mr-4"> </i>
+              <i class="fab fa-twitter white-text mr-4"></i>
             </a>
             <!--Instagram-->
             <a class="ins-ic">
-              <i class="fab fa-instagram white-text"> </i>
+              <i class="fab fa-instagram white-text mr-4"></i>
+            </a>
+            <!--Youtube-->
+            <a class="ins-ic">
+              <i class="fab fa-youtube white-text mr-4"></i>
+            </a>
+            <!--Linkedin -->
+            <a class="li-ic">
+              <i class="fab fa-linkedin-in white-text mr-4"></i>
             </a>
 
           </div>
@@ -84,25 +88,27 @@
       <!-- Grid row -->
       <div class="row mt-3">
 
-        <!-- Grid column -->
-        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
-          <!-- Content -->
-          <h6 class="text-uppercase font-weight-bold">Company</h6>
-          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-          <p>Central online tool for everything about perfumes and fragrances.</p>
 
-        </div>
         <!-- Grid column -->
 
         <!-- Grid column -->
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
 
           <!-- Links -->
-          <h6 class="text-uppercase font-weight-bold">Tools</h6>
+          <h6 class="text-uppercase font-weight-bold">About</h6>
           <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <p>
+            <a href="#!">About</a>
+          </p>
+          <p>
+            <a href="#!">Advertising</a>
+          </p>
+          <p>
             <a href="#!">Artificial Intelligence</a>
+          </p>
+          <p>
+            <a href="#!">Blog</a>
           </p>
 
         </div>
@@ -115,10 +121,13 @@
           <h6 class="text-uppercase font-weight-bold">Useful links</h6>
           <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <p>
-            <a href="#!">Terms of Service</a>
+            <a href="#!">FAQ</a>
           </p>
           <p>
             <a href="#!">Privacy Policy</a>
+          </p>
+          <p>
+            <a href="#!">Terms of Service</a>
           </p>
 
         </div>
@@ -150,7 +159,7 @@
 
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">
-       &copy; 2019 Fumigate
+      &copy; 2019 <span style="color: #e8d3ff;font-size: 1.7em;font-family: 'Lobster', cursive;">Fumigate</span>
     </div>
     <!-- Copyright -->
 
