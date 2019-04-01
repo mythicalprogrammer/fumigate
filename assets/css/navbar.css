@@ -11,8 +11,8 @@
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text {
   color: #c6cfff;
-  font-weight: 700;
   font-size: 1.3em;
+  font-family: 'Sansita', sans-serif;
 }
 
 /* change the link color */
