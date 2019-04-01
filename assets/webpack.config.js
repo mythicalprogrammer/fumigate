@@ -8,6 +8,17 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, options) => ({
   optimization: {
+    // https://github.com/webpack/webpack/issues/6357
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /jquery|popper|font-awesome/,
+          chunks: "async",
+          name: "vendor",
+          enforce: true
+        }
+      }
+    },
     minimizer: [
       new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: false }),
       new OptimizeCSSAssetsPlugin({})
@@ -57,5 +68,5 @@ module.exports = (env, options) => ({
       jQuery: 'jquery', 'window.jQuery': 'jquery',
       Popper: ['popper.js', 'default'],
     }),
-  ]
+  ],
 });
