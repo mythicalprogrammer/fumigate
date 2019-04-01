@@ -21,7 +21,7 @@
     </div>
 </section>
 
-<section class="second-section">
+<section class="third-section pb-5" style="background-color:#f3f8ff;">
     <div class="container">
       <h1 class="display-3">The near future...</h1>
       <ul class="list-group">
