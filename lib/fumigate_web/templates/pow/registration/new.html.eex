@@ -1,28 +1,67 @@
-<h1>Register</h1>
+<style>
+.form-signin {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+</style>
+<div class="jumbotron" style="padding-top: 80px;"> 
+  <div class="text-center">
+    <h1 class="display-4">Register</h1>
+  </div>
+<div class="text-center mb-3"><%= link "Sign in", to: Routes.pow_session_path(@conn, :new) %></div>
 
-<%= form_for @changeset, @action, [as: :user], fn f -> %>
+<%= form_for @changeset, @action, [as: :user, class: "form-signin"], fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
 
-  <%= label f, @changeset.data.__struct__.pow_user_id_field() %>
-  <%= text_input f, @changeset.data.__struct__.pow_user_id_field() %>
+<div class="input-group mb-2 input-group-lg">
+  <div class="input-group-prepend">
+    <span class="input-group-text rounded-0">
+      <i class="far fa-envelope"></i>
+    </span>
+  </div>
+  <%= text_input f, @changeset.data.__struct__.pow_user_id_field(),
+      [class: "form-control rounded-0", 
+      placeholder: "Email address",
+      required: "true",
+      autofocus: "autofocus"] %>
   <%= error_tag f, @changeset.data.__struct__.pow_user_id_field() %>
+</div>
 
-  <%= label f, :password %>
-  <%= password_input f, :password %>
+<div class="input-group mb-2 input-group-lg">
+  <div class="input-group-prepend">
+    <span class="input-group-text rounded-0">
+      <i class="fas fa-lock"></i>
+    </span>
+  </div>
+  <%= password_input f, :password,
+      [class: "form-control rounded-0",
+       placeholder: "Password",
+       required: "true"] %>
   <%= error_tag f, :password %>
+</div>
 
-  <%= label f, :confirm_password %>
-  <%= password_input f, :confirm_password %>
+<div class="input-group mb-3 input-group-lg">
+  <div class="input-group-prepend">
+    <span class="input-group-text rounded-0">
+      <i class="fas fa-lock"></i>
+    </span>
+  </div>
+  <%= password_input f, :confirm_password,
+      [class: "form-control rounded-0",
+       placeholder: "Confirm password",
+       required: "true"] %>
   <%= error_tag f, :confirm_password %>
+</div>
 
   <div>
-    <%= submit "Register" %>
+    <%= submit "Register", [class: "btn btn-primary btn-block  rounded-0"] %>
   </div>
 <% end %>
 
 
-<span><%= link "Sign in", to: Routes.pow_session_path(@conn, :new) %></span>
+</div>
