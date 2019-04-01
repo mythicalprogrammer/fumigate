@@ -29,25 +29,23 @@
             <a class="nav-link" href="/companies">Companies</a>
           <% end %>
         </li>
-        <%= if login?(@conn) == false do %> 
-          <%= if to_string(assigns.conn.private.phoenix_controller) == "Elixir.Pow.Phoenix.SessionController" do %>
-            <li class="nav-item active">
-          <% else %>
-            <li class="nav-item">
-          <% end %>
-          <a class="nav-link" href="/session/new">Login</a>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), 
-                method: :delete, class: "btn btn-secondary" %>
-          </li>
-        <% end %>
       </ul>
       <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex social-media">
-        <li class="nav-item"><a class="nav-link" href="https://github.com/mythicalprogrammer"><i class="fab fa-github-alt"></i></a></li>
-        <li class="nav-item"><a class="nav-link" href="https://twitter.com/AnthonyDoan20"><i class="fab fa-twitter"></i></a></li>
-        <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/urmyheartbstopr/"><i class="fab fa-instagram"></i></a></li>
+        <%= if login?(@conn) == false do %> 
+          <li class="nav-item">
+            <a class="btn btn-outline-info nav-link" href="/session/new">Login</a>
+          </li>
+        <% else %>
+          <div class="dropdown dropleft">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= username(@conn) %>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), 
+                method: :delete, class: "dropdown-item" %>
+            </div>
+          </div>
+        <% end %>
       </ul>
     </div>
   </nav>
