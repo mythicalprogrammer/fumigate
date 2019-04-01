@@ -51,7 +51,7 @@
   <%= error_tag f, :confirm_password %>
 </div>
 
-  <div>
+  <div class="mb-5">
     <%= submit "Register", [class: "btn btn-primary btn-block  rounded-0"] %>
   </div>
 <% end %>
