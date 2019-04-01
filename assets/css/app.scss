@@ -4,11 +4,11 @@
 @import "./phoenix.css";
 */
 
+@import '~bootstrap/scss/bootstrap';
 @import "./navbar.css";
 @import "./font.css";
 @import "./form.css";
 @import "./bootstrap_custom.css";
-@import '~bootstrap/scss/bootstrap';
 $fa-font-path : "~@fortawesome/fontawesome-free/webfonts";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 @import "~@fortawesome/fontawesome-free/scss/brands";
