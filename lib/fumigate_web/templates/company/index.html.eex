@@ -11,10 +11,6 @@
       <th>Main Activity</th>
       <th>Parent Company</th>
       <th>Company description</th>
-      <th>Logo url</th>
-      <th>Year established</th>
-      <th>Company url</th>
-
       <th></th>
     </tr>
   </thead>
@@ -24,9 +20,11 @@
       <td>
         <a href="/companies/<%= company.id %>">
         <%= company.company_name %>
-        </a>
-      (Country:
-      <%= country_name(company)%>)
+        </a> <br />
+        Country: <%= country_name(company)%> <br />
+        <%= if company.year_established do %>
+          Year established: <%= company.year_established %> <br />
+        <% end %>
       </td>
       <td><%= main_activity(company) %></td>
       <%= if company.parent_company do %>
@@ -36,16 +34,9 @@
       <% else %>
       <td>None</td>
       <% end %>
-      <td><%= company.company_description %></td>
-
-      <%= if to_string(company.logo_url) != "" do %>
-        <td>✔️</td>
-      <% else %>
-        <td>❌</td>
-      <% end %>
-
-      <td><%= company.year_established %></td>
-      <td><a href="<%= company.company_url %>"><%= company.company_url %></a></td>
+      <td>
+        <p>Website: <a href="<%= company.company_url %>"><%= company.company_url %></a> </p>
+      <%= company.company_description %></td>
 
       <td>
         <%= link "Show", to: Routes.company_path(@conn, :show, company), class: "btn btn-outline-secondary" %> 
