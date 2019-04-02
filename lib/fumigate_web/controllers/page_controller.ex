@@ -24,4 +24,12 @@ defmodule FumigateWeb.PageController do
   def faq(conn, _params) do
     render(conn, "faq.html")
   end
+
+  def private_policy(conn, _params) do
+    render(conn, "private_policy.html")
+  end
+
+  def terms_of_service(conn, _params) do
+    render(conn, "terms_of_service.html")
+  end
 end

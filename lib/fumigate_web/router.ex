@@ -33,6 +33,8 @@ defmodule FumigateWeb.Router do
     get "/artificial_intelligence", PageController, :artificial_intelligence
     get "/blog", PageController, :blog
     get "/faq", PageController, :faq
+    get "/private_policy", PageController, :private_policy
+    get "/terms_of_service", PageController, :terms_of_service
 
     resources "/accords", AccordController, only: [:index, :show]
     resources "/notes", NoteController, only: [:index, :show]
