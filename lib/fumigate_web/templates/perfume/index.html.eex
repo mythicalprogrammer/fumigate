@@ -10,9 +10,6 @@
       <th>Perfume name</th>
       <th>Gender</th>
       <th>Perfume description</th>
-      <th>Picture url</th>
-      <th>Year released</th>
-
       <th></th>
     </tr>
   </thead>
@@ -33,16 +30,10 @@
 
         <% end %>
       </td>
-      <td><%= perfume.gender %></td>
+      <td><%= perfume.gender %><br />
+        (Year released: <%= perfume.year_released %>)</td>
       <td><%= perfume.perfume_description %></td>
 
-      <%= if to_string(perfume.picture_url) != "" do %>
-        <td>✔️</td>
-      <% else %>
-        <td>❌</td>
-      <% end %>
-
-      <td><%= perfume.year_released %></td>
 
       <td>
         <%= link "Show", to: Routes.perfume_path(@conn, :show, perfume), class: "btn btn-outline-secondary" %>
