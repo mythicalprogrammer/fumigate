@@ -16,4 +16,8 @@ defmodule FumigateWeb.PageController do
   def artificial_intelligence(conn, _params) do
     render(conn, "artificial_intelligence.html")
   end
+
+  def blog(conn, _params) do
+    render(conn, "blog.html")
+  end
 end
