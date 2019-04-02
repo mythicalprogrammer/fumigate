@@ -8,4 +8,8 @@ defmodule FumigateWeb.PageController do
   def about(conn, _params) do
     render(conn, "about.html")
   end
+
+  def advertising(conn, _params) do
+    render(conn, "advertising.html")
+  end
 end
