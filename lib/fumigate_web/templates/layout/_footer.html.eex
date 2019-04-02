@@ -66,16 +66,16 @@
           <h6 class="text-uppercase font-weight-bold">About</h6>
           <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <p>
-            <a href="#!">About</a>
+            <a href="/about">About</a>
           </p>
           <p>
-            <a href="#!">Advertising</a>
+            <a href="/advertising">Advertising</a>
           </p>
           <p>
-            <a href="#!">Artificial Intelligence</a>
+            <a href="/artificial_intelligence">Artificial Intelligence</a>
           </p>
           <p>
-            <a href="#!">Blog</a>
+            <a href="/blog">Blog</a>
           </p>
 
         </div>
@@ -88,13 +88,13 @@
           <h6 class="text-uppercase font-weight-bold">Useful links</h6>
           <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <p>
-            <a href="#!">FAQ</a>
+            <a href="/faq">FAQ</a>
           </p>
           <p>
-            <a href="#!">Privacy Policy</a>
+            <a href="/privacy_policy">Privacy Policy</a>
           </p>
           <p>
-            <a href="#!">Terms of Service</a>
+            <a href="/terms_of_service">Terms of Service</a>
           </p>
 
         </div>
