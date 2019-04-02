@@ -20,4 +20,8 @@ defmodule FumigateWeb.PageController do
   def blog(conn, _params) do
     render(conn, "blog.html")
   end
+
+  def faq(conn, _params) do
+    render(conn, "faq.html")
+  end
 end
