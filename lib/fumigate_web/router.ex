@@ -26,7 +26,9 @@ defmodule FumigateWeb.Router do
 
   scope "/", FumigateWeb do
     pipe_through :browser
+
     get "/", PageController, :index
+    get "/about", PageController, :about
 
     resources "/accords", AccordController, only: [:index, :show]
     resources "/notes", NoteController, only: [:index, :show]
