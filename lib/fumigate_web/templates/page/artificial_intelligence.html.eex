@@ -1,0 +1,11 @@
+<section class="first-section">
+  <div class="container" style="padding-top:80px;">
+      <h1 class="display-3 text-center">Artificial Intelligence</h1>
+      <p>Sound fancy doesn't it?</p>
+      <p> I got a degree in applied statistic and I create statistic models.
+      I'll create some "AI" tools soon. Look forward to it.</p>
+      <p>Fear not it will not be skynet. Mostly recommendations (clustering and such). 
+      Probably information retrieval stuff helping users to find things better.</p>
+  </div>
+</section>
+

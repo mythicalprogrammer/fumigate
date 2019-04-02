@@ -12,4 +12,8 @@ defmodule FumigateWeb.PageController do
   def advertising(conn, _params) do
     render(conn, "advertising.html")
   end
+
+  def artificial_intelligence(conn, _params) do
+    render(conn, "artificial_intelligence.html")
+  end
 end
