@@ -1,8 +1,9 @@
 <div class="container" style="padding-top:80px;"> 
 <h1 class="display-3">Listing Perfumes</h1>
 
-<%= pagination_links @page, previous: Phoenix.HTML.raw("&leftarrow;"), next: Phoenix.HTML.raw("&rightarrow;") %>
-
+<%= pagination_links @page, 
+  previous: Phoenix.HTML.raw('<i class="fas fa-chevron-left"></i>'), 
+  next: Phoenix.HTML.raw('<i class="fas fa-chevron-right"></i>') %>
 
 <table class="table table-striped mt-5">
   <thead>
