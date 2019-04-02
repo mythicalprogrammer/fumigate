@@ -32,7 +32,9 @@
         <% end %>
       </td>
       <td><%= perfume.gender %><br />
+        <%= if perfume.year_released do %>
         (Year released: <%= perfume.year_released %>)</td>
+        <% end %>
       <td><%= perfume.perfume_description %></td>
 
 
