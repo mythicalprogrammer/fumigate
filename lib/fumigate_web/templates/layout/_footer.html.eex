@@ -126,7 +126,8 @@
 
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">
-      &copy; 2019 <span style="color: #e8d3ff;font-size: 1.7em;font-family: 'Lobster', cursive;">Fumigate</span>
+      <p>&copy; 2019 <span style="color: #e8d3ff;font-size: 1.7em;font-family: 'Lobster', cursive;">Fumigate</span></p>
+      <p>Made in 🌞🌴🐻  California by Anthony Doan.</p>
     </div>
     <!-- Copyright -->
 
