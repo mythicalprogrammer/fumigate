@@ -4,6 +4,10 @@
 import css from "../css/app.scss"
 import "bootstrap";
 
+// Bootstrap Select Dropdown imports.
+import Fuse from 'fuse.js';
+import 'bootstrap-select-dropdown';
+
 // webpack automatically bundles all modules in your
 // entry points. Those entry points can be configured
 // in "webpack.config.js".
@@ -17,3 +21,4 @@ import "phoenix_html"
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
 import navbar from "./navbar";
+import "./perfume_form";
