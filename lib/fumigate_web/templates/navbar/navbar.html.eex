@@ -38,7 +38,7 @@
         <% else %>
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle rounded-0" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= username(@conn) %>
+              <i class="fas fa-user fa-fw mr-1"></i> <%= username(@conn) %>
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
               <%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), 
