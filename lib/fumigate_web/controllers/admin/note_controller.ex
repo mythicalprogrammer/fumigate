@@ -5,6 +5,7 @@ defmodule FumigateWeb.Admin.NoteController do
   alias Fumigate.Fragrance.Note
 
   def index(conn, params) do
+    params = Map.put(params, :page_size, 25)
     page = Fragrance.list_notes_paginate(params) 
     render(conn, "index.html", page: page) 
   end

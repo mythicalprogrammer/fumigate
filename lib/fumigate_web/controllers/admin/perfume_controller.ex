@@ -9,6 +9,7 @@ defmodule FumigateWeb.Admin.PerfumeController do
   plug Fumigate.Plug.CompanyList when action in [:new, :create, :edit, :update]
 
   def index(conn, params) do
+    params = Map.put(params, :page_size, 25)
     page = Fragrance.list_perfumes_paginate(params) 
     render(conn, "index.html", page: page)
   end
