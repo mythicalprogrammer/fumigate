@@ -15,13 +15,6 @@
 
     <!-- Begin page content -->
     <main role="main">
-      <%= unless is_nil(get_flash(@conn, :info)) do %>
-      <p class="alert alert-success" role="alert"><%= get_flash(@conn, :info) %></p>
-      <% end %>
-      <%= unless is_nil(get_flash(@conn, :error)) do %>
-      <div class="alert alert-danger text-center" role="alert" style="padding-top:90px;"><%= get_flash(@conn, :error) %></p>
-      <% end %>
-
       <%= render @view_module, @view_template, assigns %>
     </main>
 

@@ -31,6 +31,7 @@ defmodule FumigateWeb.Pow.SessionController do
     |> case do
       {:ok, conn} ->
         conn
+        |> put_flash(:info, "Welcome!")
         |> redirect(to: Routes.page_path(conn, :index))
 
       {:error, conn} ->

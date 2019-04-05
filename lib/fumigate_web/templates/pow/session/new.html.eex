@@ -1,4 +1,10 @@
 <div class="container" style="padding-top: 80px;"> 
+      <%= unless is_nil(get_flash(@conn, :info)) do %>
+      <p class="alert alert-success" role="alert"><%= get_flash(@conn, :info) %></p>
+      <% end %>
+      <%= unless is_nil(get_flash(@conn, :error)) do %>
+      <p class="alert alert-danger text-center" role="alert"><%= get_flash(@conn, :error) %></p>
+      <% end %>
       <div class="text-center">
         <h1 class="display-4">Login</h1>
         <p>Welcome back.</p>

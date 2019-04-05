@@ -2,6 +2,12 @@
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron" style="padding-top:80px;">
     <div class="container">
+      <%= unless is_nil(get_flash(@conn, :info)) do %>
+      <p class="alert alert-success" role="alert"><%= get_flash(@conn, :info) %></p>
+      <% end %>
+      <%= unless is_nil(get_flash(@conn, :error)) do %>
+      <p class="alert alert-danger text-center" role="alert"><%= get_flash(@conn, :error) %></p>
+      <% end %>
       <h1 class="display-3">Hello, good looking people!</h1>
       <p>Look up all your fragrance and perfume needs.</p> 
       <p><a class="btn btn-primary btn-lg rounded-0" href="/perfumes" role="button">Find your perfume &raquo;</a></p>
