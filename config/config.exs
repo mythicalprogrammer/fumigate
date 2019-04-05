@@ -38,5 +38,5 @@ config :fumigate, :pow,
   web_module: FumigateWeb
 
 config :recaptcha,
-  public_key: {:system, "6Lf3NbwSAAAAAPtqBA2k8dxCQTT7uTzdfslg2zBN"},
-  secret: {:system, "6Lf3NbwSAAAAACqBfPhWP9mCAKgBUsp4yggDqVYd"}
+  public_key: "6Lf3NbwSAAAAAPtqBA2k8dxCQTT7uTzdfslg2zBN",
+  secret: "6Lf3NbwSAAAAACqBfPhWP9mCAKgBUsp4yggDqVYd"

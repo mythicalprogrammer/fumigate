@@ -25,6 +25,7 @@ defmodule Fumigate.MixProject do
                            :scrivener_ecto, 
                            :edeliver, 
                            :scrivener_html,
+                           :recaptcha,
       ]
     ]
   end
