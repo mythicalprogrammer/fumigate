@@ -2,9 +2,9 @@
   <div class="text-center">
     <h1 class="display-4">Register</h1>
   </div>
-<div class="text-center mb-3"><%= link "Sign in", to: Routes.pow_session_path(@conn, :new) %></div>
+<div class="text-center mb-3"><%= link "Sign in", to: Routes.login_path(@conn, :new) %></div>
 
-<%= form_for @changeset, @action, [as: :user, class: "form-signin"], fn f -> %>
+<%= form_for @changeset, Routes.signup_path(@conn, :create), [as: :user, class: "form-signin"], fn f -> %>
   <%= raw Recaptcha.Template.display %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
@@ -24,6 +24,19 @@
       required: "true",
       autofocus: "autofocus"] %>
   <%= error_tag f, @changeset.data.__struct__.pow_user_id_field() %>
+</div>
+
+<div class="input-group mb-2 input-group-lg">
+  <div class="input-group-prepend">
+    <span class="input-group-text rounded-0">
+      <i class="far fa-user fa-fw"></i>
+    </span>
+  </div>
+  <%= text_input f, :username,
+      [class: "form-control rounded-0", 
+      placeholder: "Username",
+      required: "true"] %>
+  <%= error_tag f, :username %>
 </div>
 
 <div class="input-group mb-2 input-group-lg">

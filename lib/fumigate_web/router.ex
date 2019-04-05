@@ -1,6 +1,5 @@
 defmodule FumigateWeb.Router do
   use FumigateWeb, :router
-  use Pow.Phoenix.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -12,20 +11,20 @@ defmodule FumigateWeb.Router do
 
   pipeline :protected do
     plug Pow.Plug.RequireAuthenticated,
-      error_handler: Pow.Phoenix.PlugErrorHandler
+    error_handler: Pow.Phoenix.PlugErrorHandler
+  end
+
+  pipeline :not_authenticated do
+    plug Pow.Plug.RequireNotAuthenticated,
+    error_handler: Pow.Phoenix.PlugErrorHandler
   end
 
   pipeline :admin_only do
     plug Fumigate.Plug.EnsureRole, :admin
   end
 
-  scope "/" do
-    pipe_through :browser
-    pow_routes()
-  end
-
   scope "/", FumigateWeb do
-    pipe_through :browser
+    pipe_through [:browser]
 
     get "/", PageController, :index
     get "/about", PageController, :about
@@ -40,11 +39,20 @@ defmodule FumigateWeb.Router do
     resources "/notes", NoteController, only: [:index, :show]
     resources "/companies", CompanyController, only: [:index, :show]
     resources "/perfumes", PerfumeController, only: [:index, :show]
+  end
 
+  scope "/", FumigateWeb.Pow  do
+    pipe_through [:browser, :not_authenticated]
+    get "/signup", RegistrationController, :new, as: :signup
+    post "/signup", RegistrationController, :create, as: :signup
+    get "/login", SessionController, :new, as: :login
+    post "/login", SessionController, :create, as: :login
+  end
 
-    resources "/perfume_company_joins", Perfume_Company_JoinController
-    resources "/perfume_note_joins", Perfume_Note_JoinController
-    resources "/perfume_accord_joins", Perfume_Accord_JoinController
+  scope "/", FumigateWeb.Pow do
+    pipe_through [:browser, :protected]
+
+    delete "/logout", SessionController, :delete, as: :logout
   end
 
   scope "/admin", FumigateWeb.Admin, as: :admin do
