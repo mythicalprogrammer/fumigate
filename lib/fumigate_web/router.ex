@@ -11,12 +11,12 @@ defmodule FumigateWeb.Router do
 
   pipeline :protected do
     plug Pow.Plug.RequireAuthenticated,
-    error_handler: Pow.Phoenix.PlugErrorHandler
+    error_handler: FumigateWeb.AuthErrorHandler
   end
 
   pipeline :not_authenticated do
     plug Pow.Plug.RequireNotAuthenticated,
-    error_handler: Pow.Phoenix.PlugErrorHandler
+    error_handler: FumigateWeb.AuthErrorHandler
   end
 
   pipeline :admin_only do
