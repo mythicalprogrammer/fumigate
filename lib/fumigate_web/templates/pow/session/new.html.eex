@@ -52,9 +52,8 @@
 </div>
 
       <div class="checkbox mb-1 mt-2 ml-1">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
+        <%= label f, :persistent_session, "Remember me" %>
+        <%= checkbox f, :persistent_session %>
       </div>
 
   <div>

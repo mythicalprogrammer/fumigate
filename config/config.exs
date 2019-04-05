@@ -35,6 +35,8 @@ config :scrivener_html,
 config :fumigate, :pow,
   user: Fumigate.Users.User,
   repo: Fumigate.Repo,
+  extensions: [PowPersistentSession],
+  controller_callbacks: Pow.Extension.Phoenix.ControllerCallbacks,
   web_module: FumigateWeb
 
 config :recaptcha,

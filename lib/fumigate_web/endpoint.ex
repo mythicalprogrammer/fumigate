@@ -43,6 +43,7 @@ defmodule FumigateWeb.Endpoint do
     signing_salt: "MaX41UCI"
 
   plug Pow.Plug.Session, otp_app: :fumigate
+  plug PowPersistentSession.Plug.Cookie
 
   plug FumigateWeb.Router
 end
