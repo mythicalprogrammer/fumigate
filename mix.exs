@@ -58,7 +58,8 @@ defmodule Fumigate.MixProject do
       {:scrivener_html, "~> 1.8"},
       {:comeonin, "~> 5.1"},
       {:bcrypt_elixir, "~> 2.0"},
-      {:pow, "~> 1.0.4"}
+      {:pow, "~> 1.0.4"},
+      {:recaptcha, "~> 2.3"}
     ]
   end
 
