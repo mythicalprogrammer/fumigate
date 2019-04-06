@@ -53,7 +53,7 @@
 
       <div class="checkbox mb-1 mt-2 ml-1">
         <%= label f, :persistent_session, "Remember me" %>
-        <%= checkbox f, :persistent_session %>
+        <%= checkbox f, :persistent_session, checked: true  %>
       </div>
 
   <div>
