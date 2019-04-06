@@ -55,6 +55,13 @@ defmodule FumigateWeb.Router do
     delete "/logout", SessionController, :delete, as: :logout
   end
 
+  scope "/user", FumigateWeb.User, as: :user do
+    pipe_through [:browser, :protected]
+
+    get "/perfumes", PerfumeController, :new
+    post "/perfumes", PerfumeController, :create
+  end
+
   scope "/admin", FumigateWeb.Admin, as: :admin do
     pipe_through [:browser, :protected, :admin_only]
 

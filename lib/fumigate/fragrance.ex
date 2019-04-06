@@ -15,6 +15,11 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Note
   alias Fumigate.Fragrance.Perfume_Note_Join
   alias Fumigate.Fragrance.Perfume_Accord_Join
+  alias Fumigate.Fragrance.PerfumeApproval
+
+  def change_perfume_approval(%PerfumeApproval{} = perfume) do
+    PerfumeApproval.changeset(perfume, %{})
+  end
 
   def list_notes_paginate(params) do
     Note
