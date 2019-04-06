@@ -1,4 +1,4 @@
-defmodule Fumigate.Fragrance.PerfumeApprovalAccordJoin do
+defmodule Fumigate.Approval.PerfumeApprovalAccordJoin do
   use Ecto.Schema
   import Ecto.Changeset
   import Ecto.Query
@@ -6,7 +6,7 @@ defmodule Fumigate.Fragrance.PerfumeApprovalAccordJoin do
 
   schema "perfume_approval_accord_joins" do
     belongs_to :accord, Fumigate.Fragrance.Accord
-    belongs_to :perfume_approval, Fumigate.Fragrance.PerfumeApproval
+    belongs_to :perfume_approval, Fumigate.Approval.PerfumeApproval
 
     timestamps()
   end

@@ -1,4 +1,4 @@
-defmodule Fumigate.Fragrance.PerfumeApprovalCompanyJoin do
+defmodule Fumigate.Approval.PerfumeApprovalCompanyJoin do
   use Ecto.Schema
   import Ecto.Changeset
   import Ecto.Query
@@ -6,7 +6,7 @@ defmodule Fumigate.Fragrance.PerfumeApprovalCompanyJoin do
   schema "perfume_approval_company_joins" do
 
     belongs_to :company, Fumigate.Fragrance.Company
-    belongs_to :perfume_approval, Fumigate.Fragrance.PerfumeApproval
+    belongs_to :perfume_approval, Fumigate.Approval.PerfumeApproval
     timestamps()
   end
 
@@ -33,6 +33,6 @@ defmodule Fumigate.Fragrance.PerfumeApprovalCompanyJoin do
   def get_perfume_approval_id_by_company_id(query, id) do
     from c in query, 
     where: c.company_id == ^id,
-    select: c.perfume_id 
+    select: c.perfume_approval_id 
   end
 end

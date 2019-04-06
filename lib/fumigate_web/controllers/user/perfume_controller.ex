@@ -1,8 +1,8 @@
 defmodule FumigateWeb.User.PerfumeController do
   use FumigateWeb, :controller
 
-  alias Fumigate.Fragrance
-  alias Fumigate.Fragrance.PerfumeApproval
+  alias Fumigate.Approval
+  alias Fumigate.Approval.PerfumeApproval
 
   plug Fumigate.Plug.AccordList when action in [:new, :create, :edit, :update]
   plug Fumigate.Plug.NoteList when action in [:new, :create, :edit, :update]
@@ -17,7 +17,7 @@ defmodule FumigateWeb.User.PerfumeController do
     #end
 
   def new(conn, _params) do
-    changeset = Fragrance.change_perfume_approval(%PerfumeApproval{})
+    changeset = Approval.change_perfume_approval(%PerfumeApproval{})
     render(conn, "new.html", changeset: changeset,
            accords_select: nil, 
            top_notes_select: nil, 
@@ -27,7 +27,7 @@ defmodule FumigateWeb.User.PerfumeController do
   end
 
   def create(conn, %{"perfume_approval" => perfume_params}) do
-    case Fragrance.create_perfume_approval(perfume_params) do
+    case Approval.create_perfume_approval(perfume_params) do
       {:ok, perfume} ->
         conn
         |> put_flash(:info, "Perfume created successfully.")
