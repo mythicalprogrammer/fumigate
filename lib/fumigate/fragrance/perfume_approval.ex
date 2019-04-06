@@ -16,7 +16,7 @@ defmodule Fumigate.Fragrance.PerfumeApproval do
 
     many_to_many :companies, Fumigate.Fragrance.Company, join_through: Fumigate.Fragrance.PerfumeApprovalCompanyJoin
 
-    many_to_many :notes, Fumigate.Fragrance.Note, join_through: Fumigate.Fragrance.Perfume_Note_Join
+    many_to_many :notes, Fumigate.Fragrance.Note, join_through: Fumigate.Fragrance.PerfumeApprovalNoteJoin
 
     many_to_many :accords, Fumigate.Fragrance.Accord, join_through: Fumigate.Fragrance.PerfumeApprovalAccordJoin
 
