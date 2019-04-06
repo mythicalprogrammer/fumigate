@@ -14,11 +14,11 @@ defmodule Fumigate.Fragrance.PerfumeApproval do
     field :picture_url, :string
     field :year_released, :integer
 
-    many_to_many :companies, Fumigate.Fragrance.Company, join_through: Fumigate.Fragrance.Perfume_Company_Join
+    many_to_many :companies, Fumigate.Fragrance.Company, join_through: Fumigate.Fragrance.PerfumeApprovalCompanyJoin
 
     many_to_many :notes, Fumigate.Fragrance.Note, join_through: Fumigate.Fragrance.Perfume_Note_Join
 
-    many_to_many :accords, Fumigate.Fragrance.Accord, join_through: Fumigate.Fragrance.Perfume_Accord_Join
+    many_to_many :accords, Fumigate.Fragrance.Accord, join_through: Fumigate.Fragrance.PerfumeApprovalAccordJoin
 
     timestamps()
   end
