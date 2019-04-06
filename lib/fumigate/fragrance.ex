@@ -21,6 +21,12 @@ defmodule Fumigate.Fragrance do
     PerfumeApproval.changeset(perfume, %{})
   end
 
+  def create_perfume_approval(attrs \\ %{}) do
+    %PerfumeApproval{}
+    |> PerfumeApproval.changeset(attrs)
+    |> Repo.insert()
+  end
+
   def list_notes_paginate(params) do
     Note
     |> Note.alphabetical() 

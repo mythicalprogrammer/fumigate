@@ -27,20 +27,21 @@ defmodule FumigateWeb.User.PerfumeController do
   end
 
   def create(conn, %{"perfume_approval" => perfume_params}) do
-  #  case Fragrance.create_perfume_approval(perfume_params) do
-  #    {:ok, perfume_approval} ->
-  #      conn
-  #      |> put_flash(:info, "Perfume created successfully.")
+    case Fragrance.create_perfume_approval(perfume_params) do
+      {:ok, perfume} ->
+        conn
+        |> put_flash(:info, "Perfume created successfully.")
+        |> redirect(to: Routes.perfume_path(conn, :index))
   #      |> redirect(to: Routes.admin_perfume_path(conn, :show, perfume))
-  #
-  #    {:error, %Ecto.Changeset{} = changeset} ->
-  #      render(conn, "new.html", changeset: changeset,
-  #        accords_select: nil, 
-  #        top_notes_select: nil, 
-  #        middle_notes_select: nil,
-  #        base_notes_select: nil, 
-  #        companies_select: nil)
-  #  end
+  
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "new.html", changeset: changeset,
+          accords_select: nil, 
+          top_notes_select: nil, 
+          middle_notes_select: nil,
+          base_notes_select: nil, 
+          companies_select: nil)
+    end
   end
 
   #def show(conn, %{"id" => id}) do
