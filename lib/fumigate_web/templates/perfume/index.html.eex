@@ -5,7 +5,9 @@
   previous: Phoenix.HTML.raw('<i class="fas fa-chevron-left"></i>'), 
   next: Phoenix.HTML.raw('<i class="fas fa-chevron-right"></i>') %>
 
-<%= link "Add Perfume", to: Routes.user_perfume_path(@conn, :new), class: "btn btn-outline-secondary" %>
+  <%= if login?(@conn) do %>
+    <%= link "Add Perfume", to: Routes.user_perfume_path(@conn, :new), class: "btn btn-info rounded-0" %>
+  <% end %>
 
 <table class="table table-striped mt-5">
   <thead>
