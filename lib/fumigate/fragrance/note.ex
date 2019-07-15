@@ -8,7 +8,7 @@ defmodule Fumigate.Fragrance.Note do
     field :note_name, :string
 
     timestamps()
-    many_to_many :perfumes, Fumigate.Fragrance.Perfume, join_through: Fumigate.Fragrance.Perfume_Note_Join
+    many_to_many :perfumes, Fumigate.Fragrance.Perfume, join_through: Fumigate.Fragrance.PerfumeNoteJoin
   end
 
   @doc false

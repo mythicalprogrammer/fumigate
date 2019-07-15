@@ -13,13 +13,13 @@ defmodule Fumigate.Fragrance.Company do
     field :month_established, MonthEnum
     field :year_established, :integer
 
-    many_to_many :company_types, Fumigate.Fragrance.Company_Type, join_through: Fumigate.Fragrance.Company_Type_Join
+    many_to_many :company_types, Fumigate.Fragrance.CompanyType, join_through: Fumigate.Fragrance.CompanyTypeJoin
     belongs_to :country, Fumigate.Fragrance.Country
     belongs_to :parent_company, Fumigate.Fragrance.Company
     has_many :child_company, Fumigate.Fragrance.Company, foreign_key: :parent_company_id
-    belongs_to :company_main_activity, Fumigate.Fragrance.Company_Main_Activity
+    belongs_to :company_main_activity, Fumigate.Fragrance.CompanyMainActivity
     timestamps()
-    many_to_many :perfumes, Fumigate.Fragrance.Perfume, join_through: Fumigate.Fragrance.Perfume_Company_Join
+    many_to_many :perfumes, Fumigate.Fragrance.Perfume, join_through: Fumigate.Fragrance.PerfumeCompanyJoin
   end
 
   @doc false

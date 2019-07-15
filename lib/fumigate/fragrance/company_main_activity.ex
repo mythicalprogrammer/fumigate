@@ -1,4 +1,4 @@
-defmodule Fumigate.Fragrance.Company_Main_Activity do
+defmodule Fumigate.Fragrance.CompanyMainActivity do
   use Ecto.Schema
   import Ecto.Changeset
   import Ecto.Query

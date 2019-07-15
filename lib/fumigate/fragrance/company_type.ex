@@ -1,4 +1,4 @@
-defmodule Fumigate.Fragrance.Company_Type do
+defmodule Fumigate.Fragrance.CompanyType do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -6,7 +6,7 @@ defmodule Fumigate.Fragrance.Company_Type do
   schema "company_types" do
     field :company_type, :string, null: false
 
-    many_to_many :companies, Fumigate.Fragrance.Company, join_through: Fumigate.Fragrance.Company_Type_Join
+    many_to_many :companies, Fumigate.Fragrance.Company, join_through: Fumigate.Fragrance.CompanyTypeJoin
     timestamps()
   end
 

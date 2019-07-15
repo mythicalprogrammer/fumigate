@@ -1,4 +1,4 @@
-defmodule Fumigate.Fragrance.Perfume_Note_Join do
+defmodule Fumigate.Fragrance.PerfumeNoteJoin do
   use Ecto.Schema
   import Ecto.Changeset
   import Ecto.Query
@@ -13,8 +13,8 @@ defmodule Fumigate.Fragrance.Perfume_Note_Join do
   end
 
   @doc false
-  def changeset(perfume__note__join, attrs) do
-    perfume__note__join
+  def changeset(perfume_note_join, attrs) do
+    perfume_note_join
     |> cast(attrs, [:note_id, :perfume_id, :pyramid_note])
     |> validate_required([:note_id, :perfume_id])
     |> assoc_constraint(:perfume)

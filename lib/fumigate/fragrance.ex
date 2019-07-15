@@ -7,14 +7,14 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Repo
   alias Fumigate.Fragrance.Country
   alias Fumigate.Fragrance.Company
-  alias Fumigate.Fragrance.Company_Type
-  alias Fumigate.Fragrance.Company_Main_Activity
+  alias Fumigate.Fragrance.CompanyType
+  alias Fumigate.Fragrance.CompanyMainActivity
   alias Fumigate.Fragrance.Perfume
-  alias Fumigate.Fragrance.Perfume_Company_Join
+  alias Fumigate.Fragrance.PerfumeCompanyJoin
   alias Fumigate.Fragrance.Accord
   alias Fumigate.Fragrance.Note
-  alias Fumigate.Fragrance.Perfume_Note_Join
-  alias Fumigate.Fragrance.Perfume_Accord_Join
+  alias Fumigate.Fragrance.PerfumeNoteJoin
+  alias Fumigate.Fragrance.PerfumeAccordJoin
 
   def list_notes_paginate(params) do
     Note
@@ -36,19 +36,19 @@ defmodule Fumigate.Fragrance do
   end
 
   def get_perfume_id_by_company_id(id) do
-    Perfume_Company_Join
-    |> Perfume_Company_Join.get_perfume_id_by_company_id(id)
+    PerfumeCompanyJoin
+    |> PerfumeCompanyJoin.get_perfume_id_by_company_id(id)
     |> Repo.all()
   end
 
   def insert_all_companies(company_id, perfume_id) do
     records = company_id |> Enum.map(fn(x) -> [perfume_id: perfume_id, company_id: String.to_integer(x), inserted_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second), updated_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)] end)
-    Perfume_Company_Join
+    PerfumeCompanyJoin
     |> Repo.insert_all(records)
   end
 
   def delete_all_company_joins_by_perfume_id(id) do
-    queryable = Perfume_Company_Join |> Perfume_Company_Join.delete_all_company_joins_by_perfume_id(id) 
+    queryable = PerfumeCompanyJoin |> PerfumeCompanyJoin.delete_all_company_joins_by_perfume_id(id) 
     Ecto.Multi.new()
     |> Ecto.Multi.delete_all(:delete_all, queryable)
     |> Repo.transaction()
@@ -56,8 +56,8 @@ defmodule Fumigate.Fragrance do
 
 
   def select_all_companies_by_perfume_id(id) do
-    Perfume_Company_Join
-    |> Perfume_Company_Join.get_all_companies_by_perfume_id(id) 
+    PerfumeCompanyJoin
+    |> PerfumeCompanyJoin.get_all_companies_by_perfume_id(id) 
     |> Repo.all()
   end
 
@@ -84,12 +84,12 @@ defmodule Fumigate.Fragrance do
 
   def insert_all_notes_by_perfume_id(notes, perfume_id, pyramid_note) do
     records = notes |> Enum.map(fn(x) -> [perfume_id: perfume_id, note_id: String.to_integer(x), pyramid_note: pyramid_note, inserted_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second), updated_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)] end)
-    Perfume_Note_Join
+    PerfumeNoteJoin
     |> Repo.insert_all(records)
   end
 
   def delete_all_note_joins_by_perfume_id(perfume_id, pyramid_note) do
-    queryable = Perfume_Note_Join |> Perfume_Note_Join.delete_all_note_joins_by_perfume_id(perfume_id, pyramid_note) 
+    queryable = PerfumeNoteJoin |> PerfumeNoteJoin.delete_all_note_joins_by_perfume_id(perfume_id, pyramid_note) 
     Ecto.Multi.new()
     |> Ecto.Multi.delete_all(:delete_all, queryable)
     |> Repo.transaction()
@@ -108,27 +108,27 @@ defmodule Fumigate.Fragrance do
   end
 
   defp select_all_notes_by_perfume_id(perfume_id, pyramid_note) do
-    Perfume_Note_Join
-    |> Perfume_Note_Join.get_all_notes_by_perfume_id(perfume_id, pyramid_note) 
+    PerfumeNoteJoin
+    |> PerfumeNoteJoin.get_all_notes_by_perfume_id(perfume_id, pyramid_note) 
     |> Repo.all()
   end
 
   def delete_all_accord_joins_by_perfume_id(perfume_id) do
-    queryable = Perfume_Accord_Join |> Perfume_Accord_Join.delete_all_accord_joins_by_perfume_id(perfume_id) 
+    queryable = PerfumeAccordJoin |> PerfumeAccordJoin.delete_all_accord_joins_by_perfume_id(perfume_id) 
     Ecto.Multi.new()
     |> Ecto.Multi.delete_all(:delete_all, queryable)
     |> Repo.transaction()
   end
 
   def select_all_accords_by_perfume_id(perfume_id) do
-    Perfume_Accord_Join
-    |> Perfume_Accord_Join.get_all_accords_by_perfume_id(perfume_id) 
+    PerfumeAccordJoin
+    |> PerfumeAccordJoin.get_all_accords_by_perfume_id(perfume_id) 
     |> Repo.all()
   end
   
   def insert_all_accords(accords, perfume) do
     records = accords |> Enum.map(fn(x) -> [perfume_id: perfume.id, accord_id: String.to_integer(x), inserted_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second), updated_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)] end)
-    Perfume_Accord_Join
+    PerfumeAccordJoin
     |> Repo.insert_all(records)
   end
 
@@ -175,17 +175,17 @@ defmodule Fumigate.Fragrance do
   end
 
   def list_alphabetical_company_main_activities do
-    Company_Main_Activity
-    |> Company_Main_Activity.alphabetical()
+    CompanyMainActivity
+    |> CompanyMainActivity.alphabetical()
     |> Repo.all()
   end
 
   def create_company_main_activity(main_activity) do
-    Repo.get_by(Company_Main_Activity, main_activity: main_activity) || Repo.insert!(%Company_Main_Activity{main_activity: main_activity})
+    Repo.get_by(CompanyMainActivity, main_activity: main_activity) || Repo.insert!(%CompanyMainActivity{main_activity: main_activity})
   end
 
   def create_company_type(company_type) do
-    Repo.get_by(Company_Type, company_type: company_type) || Repo.insert!(%Company_Type{company_type: company_type})
+    Repo.get_by(CompanyType, company_type: company_type) || Repo.insert!(%CompanyType{company_type: company_type})
   end
 
   def create_country(name) do
@@ -388,92 +388,92 @@ defmodule Fumigate.Fragrance do
   ## Examples
 
       iex> list_perfume_company_joins()
-      [%Perfume_Company_Join{}, ...]
+      [%PerfumeCompanyJoin{}, ...]
 
   """
   def list_perfume_company_joins do
-    Repo.all(Perfume_Company_Join)
+    Repo.all(PerfumeCompanyJoin)
   end
 
   @doc """
-  Gets a single perfume__company__join.
+  Gets a single perfume_company_join.
 
   Raises `Ecto.NoResultsError` if the Perfume  company  join does not exist.
 
   ## Examples
 
-      iex> get_perfume__company__join!(123)
-      %Perfume_Company_Join{}
+      iex> get_perfume_company_join!(123)
+      %PerfumeCompanyJoin{}
 
-      iex> get_perfume__company__join!(456)
+      iex> get_perfume_company_join!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_perfume__company__join!(id), do: Repo.get!(Perfume_Company_Join, id)
+  def get_perfume_company_join!(id), do: Repo.get!(PerfumeCompanyJoin, id)
 
   @doc """
-  Creates a perfume__company__join.
+  Creates a perfume_company_join.
 
   ## Examples
 
-      iex> create_perfume__company__join(%{field: value})
-      {:ok, %Perfume_Company_Join{}}
+      iex> create_perfume_company_join(%{field: value})
+      {:ok, %PerfumeCompanyJoin{}}
 
-      iex> create_perfume__company__join(%{field: bad_value})
+      iex> create_perfume_company_join(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_perfume__company__join(attrs \\ %{}) do
-    %Perfume_Company_Join{}
-    |> Perfume_Company_Join.changeset(attrs)
+  def create_perfume_company_join(attrs \\ %{}) do
+    %PerfumeCompanyJoin{}
+    |> PerfumeCompanyJoin.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Updates a perfume__company__join.
+  Updates a perfume_company_join.
 
   ## Examples
 
-      iex> update_perfume__company__join(perfume__company__join, %{field: new_value})
-      {:ok, %Perfume_Company_Join{}}
+      iex> update_perfume_company_join(perfume_company_join, %{field: new_value})
+      {:ok, %PerfumeCompanyJoin{}}
 
-      iex> update_perfume__company__join(perfume__company__join, %{field: bad_value})
+      iex> update_perfume_company_join(perfume_company_join, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_perfume__company__join(%Perfume_Company_Join{} = perfume__company__join, attrs) do
-    perfume__company__join
-    |> Perfume_Company_Join.changeset(attrs)
+  def update_perfume_company_join(%PerfumeCompanyJoin{} = perfume_company_join, attrs) do
+    perfume_company_join
+    |> PerfumeCompanyJoin.changeset(attrs)
     |> Repo.update()
   end
 
   @doc """
-  Deletes a Perfume_Company_Join.
+  Deletes a PerfumeCompanyJoin.
 
   ## Examples
 
-      iex> delete_perfume__company__join(perfume__company__join)
-      {:ok, %Perfume_Company_Join{}}
+      iex> delete_perfume_company_join(perfume_company_join)
+      {:ok, %PerfumeCompanyJoin{}}
 
-      iex> delete_perfume__company__join(perfume__company__join)
+      iex> delete_perfume_company_join(perfume_company_join)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_perfume__company__join(%Perfume_Company_Join{} = perfume__company__join) do
-    Repo.delete(perfume__company__join)
+  def delete_perfume_company_join(%PerfumeCompanyJoin{} = perfume_company_join) do
+    Repo.delete(perfume_company_join)
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for tracking perfume__company__join changes.
+  Returns an `%Ecto.Changeset{}` for tracking perfume_company_join changes.
 
   ## Examples
 
-      iex> change_perfume__company__join(perfume__company__join)
-      %Ecto.Changeset{source: %Perfume_Company_Join{}}
+      iex> change_perfume_company_join(perfume_company_join)
+      %Ecto.Changeset{source: %PerfumeCompanyJoin{}}
 
   """
-  def change_perfume__company__join(%Perfume_Company_Join{} = perfume__company__join) do
-    Perfume_Company_Join.changeset(perfume__company__join, %{})
+  def change_perfume_company_join(%PerfumeCompanyJoin{} = perfume_company_join) do
+    PerfumeCompanyJoin.changeset(perfume_company_join, %{})
   end
 
   @doc """
@@ -670,11 +670,11 @@ defmodule Fumigate.Fragrance do
   ## Examples
 
       iex> list_perfume_note_joins()
-      [%Perfume_Note_Join{}, ...]
+      [%PerfumeNoteJoin{}, ...]
 
   """
   def list_perfume_note_joins do
-    Repo.all(Perfume_Note_Join)
+    Repo.all(PerfumeNoteJoin)
   end
 
   @doc """
@@ -684,48 +684,48 @@ defmodule Fumigate.Fragrance do
 
   ## Examples
 
-      iex> get_perfume__note__join!(123)
-      %Perfume_Note_Join{}
+      iex> get_perfume_note_join!(123)
+      %PerfumeNoteJoin{}
 
-      iex> get_perfume__note__join!(456)
+      iex> get_perfume_note_join!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_perfume__note__join!(id), do: Repo.get!(Perfume_Note_Join, id)
+  def get_perfume_note_join!(id), do: Repo.get!(PerfumeNoteJoin, id)
 
   @doc """
-  Creates a perfume__note__join.
+  Creates a perfume_note_join.
 
   ## Examples
 
-      iex> create_perfume__note__join(%{field: value})
-      {:ok, %Perfume_Note_Join{}}
+      iex> create_perfume_note_join(%{field: value})
+      {:ok, %PerfumeNoteJoin{}}
 
-      iex> create_perfume__note__join(%{field: bad_value})
+      iex> create_perfume_note_join(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_perfume__note__join(attrs \\ %{}) do
-    %Perfume_Note_Join{}
-    |> Perfume_Note_Join.changeset(attrs)
+  def create_perfume_note_join(attrs \\ %{}) do
+    %PerfumeNoteJoin{}
+    |> PerfumeNoteJoin.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Updates a perfume__note__join.
+  Updates a perfume_note_join.
 
   ## Examples
 
-      iex> update_perfume__note__join(perfume__note__join, %{field: new_value})
-      {:ok, %Perfume_Note_Join{}}
+      iex> update_perfume_note_join(perfume_note_join, %{field: new_value})
+      {:ok, %PerfumeNoteJoin{}}
 
-      iex> update_perfume__note__join(perfume__note__join, %{field: bad_value})
+      iex> update_perfume_note_join(perfume_note_join, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_perfume__note__join(%Perfume_Note_Join{} = perfume__note__join, attrs) do
-    perfume__note__join
-    |> Perfume_Note_Join.changeset(attrs)
+  def update_perfume_note_join(%PerfumeNoteJoin{} = perfume_note_join, attrs) do
+    perfume_note_join
+    |> PerfumeNoteJoin.changeset(attrs)
     |> Repo.update()
   end
 
@@ -734,28 +734,28 @@ defmodule Fumigate.Fragrance do
 
   ## Examples
 
-      iex> delete_perfume__note__join(perfume__note__join)
-      {:ok, %Perfume_Note_Join{}}
+      iex> delete_perfume_note_join(perfume_note_join)
+      {:ok, %PerfumeNoteJoin{}}
 
-      iex> delete_perfume__note__join(perfume__note__join)
+      iex> delete_perfume_note_join(perfume_note_join)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_perfume__note__join(%Perfume_Note_Join{} = perfume__note__join) do
-    Repo.delete(perfume__note__join)
+  def delete_perfume_note_join(%PerfumeNoteJoin{} = perfume_note_join) do
+    Repo.delete(perfume_note_join)
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for tracking perfume__note__join changes.
+  Returns an `%Ecto.Changeset{}` for tracking perfume_note_join changes.
 
   ## Examples
 
-      iex> change_perfume__note__join(perfume__note__join)
-      %Ecto.Changeset{source: %Perfume_Note_Join{}}
+      iex> change_perfume_note_join(perfume_note_join)
+      %Ecto.Changeset{source: %PerfumeNoteJoin{}}
 
   """
-  def change_perfume__note__join(%Perfume_Note_Join{} = perfume__note__join) do
-    Perfume_Note_Join.changeset(perfume__note__join, %{})
+  def change_perfume_note_join(%PerfumeNoteJoin{} = perfume_note_join) do
+    PerfumeNoteJoin.changeset(perfume_note_join, %{})
   end
 
   @doc """
@@ -764,62 +764,62 @@ defmodule Fumigate.Fragrance do
   ## Examples
 
       iex> list_perfume_accord_joins()
-      [%Perfume_Accord_Join{}, ...]
+      [%PerfumeAccordJoin{}, ...]
 
   """
   def list_perfume_accord_joins do
-    Repo.all(Perfume_Accord_Join)
+    Repo.all(PerfumeAccordJoin)
   end
 
   @doc """
-  Gets a single perfume__accord__join.
+  Gets a single perfume_accord_join.
 
   Raises `Ecto.NoResultsError` if the Perfume  accord  join does not exist.
 
   ## Examples
 
-      iex> get_perfume__accord__join!(123)
-      %Perfume_Accord_Join{}
+      iex> get_perfume_accord_join!(123)
+      %PerfumeAccordJoin{}
 
-      iex> get_perfume__accord__join!(456)
+      iex> get_perfume_accord_join!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_perfume__accord__join!(id), do: Repo.get!(Perfume_Accord_Join, id)
+  def get_perfume_accord_join!(id), do: Repo.get!(PerfumeAccordJoin, id)
 
   @doc """
-  Creates a perfume__accord__join.
+  Creates a perfume_accord_join.
 
   ## Examples
 
-      iex> create_perfume__accord__join(%{field: value})
-      {:ok, %Perfume_Accord_Join{}}
+      iex> create_perfume_accord_join(%{field: value})
+      {:ok, %PerfumeAccordJoin{}}
 
-      iex> create_perfume__accord__join(%{field: bad_value})
+      iex> create_perfume_accord_join(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_perfume__accord__join(attrs \\ %{}) do
-    %Perfume_Accord_Join{}
-    |> Perfume_Accord_Join.changeset(attrs)
+  def create_perfume_accord_join(attrs \\ %{}) do
+    %PerfumeAccordJoin{}
+    |> PerfumeAccordJoin.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Updates a perfume__accord__join.
+  Updates a perfume_accord_join.
 
   ## Examples
 
-      iex> update_perfume__accord__join(perfume__accord__join, %{field: new_value})
-      {:ok, %Perfume_Accord_Join{}}
+      iex> update_perfume_accord_join(perfume_accord_join, %{field: new_value})
+      {:ok, %PerfumeAccordJoin{}}
 
-      iex> update_perfume__accord__join(perfume__accord__join, %{field: bad_value})
+      iex> update_perfume_accord_join(perfume_accord_join, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_perfume__accord__join(%Perfume_Accord_Join{} = perfume__accord__join, attrs) do
-    perfume__accord__join
-    |> Perfume_Accord_Join.changeset(attrs)
+  def update_perfume_accord_join(%PerfumeAccordJoin{} = perfume_accord_join, attrs) do
+    perfume_accord_join
+    |> PerfumeAccordJoin.changeset(attrs)
     |> Repo.update()
   end
 
@@ -828,27 +828,27 @@ defmodule Fumigate.Fragrance do
 
   ## Examples
 
-      iex> delete_perfume__accord__join(perfume__accord__join)
-      {:ok, %Perfume_Accord_Join{}}
+      iex> delete_perfume_accord_join(perfume_accord_join)
+      {:ok, %PerfumeAccordJoin{}}
 
-      iex> delete_perfume__accord__join(perfume__accord__join)
+      iex> delete_perfume_accord_join(perfume_accord_join)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_perfume__accord__join(%Perfume_Accord_Join{} = perfume__accord__join) do
-    Repo.delete(perfume__accord__join)
+  def delete_perfume_accord_join(%PerfumeAccordJoin{} = perfume_accord_join) do
+    Repo.delete(perfume_accord_join)
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for tracking perfume__accord__join changes.
+  Returns an `%Ecto.Changeset{}` for tracking perfume_accord_join changes.
 
   ## Examples
 
-      iex> change_perfume__accord__join(perfume__accord__join)
-      %Ecto.Changeset{source: %Perfume_Accord_Join{}}
+      iex> change_perfume_accord_join(perfume_accord_join)
+      %Ecto.Changeset{source: %PerfumeAccordJoin{}}
 
   """
-  def change_perfume__accord__join(%Perfume_Accord_Join{} = perfume__accord__join) do
-    Perfume_Accord_Join.changeset(perfume__accord__join, %{})
+  def change_perfume_accord_join(%PerfumeAccordJoin{} = perfume_accord_join) do
+    PerfumeAccordJoin.changeset(perfume_accord_join, %{})
   end
 end

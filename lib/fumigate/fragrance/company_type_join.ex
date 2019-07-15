@@ -1,4 +1,4 @@
-defmodule Fumigate.Fragrance.Company_Type_Join do
+defmodule Fumigate.Fragrance.CompanyTypeJoin do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -6,7 +6,7 @@ defmodule Fumigate.Fragrance.Company_Type_Join do
   schema "company_type_joins" do
 
     belongs_to :companies, Fumigate.Fragrance.Company
-    belongs_to :company_types, Fumigate.Fragrance.Company_Type
+    belongs_to :company_types, Fumigate.Fragrance.CompanyType
     timestamps()
   end
 
