@@ -14,7 +14,7 @@
 <%= form_for @changeset, Routes.login_path(@conn, :create), [as: :user, class: "form-signin" ], fn f -> %>
 
   <div class="text-center">
-  <%= raw Recaptcha.Template.display %>
+  <%= #raw Recaptcha.Template.display %>
   </div>
 
   <%= if @changeset.action do %>

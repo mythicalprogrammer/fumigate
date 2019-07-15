@@ -7,15 +7,16 @@ defmodule FumigateWeb.Pow.RegistrationController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    case Recaptcha.verify(conn.params["g-recaptcha-response"]) do
-      {:ok, _response} -> create_user(conn, user_params)
-
-      {:error, _errors} -> 
-        changeset = Pow.Plug.change_user(conn)
-        conn
-        |> put_flash(:error, "There is a problem with Recaptcha.")
-        |> render("new.html", changeset: changeset)
-    end
+    create_user(conn, user_params)
+    #case Recaptcha.verify(conn.params["g-recaptcha-response"]) do
+    #  {:ok, _response} -> create_user(conn, user_params)
+    #
+    #  {:error, _errors} -> 
+    #    changeset = Pow.Plug.change_user(conn)
+    #    conn
+    #    |> put_flash(:error, "There is a problem with Recaptcha.")
+    #    |> render("new.html", changeset: changeset)
+    #end
   end
 
   defp create_user(conn, user_params) do
