@@ -6,7 +6,7 @@
   next: Phoenix.HTML.raw('<i class="fas fa-chevron-right"></i>') %>
 
   <%= if login?(@conn) do %>
-    <%= link "Add Perfume", to: Routes.user_perfume_path(@conn, :new), class: "btn btn-info rounded-0" %>
+    <%= link "Submit a Perfume", to: Routes.user_perfume_path(@conn, :new), class: "btn btn-info rounded-0" %>
   <% end %>
 
 <table class="table table-striped mt-5">
