@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Fumigate</title>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+  </head>
+  <body class="d-flex flex-column">
+    <!-- Begin page content -->
+    <main role="main">
+      <div class="container text-center pt-5"> 
+        <h1>500 Internal Server Error.</h1>
+        <p>Something went wrong and I will try my best to fix it right away.</p>
+      </div>
+    </main>
+  </body>
+</html>
