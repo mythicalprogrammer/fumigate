@@ -11,7 +11,7 @@ use Mix.Config
 # before starting your production server.
 config :fumigate, FumigateWeb.Endpoint,
   http: [:inet6, port: System.get_env("PORT") || 4000],
-  url: [host: "fumigate.app", port: 80],
+  url: [host: "fumigatedb.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true,
   code_reloader: false
