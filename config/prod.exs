@@ -11,6 +11,7 @@ use Mix.Config
 # before starting your production server.
 config :fumigate, FumigateWeb.Endpoint,
   url: [scheme: "https", host: "fumigatedb.com", port: 443],
+  force_ssl: [hsts: true],
   http: [:inet6, port: System.get_env("PORT") || 4000],
   https: [
     :inet6,
@@ -20,7 +21,56 @@ config :fumigate, FumigateWeb.Endpoint,
     keyfile: System.get_env("SSL_KEY_FILE"),
     certfile: System.get_env("SSL_CERT_FILE"),
     cacertfile: System.get_env("SSL_CACERT_FILE"),
- 	dhfile: System.get_env("SSL_DHPARAM_FILE")
+    dhfile: System.get_env("SSL_DHPARAM_FILE"),
+    versions: [:"tlsv1.2", :"tlsv1.1", :"tlsv1"],
+          ciphers: ~w(
+            ECDHE-ECDSA-AES256-GCM-SHA384
+            ECDHE-ECDSA-AES256-SHA384
+            ECDHE-ECDSA-AES128-GCM-SHA256
+            ECDHE-ECDSA-AES128-SHA256
+            ECDHE-ECDSA-AES256-SHA
+            ECDHE-ECDSA-AES128-SHA
+
+            ECDHE-RSA-AES256-GCM-SHA384
+            ECDHE-RSA-AES256-SHA384
+            ECDHE-RSA-AES128-GCM-SHA256
+            ECDHE-RSA-AES128-SHA256
+            ECDHE-RSA-AES256-SHA
+            ECDHE-RSA-AES128-SHA
+
+            ECDH-ECDSA-AES256-GCM-SHA384
+            ECDH-ECDSA-AES256-SHA384
+            ECDH-ECDSA-AES128-GCM-SHA256
+            ECDH-ECDSA-AES128-SHA256
+
+            DHE-RSA-AES256-GCM-SHA384
+            DHE-RSA-AES256-SHA256
+            DHE-DSS-AES256-GCM-SHA384
+            DHE-DSS-AES256-SHA256
+            DHE-RSA-AES256-SHA
+            DHE-DSS-AES256-SHA
+
+            DHE-DSS-AES128-GCM-SHA256
+            DHE-RSA-AES128-GCM-SHA256
+            DHE-RSA-AES128-SHA256
+            DHE-DSS-AES128-SHA256
+            DHE-RSA-AES128-SHA
+            DHE-DSS-AES128-SHA
+
+            AES128-GCM-SHA256
+            AES128-SHA
+            DES-CBC3-SHA
+          )c,
+secure_renegotiate: true,
+          reuse_sessions: true,
+          honor_cipher_order: true,
+          client_renegotiation: false,
+          eccs: [
+            :sect571r1, :sect571k1, :secp521r1, :brainpoolP512r1, :sect409k1,
+            :sect409r1, :brainpoolP384r1, :secp384r1, :sect283k1, :sect283r1,
+            :brainpoolP256r1, :secp256k1, :secp256r1, :sect239k1, :sect233k1,
+            :sect233r1, :secp224k1, :secp224r1
+          ],
   ],
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true,
@@ -58,8 +108,6 @@ config :logger, level: :info
 # We also recommend setting `force_ssl` in your endpoint, ensuring
 # no data is ever sent via http, always redirecting to https:
 #
-config :fumigate, FumigateWeb.Endpoint,
-  force_ssl: [hsts: true]
 #
 # Check `Plug.SSL` for all available options in `force_ssl`.
 
