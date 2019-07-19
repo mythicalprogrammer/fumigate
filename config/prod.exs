@@ -10,7 +10,7 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :fumigate, FumigateWeb.Endpoint,
-  http: [:inet6, port: System.get_env("PORT")],
+  http: [:inet6, port: System.get_env("PORT") || 4000],
   url: [host: "fumigatedb.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true,
