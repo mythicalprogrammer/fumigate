@@ -10,8 +10,18 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :fumigate, FumigateWeb.Endpoint,
+  url: [scheme: "https", host: "fumigatedb.com", port: 443],
   http: [:inet6, port: System.get_env("PORT") || 4000],
-  url: [host: "fumigatedb.com", port: 80],
+  https: [
+    :inet6,
+    port: System.get_env("SPORT") || 4001,
+    otp_app: :fumigate,
+    cipher_suite: :strong,
+    keyfile: System.get_env("SSL_KEY_FILE"),
+    certfile: System.get_env("SSL_CERT_FILE"),
+    cacertfile: System.get_env("SSL_CACERT_FILE"),
+ 	dhfile: System.get_env("SSL_DHPARAM_FILE")
+  ],
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true,
   code_reloader: false
