@@ -3,7 +3,7 @@ defmodule Fumigate.Repo.Migrations.CreateCompanyMainActivities do
 
   def change do
     create table(:company_main_activities) do
-      add :main_activity, :string
+      add :main_activity, :string, null: false
 
       timestamps()
     end

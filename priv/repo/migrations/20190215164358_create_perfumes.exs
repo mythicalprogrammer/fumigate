@@ -4,7 +4,7 @@ defmodule Fumigate.Repo.Migrations.CreatePerfumes do
   def change do
     GenderEnum.create_type
     create table(:perfumes) do
-      add :perfume_name, :string
+      add :perfume_name, :string, null: false
       add :concentration, :string
       add :gender, GenderEnum.type() 
       add :perfume_description, :text

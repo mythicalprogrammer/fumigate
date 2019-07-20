@@ -4,7 +4,7 @@ defmodule Fumigate.Repo.Migrations.CreateCompanies do
   def change do
     MonthEnum.create_type
     create table(:companies) do
-      add :company_name, :string
+      add :company_name, :string, null: false
       add :company_description, :text
       add :logo_url, :string
       add :year_established, :integer

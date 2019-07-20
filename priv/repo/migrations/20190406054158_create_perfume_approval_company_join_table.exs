@@ -3,8 +3,8 @@ defmodule Fumigate.Repo.Migrations.CreatePerfumeApprovalCompanyJoinTable do
 
   def change do
     create table(:perfume_approval_company_joins) do
-      add :company_id, references(:companies, on_delete: :nothing)
-      add :perfume_approval_id, references(:perfume_approvals, on_delete: :nothing)
+      add :company_id, references(:companies, on_delete: :nothing), null: false
+      add :perfume_approval_id, references(:perfume_approvals, on_delete: :nothing), null: false
 
       timestamps()
     end

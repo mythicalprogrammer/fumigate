@@ -3,8 +3,8 @@ defmodule Fumigate.Repo.Migrations.CreatePerfumeCompanyJoins do
 
   def change do
     create table(:perfume_company_joins) do
-      add :company_id, references(:companies, on_delete: :nothing)
-      add :perfume_id, references(:perfumes, on_delete: :nothing)
+      add :company_id, references(:companies, on_delete: :nothing), null: false
+      add :perfume_id, references(:perfumes, on_delete: :nothing), null: false
 
       timestamps()
     end

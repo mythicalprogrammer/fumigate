@@ -3,8 +3,8 @@ defmodule Fumigate.Repo.Migrations.CreateCompanyTypeJoins do
 
   def change do
     create table(:company_type_joins) do
-      add :company_id, references(:companies, on_delete: :nothing)
-      add :company_type_id, references(:company_types, on_delete: :nothing)
+      add :company_id, references(:companies, on_delete: :nothing), null: false
+      add :company_type_id, references(:company_types, on_delete: :nothing), null: false
 
       timestamps()
     end
