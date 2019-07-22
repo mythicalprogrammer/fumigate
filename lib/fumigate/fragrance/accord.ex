@@ -10,8 +10,8 @@ defmodule Fumigate.Fragrance.Accord do
     timestamps()
 
     many_to_many :perfumes, Fumigate.Fragrance.Perfume, join_through: Fumigate.Fragrance.PerfumeAccordJoin
-    many_to_many :perfume_approvals, Fumigate.Fragrance.PerfumeApproval, 
-      join_through: Fumigate.Fragrance.PerfumeApprovalAccordJoin
+    many_to_many :perfume_approvals, Fumigate.Approval.PerfumeApproval, 
+      join_through: Fumigate.Approval.PerfumeApprovalAccordJoin
   end
 
   @doc false
