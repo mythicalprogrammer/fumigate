@@ -29,6 +29,11 @@
             <a class="nav-link" href="/companies">Companies</a>
           <% end %>
         </li>
+        <%= if role(@conn) == "admin" do %>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/tools">Admin Tools</a>
+        </li>
+        <% end %>
       </ul>
       <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex social-media">
         <%= if login?(@conn) == false do %> 

@@ -65,6 +65,7 @@ defmodule FumigateWeb.Router do
   scope "/admin", FumigateWeb.Admin, as: :admin do
     pipe_through [:browser, :protected, :admin_only]
 
+    resources "/tools", AdminToolsController
     resources "/accords", AccordController
     resources "/notes", NoteController
     resources "/companies", CompanyController
