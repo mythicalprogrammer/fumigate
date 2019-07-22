@@ -28,7 +28,7 @@ defmodule FumigateWeb.User.PerfumeController do
 
   def create(conn, %{"perfume_approval" => perfume_params}) do
     case Approval.create_perfume_approval(perfume_params) do
-      {:ok, perfume} ->
+      {:ok, _perfume} ->
         conn
         |> put_flash(:info, "Perfume created successfully.")
         |> redirect(to: Routes.perfume_path(conn, :index))
