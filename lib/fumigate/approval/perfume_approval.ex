@@ -13,13 +13,13 @@ defmodule Fumigate.Approval.PerfumeApproval do
     field :year_released, :integer
 
     many_to_many :companies, Fumigate.Fragrance.Company, 
-      join_through: Fumigate.Fragrance.PerfumeApprovalCompanyJoin
+      join_through: Fumigate.Approval.PerfumeApprovalCompanyJoin
 
     many_to_many :notes, Fumigate.Fragrance.Note, 
-      join_through: Fumigate.Fragrance.PerfumeApprovalNoteJoin
+      join_through: Fumigate.Approval.PerfumeApprovalNoteJoin
 
     many_to_many :accords, Fumigate.Fragrance.Accord, 
-      join_through: Fumigate.Fragrance.PerfumeApprovalAccordJoin
+      join_through: Fumigate.Approval.PerfumeApprovalAccordJoin
 
     timestamps()
   end
