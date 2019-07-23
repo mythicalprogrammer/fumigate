@@ -1,0 +1,82 @@
+<div class="container mb-5" style="padding-top: 80px;"> 
+  <h1 class="display-3">
+    <%= @perfume.perfume_name %>
+  </h1>
+<span><%= link "Edit", to: Routes.admin_perfume_approval_path(@conn, :edit, @perfume), class: "btn btn-outline-primary" %></span>
+<span><%= link "Back", to: Routes.admin_perfume_approval_path(@conn, :index), class: "btn btn-outline-primary" %></span>
+
+<div class="row">
+
+  <div class="col-md-4 order-md-2 mb-4"> 
+    <ul class="list-group mt-2">
+  <li class="list-group-item">
+    <strong>Perfume description:</strong>
+    <%= @perfume.perfume_description %>
+  </li>
+
+  <li class="list-group-item">
+    <strong>Picture url:</strong>
+    <%= @perfume.picture_url %>
+  </li>
+  <li class="list-group-item">
+    <strong>Year released:</strong>
+    <%= @perfume.year_released %>
+
+    <strong>Month released:</strong>
+    <%= @perfume.month_released %>
+
+    <strong>Day released:</strong>
+    <%= @perfume.day_released %>
+  </li>
+
+    </ul>
+  </div>
+
+  <div class="col-md-4 order-md-1"> 
+
+<ul class="list-group mt-2">
+
+
+  <li class="list-group-item">
+   <strong>Company:</strong>
+   <%= company_parse(@perfume.companies) %>
+  </li>
+
+  <li class="list-group-item">
+    <strong>Concentration:</strong>
+    <%= @perfume.concentration %>
+  </li>
+
+  <li class="list-group-item">
+    <strong>Gender:</strong>
+    <%= @perfume.gender %>
+  </li>
+
+  <li class="list-group-item">
+   <strong>Notes:</strong>
+   <ul>
+     <li>
+       Top Notes: 
+        <%= note_parse(@top_notes) %>
+     </li>
+     <li>
+       Middle Notes: 
+        <%= note_parse(@middle_notes) %>
+     </li>
+     <li>
+       Base Notes: 
+        <%= note_parse(@base_notes) %>
+     </li>
+   </ul>
+  </li>
+
+  <li class="list-group-item">
+   <strong>Accords:</strong>
+   <%= accord_parse(@perfume.accords) %>
+  </li>
+
+</ul>
+  </div>
+
+</div>
+</div>
