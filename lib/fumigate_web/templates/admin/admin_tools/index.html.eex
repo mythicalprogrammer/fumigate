@@ -5,7 +5,7 @@
     <div class="container mb-5">
       <h1 class="display-3">Coming soon...</h1>
       <ul class="list-group">
-        <li class="list-group-item">List of to be approve user submitted Perfumes</li>
+        <li class="list-group-item"><a href="perfumes_approval">Perfumes awaiting approval.</a></li>
         <li class="list-group-item">List of to be approve user submitted Designers</li>
         <li class="list-group-item">Ban users</li>
       </ul>

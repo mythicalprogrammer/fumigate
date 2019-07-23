@@ -1,6 +1,7 @@
 defmodule Fumigate.Approval.PerfumeApproval do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
 
   schema "perfume_approvals" do
     field :concentration, :string
@@ -29,5 +30,10 @@ defmodule Fumigate.Approval.PerfumeApproval do
     perfume_approval
     |> cast(attrs, [:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released])
     |> validate_required([:perfume_name, :gender, :perfume_description])
+  end
+
+  def get_all_perfume_approvals_preload(query) do 
+    from c in query, 
+      preload: [:accords, :notes, :companies]
   end
 end

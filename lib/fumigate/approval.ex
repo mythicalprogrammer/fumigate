@@ -17,4 +17,10 @@ defmodule Fumigate.Approval do
     |> PerfumeApproval.changeset(attrs)
     |> Repo.insert()
   end
+
+  def list_perfume_approvals_paginate(params) do
+    PerfumeApproval
+    |> PerfumeApproval.get_all_perfume_approvals_preload() 
+    |> Repo.paginate(params)
+  end 
 end

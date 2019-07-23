@@ -1,0 +1,59 @@
+<div class="container mb-5" style="padding-top: 80px;"> 
+<h1 class="display-3">Listing Perfumes</h1>
+<span><%= link "Admin Tools", to: Routes.admin_admin_tools_path(@conn, :index), class: "btn btn-primary mb-5" %></span>
+
+<%= pagination_links @page, 
+  previous: Phoenix.HTML.raw('<i class="fas fa-chevron-left"></i>'), 
+  next: Phoenix.HTML.raw('<i class="fas fa-chevron-right"></i>') %>
+
+<table class="table table-striped mt-5">
+  <thead>
+    <tr>
+      <th>Perfume name</th>
+      <th>Gender</th>
+      <th>Perfume description</th>
+      <th>Picture url</th>
+      <th>Year released</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for perfume <- @page.entries do %>
+    <tr>
+      <td>
+        <a href="/admin/perfumes_approval/<%= perfume.id %>">
+        <%= perfume.perfume_name %>
+        </a>
+        
+        <%= if perfume.companies != [] do %>
+
+          by <%= company_parse(perfume.companies) %>
+          <%= if to_string(perfume.concentration) != "" do %>
+            (Concentration: <%= perfume.concentration %>)
+          <% end %>
+
+        <% end %>
+      </td>
+      <td><%= perfume.gender %></td>
+      <td><%= perfume.perfume_description %></td>
+
+      <%= if to_string(perfume.picture_url) != "" do %>
+        <td>✔️</td>
+      <% else %>
+        <td>❌</td>
+      <% end %>
+
+      <td><%= perfume.year_released %></td>
+
+      <td>
+        <%= link "Show", to: Routes.admin_perfume_approval_path(@conn, :show, perfume), class: "btn btn-outline-secondary" %>
+        <%= link "Edit", to: Routes.admin_perfume_approval_path(@conn, :edit, perfume), class: "btn btn-outline-secondary" %>
+        <%= link "Delete", to: Routes.admin_perfume_approval_path(@conn, :delete, perfume), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-outline-secondary" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+</div>

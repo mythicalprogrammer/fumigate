@@ -70,6 +70,7 @@ defmodule FumigateWeb.Router do
     resources "/notes", NoteController
     resources "/companies", CompanyController
     resources "/perfumes", PerfumeController
+    resources "/perfumes_approval", PerfumeApprovalController
 
   end
 
