@@ -7,8 +7,14 @@ defmodule Fumigate.Approval do
   alias Fumigate.Repo
 
   alias Fumigate.Approval.PerfumeApproval
+  alias Fumigate.Approval.PerfumeApprovalAccordJoin
+  alias Fumigate.Approval.PerfumeApprovalCompanyJoin
   alias Fumigate.Approval.PerfumeApprovalNoteJoin
   alias Fumigate.Fragrance.Note
+
+  def change_perfume(%PerfumeApproval{} = perfume) do
+    PerfumeApproval.changeset(perfume, %{})
+  end
 
   def change_perfume_approval(%PerfumeApproval{} = perfume) do
     PerfumeApproval.changeset(perfume, %{})
@@ -65,5 +71,56 @@ defmodule Fumigate.Approval do
     PerfumeApprovalNoteJoin
     |> PerfumeApprovalNoteJoin.get_all_notes_by_perfume_approval_id(perfume_id, pyramid_note) 
     |> Repo.all()
+  end
+
+  def select_all_companies_by_perfume_id(id) do
+    PerfumeApprovalCompanyJoin
+    |> PerfumeApprovalCompanyJoin.get_all_companies_by_perfume_id(id) 
+    |> Repo.all()
+  end
+
+  def select_all_accords_by_perfume_id(perfume_id) do
+    PerfumeApprovalAccordJoin
+    |> PerfumeApprovalAccordJoin.get_all_accords_by_perfume_id(perfume_id) 
+    |> Repo.all()
+  end
+
+  def update_perfume(%PerfumeApproval{} = perfume, attrs) do
+    perfume
+    |> PerfumeApproval.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def delete_all_company_joins_by_perfume_id(id) do
+    queryable = PerfumeApprovalCompanyJoin |> PerfumeApprovalCompanyJoin.delete_all_company_joins_by_perfume_id(id) 
+    Ecto.Multi.new()
+    |> Ecto.Multi.delete_all(:delete_all, queryable)
+    |> Repo.transaction()
+  end
+
+  def delete_all_note_joins_by_perfume_id(perfume_id, pyramid_note) do
+    queryable = PerfumeApprovalNoteJoin |> PerfumeApprovalNoteJoin.delete_all_note_joins_by_perfume_approval_id(perfume_id, pyramid_note) 
+    Ecto.Multi.new()
+    |> Ecto.Multi.delete_all(:delete_all, queryable)
+    |> Repo.transaction()
+  end
+
+  def delete_all_accord_joins_by_perfume_id(perfume_id) do
+    queryable = PerfumeApprovalAccordJoin |> PerfumeApprovalAccordJoin.delete_all_accord_joins_by_perfume_id(perfume_id) 
+    Ecto.Multi.new()
+    |> Ecto.Multi.delete_all(:delete_all, queryable)
+    |> Repo.transaction()
+  end
+
+  def insert_all_accords(accords, perfume) do
+    records = accords |> Enum.map(fn(x) -> [perfume_approval_id: perfume.id, accord_id: String.to_integer(x), inserted_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second), updated_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)] end)
+    PerfumeApprovalAccordJoin
+    |> Repo.insert_all(records)
+  end
+
+  def insert_all_notes_by_perfume_id(notes, perfume_id, pyramid_note) do
+    records = notes |> Enum.map(fn(x) -> [perfume_approval_id: perfume_id, note_id: String.to_integer(x), pyramid_note: pyramid_note, inserted_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second), updated_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)] end)
+    PerfumeApprovalNoteJoin
+    |> Repo.insert_all(records)
   end
 end

@@ -35,4 +35,15 @@ defmodule Fumigate.Approval.PerfumeApprovalCompanyJoin do
     where: c.company_id == ^id,
     select: c.perfume_approval_id 
   end
+
+  def get_all_companies_by_perfume_id(query, id) do
+    from c in query, 
+    where: c.perfume_approval_id == ^id,
+    select: c.company_id 
+  end
+
+  def delete_all_company_joins_by_perfume_id(query, id) do
+    from c in query, 
+    where: c.perfume_approval_id == ^id
+  end
 end

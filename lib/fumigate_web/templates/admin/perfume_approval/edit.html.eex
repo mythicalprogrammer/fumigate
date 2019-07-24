@@ -1,0 +1,12 @@
+<div class="container mb-5" style="padding-top: 80px;"> 
+  <div class="mb-12">
+    <h1 class="display-3">Edit Perfume </h1> 
+    <h3 class="display-5"><%= link "Back", to: Routes.admin_perfume_approval_path(@conn, :index), class: "btn btn-outline-secondary" %></h3>
+  </div>
+
+  <hr/>
+
+      <%= render "form.html", Map.put(assigns, :action, Routes.admin_perfume_approval_path(@conn, :update, @perfume)) %>
+</div>
+
+
