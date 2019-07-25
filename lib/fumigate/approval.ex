@@ -123,4 +123,10 @@ defmodule Fumigate.Approval do
     PerfumeApprovalNoteJoin
     |> Repo.insert_all(records)
   end
+
+  def insert_all_companies(company_id, perfume_id) do
+    records = company_id |> Enum.map(fn(x) -> [perfume_id: perfume_id, company_id: String.to_integer(x), inserted_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second), updated_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)] end)
+    PerfumeApprovalCompanyJoin
+    |> Repo.insert_all(records)
+  end
 end
