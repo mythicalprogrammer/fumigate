@@ -4,8 +4,8 @@ defmodule Fumigate.Repo.Migrations.CreatePerfumeNoteJoins do
   def change do
     PyramidNoteEnum.create_type
     create table(:perfume_note_joins) do
-      add :note_id, references(:notes, on_delete: :nothing), null: false
-      add :perfume_id, references(:perfumes, on_delete: :nothing), null: false
+      add :note_id, references(:notes, on_delete: :delete_all), null: false
+      add :perfume_id, references(:perfumes, on_delete: :delete_all), null: false
       add :pyramid_note, PyramidNoteEnum.type() 
 
       timestamps()

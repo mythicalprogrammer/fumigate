@@ -3,8 +3,8 @@ defmodule Fumigate.Repo.Migrations.CreatePerfumeApprovalNoteJoinTable do
 
   def change do
     create table(:perfume_approval_note_joins) do
-      add :note_id, references(:notes, on_delete: :nothing), null: false
-      add :perfume_approval_id, references(:perfume_approvals, on_delete: :nothing), null: false
+      add :note_id, references(:notes, on_delete: :delete_all), null: false
+      add :perfume_approval_id, references(:perfume_approvals, on_delete: :delete_all), null: false
       add :pyramid_note, PyramidNoteEnum.type() 
 
       timestamps()
