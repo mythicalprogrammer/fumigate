@@ -71,7 +71,6 @@ defmodule FumigateWeb.Router do
     resources "/companies", CompanyController
     resources "/perfumes", PerfumeController
     resources "/perfumes_approval", PerfumeApprovalController
-
   end
 
   #pipeline :api do

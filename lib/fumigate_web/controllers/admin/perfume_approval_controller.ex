@@ -2,6 +2,8 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
   use FumigateWeb, :controller
 
   alias Fumigate.Approval
+  alias Fumigate.Fragrance
+  alias Fumigate.Fragrance.Perfume
 
   plug Fumigate.Plug.AccordList when action in [:new, :create, :edit, :update]
   plug Fumigate.Plug.NoteList when action in [:new, :create, :edit, :update]
@@ -93,12 +95,67 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
     end
   end
 
-  #def delete(conn, %{"id" => id}) do
-  #  perfume = Fragrance.get_perfume!(id)
-  #  {:ok, _perfume} = Fragrance.delete_perfume(perfume)
-  #
-  #  conn
-  #  |> put_flash(:info, "Perfume deleted successfully.")
-  #  |> redirect(to: Routes.admin_perfume_path(conn, :index))
-  #end
+  def new(conn, %{"id" => id}) do
+    perfume_approval = Approval.get_perfume!(id)
+              |> Fumigate.Repo.preload([:accords, :companies, :notes])
+
+    approval_perfume_name = perfume_approval.perfume_name
+    approval_perfume_concentration = perfume_approval.concentration
+    approval_perfume_companies = perfume_approval.companies
+
+    perfume = Approval.find_perfume_by_name_con_comp(approval_perfume_name, 
+                                                     approval_perfume_concentration,
+                                                     approval_perfume_companies)
+    perfume_approval_map = Map.from_struct(perfume_approval)
+
+    if List.first(perfume) == nil && List.first(perfume_approval.companies) != nil do
+      case Fragrance.create_perfume(perfume_approval_map) do
+        {:ok, new_perfume} ->
+          company_ids = Enum.map(perfume_approval.companies, fn company -> Integer.to_string(company.id) end)
+		  if company_ids != nil do
+			company_ids 
+			|> Fragrance.insert_all_companies(new_perfume.id)
+		  end
+		  if Map.has_key?(perfume_approval_map, "top_note_id") && perfume_approval.top_note_id != nil do
+			perfume_approval.top_note_id 
+			|> Fragrance.insert_all_notes_by_perfume_id(new_perfume.id,"top")
+		  end
+		  if Map.has_key?(perfume_approval_map, "middle_note_id") && perfume_approval.middle_note_id != nil do
+			perfume_approval.middle_note_id 
+			|> Fragrance.insert_all_notes_by_perfume_id(new_perfume.id,"middle")
+		  end
+		  if Map.has_key?(perfume_approval_map, "base_note_id") && perfume_approval.base_note_id != nil do
+			perfume_approval.base_note_id 
+			|> Fragrance.insert_all_notes_by_perfume_id(new_perfume.id,"base")
+		  end
+		  if Map.has_key?(perfume_approval_map, "accord_id") && perfume_approval.accord_id != nil do
+			perfume_approval.accord_id 
+			|> Fragrance.insert_all_accords(new_perfume)
+		  end
+          conn
+          |> put_flash(:success, "Perfume created successfully.")
+          |> redirect(to: Routes.admin_perfume_path(conn, :show, new_perfume))
+
+        {:error, _changeset } ->
+          top_notes = Approval.get_all_top_notes_by_perfume_id(id)
+          middle_notes = Approval.get_all_middle_notes_by_perfume_id(id)
+          base_notes = Approval.get_all_base_notes_by_perfume_id(id)
+          conn
+          |> put_flash(:danger, "ERROR: Perfume created unsuccessfully.")
+          |> render("show.html", perfume: perfume,
+               top_notes: top_notes, middle_notes: middle_notes, base_notes: base_notes)
+      end
+      # delete after successful transfer 
+      {:ok, _perfume} = Approval.delete_perfume(perfume_approval)
+    else 
+      # dupe or no company
+      top_notes = Approval.get_all_top_notes_by_perfume_id(id)
+      middle_notes = Approval.get_all_middle_notes_by_perfume_id(id)
+      base_notes = Approval.get_all_base_notes_by_perfume_id(id)
+      conn
+      |> put_flash(:warning, "ERROR: Perfume to be approve is a dupe or there is no companies associated to it.")
+      |> render("show.html", perfume: perfume_approval,
+         top_notes: top_notes, middle_notes: middle_notes, base_notes: base_notes)
+    end
+  end
 end

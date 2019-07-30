@@ -50,6 +50,7 @@
         <%= link "Show", to: Routes.admin_perfume_approval_path(@conn, :show, perfume), class: "btn btn-outline-secondary" %>
         <%= link "Edit", to: Routes.admin_perfume_approval_path(@conn, :edit, perfume), class: "btn btn-outline-secondary" %>
         <%= link "Delete", to: Routes.admin_perfume_approval_path(@conn, :delete, perfume), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-outline-secondary" %>
+        <%= link "Approve", to: Routes.admin_perfume_approval_path(@conn, :new, %{"id" => perfume.id}), class: "btn btn-outline-secondary" %>
       </td>
     </tr>
 <% end %>

@@ -1,9 +1,14 @@
 <div class="container mb-5" style="padding-top: 80px;"> 
+<%= Enum.map(get_flash(@conn), fn {flash_key, flash_message} -> %>
+  <h5 class="alert alert-<%= flash_key %>"><%= flash_message %></h5>
+<% end) %>
   <h1 class="display-3">
     <%= @perfume.perfume_name %>
   </h1>
 <span><%= link "Edit", to: Routes.admin_perfume_approval_path(@conn, :edit, @perfume), class: "btn btn-outline-primary" %></span>
 <span><%= link "Back", to: Routes.admin_perfume_approval_path(@conn, :index), class: "btn btn-outline-primary" %></span>
+
+
 
 <div class="row">
 

@@ -11,6 +11,7 @@ defmodule Fumigate.Approval do
   alias Fumigate.Approval.PerfumeApprovalCompanyJoin
   alias Fumigate.Approval.PerfumeApprovalNoteJoin
   alias Fumigate.Fragrance.Note
+  alias Fumigate.Fragrance.Perfume
 
   def change_perfume(%PerfumeApproval{} = perfume) do
     PerfumeApproval.changeset(perfume, %{})
@@ -128,5 +129,22 @@ defmodule Fumigate.Approval do
     records = company_id |> Enum.map(fn(x) -> [perfume_approval_id: perfume_id, company_id: String.to_integer(x), inserted_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second), updated_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)] end)
     PerfumeApprovalCompanyJoin
     |> Repo.insert_all(records)
+  end
+
+  def find_perfume_by_name_con_comp(name, concentration, companies) do
+    companies_list = Enum.map(companies, fn company -> company.company_name end)
+    Perfume
+    |> Perfume.get_all_perfume_by_perfume_name_con_comp(name, concentration, companies_list) 
+    #|> print_sql()
+    |> Repo.all()
+  end
+
+  def print_sql(queryable) do
+	IO.inspect(Ecto.Adapters.SQL.to_sql(:all, Repo, queryable))
+	queryable
+  end
+
+  def delete_perfume(%PerfumeApproval{} = perfume) do
+    Repo.delete(perfume)
   end
 end
