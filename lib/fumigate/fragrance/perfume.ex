@@ -20,13 +20,24 @@ defmodule Fumigate.Fragrance.Perfume do
 
     many_to_many :accords, Fumigate.Fragrance.Accord, join_through: Fumigate.Fragrance.PerfumeAccordJoin
 
+    has_many :perfume_company_joins, Fumigate.Fragrance.PerfumeCompanyJoin
+
     timestamps()
   end
 
   @doc false
   def changeset(perfume, attrs) do
+    company_ids = attrs["company"]
+    company_id_records = company_ids 
+                         |> Enum.map(
+                           fn(company_id) -> %{
+                             company_id: String.to_integer(company_id)
+                           } end)
     perfume
     |> cast(attrs, [:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released])
+    |> put_assoc(:perfume_company_joins, company_id_records)
+    #|> cast_assoc(:notes)
+    #|> cast_assoc(:accords)
     |> validate_required([:perfume_name, :gender, :perfume_description])
   end
 

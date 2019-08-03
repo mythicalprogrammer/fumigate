@@ -8,14 +8,14 @@ defmodule FumigateWeb.Admin.PerfumeController do
   plug Fumigate.Plug.NoteList when action in [:new, :create, :edit, :update]
   plug Fumigate.Plug.CompanyList when action in [:new, :create, :edit, :update]
 
-  def index(conn, params) do
+  def index(conn, params) do 
     params = Map.put(params, :page_size, 25)
     page = Fragrance.list_perfumes_paginate(params) 
     render(conn, "index.html", page: page)
   end
 
   def new(conn, _params) do
-    changeset = Fragrance.change_perfume(%Perfume{})
+    changeset = Fragrance.change_perfume(%Perfume{}) 
     render(conn, "new.html", changeset: changeset,
            accords_select: nil, 
            top_notes_select: nil, 
@@ -25,6 +25,7 @@ defmodule FumigateWeb.Admin.PerfumeController do
   end
 
   def create(conn, %{"perfume" => perfume_params}) do
+
     case Fragrance.create_perfume(perfume_params) do
       {:ok, perfume} ->
         conn
