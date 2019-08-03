@@ -21,20 +21,29 @@ defmodule Fumigate.Fragrance.Perfume do
     many_to_many :accords, Fumigate.Fragrance.Accord, join_through: Fumigate.Fragrance.PerfumeAccordJoin
 
     has_many :perfume_company_joins, Fumigate.Fragrance.PerfumeCompanyJoin
+    has_many :perfume_accord_joins, Fumigate.Fragrance.PerfumeAccordJoin
 
     timestamps()
   end
 
   @doc false
   def changeset(perfume, attrs) do
+    IO.inspect(attrs)
     company_records = id_records(:company_id, attrs["company"])
+    accord_records = id_records(:accord_id, attrs["accord_id"])
 
-    perfume
+    perfume 
     |> cast(attrs, [:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released])
-    |> put_assoc(:perfume_company_joins, company_records)
-    #|> put_assoc(:perfume_note_joins, note_records)
-    #|> cast_assoc(:accords)
     |> validate_required([:perfume_name, :gender, :perfume_description])
+    |> put_assoc(:perfume_company_joins, company_records)
+    |> put_assoc?(:perfume_accord_joins, accord_records)
+    #|> put_assoc(:perfume_note_joins, note_records)
+  end
+
+  defp put_assoc?(changeset, atom, nil), do: changeset
+  defp put_assoc?(changeset, atom, records) do
+    changeset
+    |> put_assoc(atom, records)
   end
 
   defp id_records(key, ids) do
