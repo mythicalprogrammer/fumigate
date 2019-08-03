@@ -41,7 +41,7 @@ defmodule Fumigate.Fragrance.Perfume do
     |> put_assoc?(:perfume_note_joins, note_records)
   end
 
-  defp put_assoc?(changeset, atom, nil), do: changeset
+  defp put_assoc?(changeset, _atom, nil), do: changeset
   defp put_assoc?(changeset, atom, records) do
     changeset
     |> put_assoc(atom, records)

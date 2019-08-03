@@ -3,7 +3,6 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
 
   alias Fumigate.Approval
   alias Fumigate.Fragrance
-  alias Fumigate.Fragrance.Perfume
 
   plug Fumigate.Plug.AccordList when action in [:new, :create, :edit, :update]
   plug Fumigate.Plug.NoteList when action in [:new, :create, :edit, :update]
