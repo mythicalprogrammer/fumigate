@@ -27,18 +27,26 @@ defmodule Fumigate.Fragrance.Perfume do
 
   @doc false
   def changeset(perfume, attrs) do
-    company_ids = attrs["company"]
-    company_id_records = company_ids 
-                         |> Enum.map(
-                           fn(company_id) -> %{
-                             company_id: String.to_integer(company_id)
-                           } end)
+    company_records = id_records(:company_id, attrs["company"])
+
     perfume
     |> cast(attrs, [:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released])
-    |> put_assoc(:perfume_company_joins, company_id_records)
-    #|> cast_assoc(:notes)
+    |> put_assoc(:perfume_company_joins, company_records)
+    #|> put_assoc(:perfume_note_joins, note_records)
     #|> cast_assoc(:accords)
     |> validate_required([:perfume_name, :gender, :perfume_description])
+  end
+
+  defp id_records(key, ids) do
+    if is_nil(ids) do
+      ids
+    else 
+      ids 
+      |> Enum.map(
+        fn(id) -> %{
+          key => String.to_integer(id)
+        } end)
+    end
   end
 
   def alphabetical(query) do
