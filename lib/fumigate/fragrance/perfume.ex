@@ -14,15 +14,27 @@ defmodule Fumigate.Fragrance.Perfume do
     field :picture_url, :string
     field :year_released, :integer
 
-    many_to_many :companies, Fumigate.Fragrance.Company, join_through: Fumigate.Fragrance.PerfumeCompanyJoin
+    many_to_many :companies, Fumigate.Fragrance.Company, 
+      join_through: Fumigate.Fragrance.PerfumeCompanyJoin,
+      on_replace: :delete
 
-    many_to_many :notes, Fumigate.Fragrance.Note, join_through: Fumigate.Fragrance.PerfumeNoteJoin
+    many_to_many :notes, Fumigate.Fragrance.Note, 
+      join_through: Fumigate.Fragrance.PerfumeNoteJoin,
+      on_replace: :delete
 
-    many_to_many :accords, Fumigate.Fragrance.Accord, join_through: Fumigate.Fragrance.PerfumeAccordJoin
+    many_to_many :accords, Fumigate.Fragrance.Accord, 
+      join_through: Fumigate.Fragrance.PerfumeAccordJoin,
+      on_replace: :delete
 
-    has_many :perfume_company_joins, Fumigate.Fragrance.PerfumeCompanyJoin
-    has_many :perfume_accord_joins, Fumigate.Fragrance.PerfumeAccordJoin
-    has_many :perfume_note_joins, Fumigate.Fragrance.PerfumeNoteJoin
+    has_many :perfume_company_joins, 
+      Fumigate.Fragrance.PerfumeCompanyJoin,
+      on_replace: :delete
+    has_many :perfume_accord_joins, 
+      Fumigate.Fragrance.PerfumeAccordJoin,
+      on_replace: :delete
+    has_many :perfume_note_joins, 
+      Fumigate.Fragrance.PerfumeNoteJoin,
+      on_replace: :delete
 
     timestamps()
   end

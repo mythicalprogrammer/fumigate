@@ -54,6 +54,8 @@ defmodule FumigateWeb.Admin.PerfumeController do
 
   def edit(conn, %{"id" => id}) do
     perfume = Fragrance.get_perfume!(id)
+              |> Fumigate.Repo.preload([
+                :perfume_company_joins, :perfume_note_joins, :perfume_accord_joins])
     changeset = Fragrance.change_perfume(perfume)
     companies_select = Fragrance.select_all_companies_by_perfume_id(perfume.id)
     accords_select = Fragrance.select_all_accords_by_perfume_id(perfume.id)
@@ -70,49 +72,11 @@ defmodule FumigateWeb.Admin.PerfumeController do
 
   def update(conn, %{"id" => id, "perfume" => perfume_params}) do
     perfume = Fragrance.get_perfume!(id)
+              |> Fumigate.Repo.preload([
+                :perfume_company_joins, :perfume_note_joins, :perfume_accord_joins])
 
     case Fragrance.update_perfume(perfume, perfume_params) do
       {:ok, perfume} ->
-        if perfume_params["company_id"] == nil do
-          Fragrance.delete_all_company_joins_by_perfume_id(id)
-        end
-        if perfume_params["company_id"] != nil do
-          Fragrance.delete_all_company_joins_by_perfume_id(id)
-          perfume_params["company_id"] 
-          |> Fragrance.insert_all_companies(perfume.id)
-        end
-        if perfume_params["top_note_id"] == nil do
-          Fragrance.delete_all_note_joins_by_perfume_id(perfume.id, "top")
-        end
-        if perfume_params["middle_note_id"] == nil do
-          Fragrance.delete_all_note_joins_by_perfume_id(perfume.id, "middle")
-        end
-        if perfume_params["base_note_id"] == nil do
-          Fragrance.delete_all_note_joins_by_perfume_id(perfume.id, "base")
-        end
-        if perfume_params["top_note_id"] != nil do
-          Fragrance.delete_all_note_joins_by_perfume_id(perfume.id, "top")
-          perfume_params["top_note_id"] 
-          |> Fragrance.insert_all_notes_by_perfume_id(perfume.id,"top")
-        end
-        if perfume_params["middle_note_id"] != nil do
-          Fragrance.delete_all_note_joins_by_perfume_id(perfume.id, "middle")
-          perfume_params["middle_note_id"] 
-          |> Fragrance.insert_all_notes_by_perfume_id(perfume.id,"middle")
-        end
-        if perfume_params["base_note_id"] != nil do
-          Fragrance.delete_all_note_joins_by_perfume_id(perfume.id, "base")
-          perfume_params["base_note_id"] 
-          |> Fragrance.insert_all_notes_by_perfume_id(perfume.id,"base")
-        end
-        if perfume_params["accord_id"] == nil do
-          Fragrance.delete_all_accord_joins_by_perfume_id(perfume.id)
-        end
-        if perfume_params["accord_id"] != nil do
-          Fragrance.delete_all_accord_joins_by_perfume_id(perfume.id)
-          perfume_params["accord_id"] 
-          |> Fragrance.insert_all_accords(perfume)
-        end
         conn
         |> put_flash(:info, "Perfume updated successfully.")
         |> redirect(to: Routes.admin_perfume_path(conn, :show, perfume))

@@ -6,8 +6,8 @@ defmodule Fumigate.Fragrance.PerfumeCompanyJoin do
 
   schema "perfume_company_joins" do
 
-    belongs_to :company, Fumigate.Fragrance.Company
-    belongs_to :perfume, Fumigate.Fragrance.Perfume
+    belongs_to :company, Fumigate.Fragrance.Company, on_replace: :delete
+    belongs_to :perfume, Fumigate.Fragrance.Perfume, on_replace: :delete
     timestamps()
   end
 
