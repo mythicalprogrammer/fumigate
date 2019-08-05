@@ -38,7 +38,8 @@ defmodule FumigateWeb.Admin.PerfumeController do
           |> put_flash(:info, "Perfume created successfully.")
           |> redirect(to: Routes.admin_perfume_path(conn, :show, perfume))
 
-        {:error, %Ecto.Changeset{} = changeset} ->
+        {:error, _changeset} ->
+          changeset = Fragrance.Perfume.changeset(%Perfume{}, perfume_params) 
           render(conn, "new.html", changeset: changeset,
             accords_select: nil, 
             top_notes_select: nil, 
