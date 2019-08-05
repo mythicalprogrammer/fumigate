@@ -109,7 +109,7 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
           base_notes = Approval.get_all_base_notes_by_perfume_id(id)
           conn
           |> put_flash(:danger, "ERROR: Perfume created unsuccessfully.")
-          |> render("show.html", perfume: perfume,
+          |> render("show.html", perfume: perfume_approval,
                top_notes: top_notes, middle_notes: middle_notes, base_notes: base_notes)
       end
       # delete after successful transfer 
