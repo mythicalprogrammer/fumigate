@@ -14,22 +14,104 @@ defmodule Fumigate.Approval.PerfumeApproval do
     field :year_released, :integer
 
     many_to_many :companies, Fumigate.Fragrance.Company, 
-      join_through: Fumigate.Approval.PerfumeApprovalCompanyJoin
+      join_through: Fumigate.Approval.PerfumeApprovalCompanyJoin, 
+      on_replace: :delete
 
     many_to_many :notes, Fumigate.Fragrance.Note, 
-      join_through: Fumigate.Approval.PerfumeApprovalNoteJoin
+      join_through: Fumigate.Approval.PerfumeApprovalNoteJoin,
+      on_replace: :delete
 
     many_to_many :accords, Fumigate.Fragrance.Accord, 
-      join_through: Fumigate.Approval.PerfumeApprovalAccordJoin
+      join_through: Fumigate.Approval.PerfumeApprovalAccordJoin,
+      on_replace: :delete
+
+    has_many :perfume_approval_company_joins, 
+      Fumigate.Approval.PerfumeApprovalCompanyJoin,
+      on_replace: :delete
+    has_many :perfume_approval_accord_joins, 
+      Fumigate.Approval.PerfumeApprovalAccordJoin,
+      on_replace: :delete
+    has_many :perfume_approval_note_joins, 
+      Fumigate.Approval.PerfumeApprovalNoteJoin,
+      on_replace: :delete
 
     timestamps()
   end
 
   @doc false
   def changeset(perfume_approval, attrs) do
+    company_records = id_records(:company_id, attrs["company_id"])
+    accord_records = id_records(:accord_id, attrs["accord_id"])
+    note_records = get_all_note_records(attrs) 
+
     perfume_approval
     |> cast(attrs, [:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released])
     |> validate_required([:perfume_name, :gender, :perfume_description])
+    |> put_assoc(:perfume_approval_company_joins, company_records)
+    |> put_assoc?(:perfume_approval_accord_joins, accord_records)
+    |> put_assoc?(:perfume_approval_note_joins, note_records)
+  end
+
+  defp put_assoc?(changeset, _atom, nil), do: changeset
+  defp put_assoc?(changeset, atom, records) do
+    changeset
+    |> put_assoc(atom, records)
+  end
+
+  defp get_all_note_records(attrs) do
+    note_base_records = 
+      if attrs["base_note_id"] do
+        id_note_records(:note_id, :base, attrs["base_note_id"])
+      else
+       [] 
+      end
+
+    note_middle_records = 
+      if attrs["middle_note_id"] do
+        id_note_records(:note_id, :middle, attrs["middle_note_id"])
+      else
+        [] 
+      end
+
+    note_top_records = 
+      if attrs["top_note_id"] do
+        id_note_records(:note_id, :top, attrs["top_note_id"])
+      else
+        [] 
+      end
+
+    note_records = note_base_records ++ note_middle_records ++ note_top_records
+
+    if length(note_records) == 0 do
+      nil
+    else
+      note_records
+    end
+  end
+
+  defp id_note_records(key, pyramid, ids) do
+    if is_nil(ids) do
+      ids
+    else 
+      ids 
+      |> Enum.map(
+        fn(id) -> %{
+          key => String.to_integer(id),
+          :pyramid_note => pyramid
+        } end)
+    end
+  end
+
+  defp id_records(key, ids) do
+    if is_nil(ids) do
+      ids
+    else 
+      ids 
+      |> Enum.map(
+        fn(id) -> %{
+          key => String.to_integer(id)
+        } end)
+    end
   end
 
   def get_all_perfume_approvals_preload(query) do 

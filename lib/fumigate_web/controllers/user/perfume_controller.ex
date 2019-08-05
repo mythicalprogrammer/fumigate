@@ -32,7 +32,6 @@ defmodule FumigateWeb.User.PerfumeController do
         conn
         |> put_flash(:info, "Perfume created successfully.")
         |> redirect(to: Routes.perfume_path(conn, :index))
-  #      |> redirect(to: Routes.admin_perfume_path(conn, :show, perfume))
   
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset,
