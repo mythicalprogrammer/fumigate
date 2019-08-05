@@ -138,4 +138,12 @@ defmodule Fumigate.Fragrance.Perfume do
       where: [concentration: ^concentration],
       where: c.company_name in ^companies
   end
+
+  def get_all_perfume_by_perfume_name_con(query, name, concentration) do 
+    from p in query,
+      join: j in Fumigate.Fragrance.PerfumeCompanyJoin, where: p.id == j.perfume_id,
+      join: c in Fumigate.Fragrance.Company, where: c.id == j.company_id,
+      where: [perfume_name: ^name],
+      where: [concentration: ^concentration]
+  end
 end

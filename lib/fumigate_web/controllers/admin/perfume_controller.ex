@@ -26,19 +26,36 @@ defmodule FumigateWeb.Admin.PerfumeController do
 
   def create(conn, %{"perfume" => perfume_params}) do
 
-    case Fragrance.create_perfume(perfume_params) do
-      {:ok, perfume} ->
-        conn
-        |> put_flash(:info, "Perfume created successfully.")
-        |> redirect(to: Routes.admin_perfume_path(conn, :show, perfume))
+    perfume_dupe = 
+      Fragrance.find_perfume_by_name_con_comp(perfume_params["perfume_name"], 
+                                              perfume_params["concentration"],
+                                              perfume_params["company"])
 
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset,
-          accords_select: nil, 
-          top_notes_select: nil, 
-          middle_notes_select: nil,
-          base_notes_select: nil, 
-          companies_select: nil)
+    if List.first(perfume_dupe) == nil do 
+      case Fragrance.create_perfume(perfume_params) do
+        {:ok, perfume} ->
+          conn
+          |> put_flash(:info, "Perfume created successfully.")
+          |> redirect(to: Routes.admin_perfume_path(conn, :show, perfume))
+
+        {:error, %Ecto.Changeset{} = changeset} ->
+          render(conn, "new.html", changeset: changeset,
+            accords_select: nil, 
+            top_notes_select: nil, 
+            middle_notes_select: nil,
+            base_notes_select: nil, 
+            companies_select: nil)
+      end
+    else 
+      changeset = Fragrance.Perfume.changeset(%Perfume{}, perfume_params) 
+      conn
+      |> put_flash(:warning, "ERROR: Perfume is a dupe.")
+      |> render("new.html", changeset: changeset,
+            accords_select: nil, 
+            top_notes_select: nil, 
+            middle_notes_select: nil,
+            base_notes_select: nil, 
+            companies_select: nil)
     end
   end
 
