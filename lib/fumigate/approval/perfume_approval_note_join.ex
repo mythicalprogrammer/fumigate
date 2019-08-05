@@ -6,8 +6,10 @@ defmodule Fumigate.Approval.PerfumeApprovalNoteJoin do
 
   schema "perfume_approval_note_joins" do
     field :pyramid_note, PyramidNoteEnum 
-    belongs_to :note, Fumigate.Fragrance.Note
-    belongs_to :perfume_approval, Fumigate.Approval.PerfumeApproval
+    belongs_to :note, Fumigate.Fragrance.Note,
+      on_replace: :delete
+    belongs_to :perfume_approval, Fumigate.Approval.PerfumeApproval,
+      on_replace: :delete
 
     timestamps()
   end
