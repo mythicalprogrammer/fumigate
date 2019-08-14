@@ -80,30 +80,12 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
     if List.first(perfume) == nil && List.first(perfume_approval.companies) != nil do
       case Fragrance.create_perfume(perfume_approval_map) do
         {:ok, new_perfume} ->
-          company_ids = Enum.map(perfume_approval.companies, fn company -> Integer.to_string(company.id) end)
-		  if company_ids != nil do
-			company_ids 
-			|> Fragrance.insert_all_companies(new_perfume.id)
-		  end
-		  if Map.has_key?(perfume_approval_map, "top_note_id") && perfume_approval.top_note_id != nil do
-			perfume_approval.top_note_id 
-			|> Fragrance.insert_all_notes_by_perfume_id(new_perfume.id,"top")
-		  end
-		  if Map.has_key?(perfume_approval_map, "middle_note_id") && perfume_approval.middle_note_id != nil do
-			perfume_approval.middle_note_id 
-			|> Fragrance.insert_all_notes_by_perfume_id(new_perfume.id,"middle")
-		  end
-		  if Map.has_key?(perfume_approval_map, "base_note_id") && perfume_approval.base_note_id != nil do
-			perfume_approval.base_note_id 
-			|> Fragrance.insert_all_notes_by_perfume_id(new_perfume.id,"base")
-		  end
-		  if Map.has_key?(perfume_approval_map, "accord_id") && perfume_approval.accord_id != nil do
-			perfume_approval.accord_id 
-			|> Fragrance.insert_all_accords(new_perfume)
-		  end
+          # delete after successful transfer 
+          {:ok, _perfume} = Approval.delete_perfume(perfume_approval)
+
           conn
           |> put_flash(:success, "Perfume created successfully.")
-          |> redirect(to: Routes.admin_perfume_path(conn, :show, new_perfume))
+          |> redirect(to: Routes.admin_perfume_path(:show, new_perfume))
 
         {:error, _changeset } ->
           top_notes = Approval.get_all_top_notes_by_perfume_id(id)
@@ -114,8 +96,6 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
           |> render("show.html", perfume: perfume_approval,
                top_notes: top_notes, middle_notes: middle_notes, base_notes: base_notes)
       end
-      # delete after successful transfer 
-      {:ok, _perfume} = Approval.delete_perfume(perfume_approval)
     else 
       # dupe or no company
       top_notes = Approval.get_all_top_notes_by_perfume_id(id)
