@@ -28,6 +28,7 @@ defmodule Fumigate.Approval do
   end
 
   def list_perfume_approvals_paginate(params) do
+
     PerfumeApproval
     |> PerfumeApproval.get_all_perfume_approvals_preload() 
     |> Repo.paginate(params)
@@ -146,5 +147,47 @@ defmodule Fumigate.Approval do
 
   def delete_perfume(%PerfumeApproval{} = perfume) do
     Repo.delete(perfume)
+  end
+
+  def approve_perfume(%PerfumeApproval{} = perfume_changeset) do
+    attrs = %{
+      "concentration" => perfume_changeset.concentration,
+      "day_released" => perfume_changeset.day_released,
+      "gender" => perfume_changeset.gender,
+      "month_released" => perfume_changeset.month_released,
+      "perfume_description" => perfume_changeset.perfume_description,
+      "perfume_name" => perfume_changeset.perfume_name,
+      "year_released" => perfume_changeset.year_released,
+      "company" => id_records_changeset(perfume_changeset.companies),
+      "accord_id" => id_records_changeset(perfume_changeset.accords), 
+      "base_note_id" => 
+        id_records_note_changeset(perfume_changeset.perfume_approval_note_joins, :base),
+      "middle_note_id" => 
+        id_records_note_changeset(perfume_changeset.perfume_approval_note_joins, :middle),
+      "top_note_id" => 
+        id_records_note_changeset(perfume_changeset.perfume_approval_note_joins, :top) 
+    }
+    %Perfume{}
+    |> Perfume.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  defp id_records_note_changeset(changesets, note_pyramid) do
+    if is_nil(changesets) do
+      changesets
+    else 
+      changesets
+      |> Enum.filter(fn x -> x.pyramid_note == note_pyramid end)
+      |> Enum.map(fn x -> Integer.to_string(x.note_id) end)
+    end
+  end
+
+  defp id_records_changeset(changesets) do
+    if is_nil(changesets) do
+      changesets
+    else 
+      changesets
+      |> Enum.map(fn x -> Integer.to_string(x.id) end)
+    end
   end
 end

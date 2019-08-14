@@ -65,27 +65,23 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
   end
 
   def new(conn, %{"id" => id}) do
-    perfume_approval = Approval.get_perfume!(id)
-              |> Fumigate.Repo.preload([:accords, :companies, :notes])
+    perfume_approval = Approval.get_perfume!(id) 
+                       |> Fumigate.Repo.preload([:companies, :accords, 
+                                                 :perfume_approval_note_joins])
 
-    approval_perfume_name = perfume_approval.perfume_name
-    approval_perfume_concentration = perfume_approval.concentration
-    approval_perfume_companies = perfume_approval.companies
-
-    perfume = Approval.find_perfume_by_name_con_comp(approval_perfume_name, 
-                                                     approval_perfume_concentration,
-                                                     approval_perfume_companies)
-    perfume_approval_map = Map.from_struct(perfume_approval)
+    perfume = Approval.find_perfume_by_name_con_comp(perfume_approval.perfume_name, 
+                                                     perfume_approval.concentration,
+                                                     perfume_approval.companies)
 
     if List.first(perfume) == nil && List.first(perfume_approval.companies) != nil do
-      case Fragrance.create_perfume(perfume_approval_map) do
+      case Approval.approve_perfume(perfume_approval) do
         {:ok, new_perfume} ->
           # delete after successful transfer 
           {:ok, _perfume} = Approval.delete_perfume(perfume_approval)
 
           conn
           |> put_flash(:success, "Perfume created successfully.")
-          |> redirect(to: Routes.admin_perfume_path(:show, new_perfume))
+          |> redirect(to: Routes.admin_perfume_path(conn, :show, new_perfume))
 
         {:error, _changeset } ->
           top_notes = Approval.get_all_top_notes_by_perfume_id(id)

@@ -855,7 +855,7 @@ defmodule Fumigate.Fragrance do
   def find_perfume_by_name_con_comp(name, concentration, companies) do
     Perfume
     |> Perfume.get_all_perfume_by_perfume_name_con(name, concentration) 
-    |> print_sql()
+    #|> print_sql()
     |> Repo.all()
   end
 
