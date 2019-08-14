@@ -8,7 +8,7 @@
   <div class="col-md-4 order-md-2 mb-4"> 
     <%= label f, :accord_id, "Accord" %>
     <%= multiple_select f, :accord_id, accord_select_options(@accords), 
-      [prompt: "Choose one or more accord.", class: "custom-select w-100", id: "accord_select", selected: @accords_select] %>
+      [prompt: "Choose one or more accord.", class: "custom-select w-100", id: "accord_select", selected: accord_selected(@perfume.accords)] %>
     <%= error_tag f, :accord_id %>
 
     <%= label f, :top_note_id, "Note (Top)" %>
@@ -33,7 +33,7 @@
       <div class="col-md-8">
     <%= label f, :company_id, "Company" %>
     <%= multiple_select f, :company_id, company_select_options(@companies), 
-      [prompt: "Choose one or more company.", class: "custom-select w-100", selected: @companies_select, id: "company_select"] %>
+      [prompt: "Choose one or more company.", class: "custom-select w-100", selected: company_selected(@perfume.companies), id: "company_select"] %>
     <%= error_tag f, :company_id %>
       </div>
     </div>
