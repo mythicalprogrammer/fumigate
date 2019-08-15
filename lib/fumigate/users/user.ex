@@ -8,6 +8,8 @@ defmodule Fumigate.Users.User do
     field :role, :string, default: "user"
     pow_user_fields()
 
+    has_many :perfume_approvals, Fumigate.Approval.PerfumeApproval, foreign_key: :submitter_user_id, references: :id 
+
     timestamps()
   end
 

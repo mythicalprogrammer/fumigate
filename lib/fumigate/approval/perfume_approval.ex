@@ -12,6 +12,9 @@ defmodule Fumigate.Approval.PerfumeApproval do
     field :perfume_name, :string
     field :picture_url, :string
     field :year_released, :integer
+    field :approved, :boolean, default: false
+    
+    belongs_to :users, Fumigate.Users.User, foreign_key: :submitter_user_id, references: :id 
 
     many_to_many :companies, Fumigate.Fragrance.Company, 
       join_through: Fumigate.Approval.PerfumeApprovalCompanyJoin, 
@@ -45,8 +48,8 @@ defmodule Fumigate.Approval.PerfumeApproval do
     note_records = get_all_note_records(attrs) 
 
     perfume_approval
-    |> cast(attrs, [:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released])
-    |> validate_required([:perfume_name, :gender, :perfume_description])
+    |> cast(attrs, [:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released, :user_id])
+    |> validate_required([:perfume_name, :gender, :perfume_description, :user_id])
     |> put_assoc(:perfume_approval_company_joins, company_records)
     |> put_assoc?(:perfume_approval_accord_joins, accord_records)
     |> put_assoc?(:perfume_approval_note_joins, note_records)

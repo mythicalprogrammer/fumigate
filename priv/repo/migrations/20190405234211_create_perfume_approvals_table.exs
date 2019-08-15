@@ -11,6 +11,8 @@ defmodule Fumigate.Repo.Migrations.CreatePerfumeApprovalsTable do
       add :year_released, :integer
       add :month_released, MonthEnum.type() 
       add :day_released, :integer
+      add :approved, :boolean, default: false
+      add :submitter_user_id, references(:users)
 
       timestamps()
     end
