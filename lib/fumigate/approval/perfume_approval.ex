@@ -49,7 +49,7 @@ defmodule Fumigate.Approval.PerfumeApproval do
 
     perfume_approval
     |> cast(attrs, [:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released, :submitter_user_id, :approved])
-    |> validate_required([:perfume_name, :gender, :perfume_description, :user_id])
+    |> validate_required([:perfume_name, :gender, :perfume_description, :submitter_user_id])
     |> put_assoc(:perfume_approval_company_joins, company_records)
     |> put_assoc?(:perfume_approval_accord_joins, accord_records)
     |> put_assoc?(:perfume_approval_note_joins, note_records)
