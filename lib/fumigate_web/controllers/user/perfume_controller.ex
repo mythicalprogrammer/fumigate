@@ -27,6 +27,10 @@ defmodule FumigateWeb.User.PerfumeController do
   end
 
   def create(conn, %{"perfume_approval" => perfume_params}) do
+    submitter_user_id = conn.assigns.current_user.id
+    perfume_params = 
+      Map.put(perfume_params, "submitter_user_id", submitter_user_id)
+
     case Approval.create_perfume_approval(perfume_params) do
       {:ok, _perfume} ->
         conn
