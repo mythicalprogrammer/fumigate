@@ -34,6 +34,10 @@
     <strong>Day released:</strong>
     <%= @perfume.day_released %>
   </li>
+  <li class="list-group-item">
+    <strong>Submitter (username):</strong>
+    <%= @perfume.users.username%>
+  </li>
 
     </ul>
   </div>

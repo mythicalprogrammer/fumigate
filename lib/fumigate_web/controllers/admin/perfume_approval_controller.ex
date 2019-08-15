@@ -16,7 +16,7 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
 
   def show(conn, %{"id" => id}) do
     perfume = Approval.get_perfume!(id)
-              |> Fumigate.Repo.preload([:accords, :companies])
+              |> Fumigate.Repo.preload([:accords, :companies, :users])
     top_notes = Approval.get_all_top_notes_by_perfume_id(id)
     middle_notes = Approval.get_all_middle_notes_by_perfume_id(id)
     base_notes = Approval.get_all_base_notes_by_perfume_id(id)
