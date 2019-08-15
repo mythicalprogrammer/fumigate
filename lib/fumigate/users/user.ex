@@ -9,6 +9,8 @@ defmodule Fumigate.Users.User do
     pow_user_fields()
 
     has_many :perfume_approvals, Fumigate.Approval.PerfumeApproval, foreign_key: :submitter_user_id, references: :id 
+    
+    has_many :perfumes, Fumigate.Fragrance.Perfume, foreign_key: :submitter_user_id, references: :id 
 
     timestamps()
   end

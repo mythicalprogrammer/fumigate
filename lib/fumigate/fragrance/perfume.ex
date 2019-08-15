@@ -14,6 +14,8 @@ defmodule Fumigate.Fragrance.Perfume do
     field :picture_url, :string
     field :year_released, :integer
 
+    belongs_to :users, Fumigate.Users.User, foreign_key: :submitter_user_id, references: :id 
+
     many_to_many :companies, Fumigate.Fragrance.Company, 
       join_through: Fumigate.Fragrance.PerfumeCompanyJoin,
       on_replace: :delete
@@ -46,7 +48,7 @@ defmodule Fumigate.Fragrance.Perfume do
     note_records = get_all_note_records(attrs) 
 
     perfume 
-    |> cast(attrs, [:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released])
+    |> cast(attrs, [:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released, :submitter_user_id])
     |> validate_required([:perfume_name, :gender, :perfume_description])
     |> put_assoc(:perfume_company_joins, company_records)
     |> put_assoc?(:perfume_accord_joins, accord_records)
