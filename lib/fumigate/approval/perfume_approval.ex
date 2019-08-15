@@ -55,6 +55,12 @@ defmodule Fumigate.Approval.PerfumeApproval do
     |> put_assoc?(:perfume_approval_note_joins, note_records)
   end
 
+  def changeset_no_assoc(perfume_approval, attrs) do
+    perfume_approval
+    |> cast(attrs, [:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released, :submitter_user_id, :approved])
+    |> validate_required([:perfume_name, :gender, :perfume_description, :submitter_user_id])
+  end
+
   defp put_assoc?(changeset, _atom, nil), do: changeset
   defp put_assoc?(changeset, atom, records) do
     changeset

@@ -87,6 +87,12 @@ defmodule Fumigate.Approval do
     |> Repo.all()
   end
 
+  def update_perfume_approval_no_assoc(%PerfumeApproval{} = perfume, attrs) do
+    perfume
+    |> PerfumeApproval.changeset_no_assoc(attrs)
+    |> Repo.update()
+  end
+
   def update_perfume(%PerfumeApproval{} = perfume, attrs) do
     perfume
     |> PerfumeApproval.changeset(attrs)
@@ -151,6 +157,7 @@ defmodule Fumigate.Approval do
 
   def approve_perfume(%PerfumeApproval{} = perfume_changeset) do
     attrs = %{
+      "submitter_user_id" => perfume_changeset.submitter_user_id,
       "concentration" => perfume_changeset.concentration,
       "day_released" => perfume_changeset.day_released,
       "gender" => perfume_changeset.gender,
