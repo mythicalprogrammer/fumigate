@@ -21,6 +21,5 @@ defmodule Fumigate.Repo.Migrations.CreatePerfumes do
   def down do
     drop table(:perfumes)
     Ecto.Migration.execute "DROP TYPE gender"
-    Ecto.Migration.execute "DROP TYPE month"
   end
 end
