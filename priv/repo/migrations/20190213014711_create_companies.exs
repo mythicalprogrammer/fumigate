@@ -19,6 +19,7 @@ defmodule Fumigate.Repo.Migrations.CreateCompanies do
       timestamps()
     end
 
+    create unique_index(:companies, [:company_name, :country_id])
     create index(:companies, [:country_id])
     create index(:companies, [:parent_company_id])
     create index(:companies, [:company_type_id])
