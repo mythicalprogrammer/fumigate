@@ -127,4 +127,10 @@ defmodule Fumigate.Approval.PerfumeApproval do
     from c in query, 
       preload: [:accords, :notes, :companies]
   end
+
+  def get_all_perfume_approvals_approved_false_preload(query) do 
+    from c in query, 
+      where: c.approved == false,
+      preload: [:accords, :notes, :companies]
+  end
 end

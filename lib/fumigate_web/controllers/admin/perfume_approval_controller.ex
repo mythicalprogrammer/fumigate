@@ -10,7 +10,9 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
 
   def index(conn, params) do
     params = Map.put(params, :page_size, 25)
-    page = Approval.list_perfume_approvals_paginate(params) 
+    # to list everything
+    #page = Approval.list_perfume_approvals_paginate(params) 
+    page = Approval.list_perfume_approvals_only_approved_false_paginate(params) 
     render(conn, "index.html", page: page)
   end
 
