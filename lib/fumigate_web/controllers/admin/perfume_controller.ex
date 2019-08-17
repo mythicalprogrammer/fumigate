@@ -17,6 +17,7 @@ defmodule FumigateWeb.Admin.PerfumeController do
   def new(conn, _params) do
     changeset = Fragrance.change_perfume(%Perfume{}) 
     render(conn, "new.html", changeset: changeset,
+           perfume: %{ :accords => nil, :companies => nil },
            top_notes_select: nil, 
            middle_notes_select: nil,
            base_notes_select: nil)
@@ -56,32 +57,28 @@ defmodule FumigateWeb.Admin.PerfumeController do
 
   def show(conn, %{"id" => id}) do
     perfume = Fragrance.get_perfume!(id)
-              |> Fumigate.Repo.preload([:accords, :companies])
-    top_notes = Fragrance.get_all_top_notes_by_perfume_id(id)
-    middle_notes = Fragrance.get_all_middle_notes_by_perfume_id(id)
-    base_notes = Fragrance.get_all_base_notes_by_perfume_id(id)
-    render(conn, "show.html", perfume: perfume,
-           top_notes: top_notes, middle_notes: middle_notes, base_notes: base_notes)
+              |> Fumigate.Repo.preload([
+                :accords, 
+                :companies,
+                perfume_note_joins: :note  
+              ])
+    render(conn, "show.html", perfume: perfume)
   end
 
   def edit(conn, %{"id" => id}) do
     perfume = Fragrance.get_perfume!(id)
               |> Fumigate.Repo.preload([
                 :perfume_company_joins, 
-                :perfume_note_joins, 
                 :perfume_accord_joins,
                 :companies,
-                :accords
+                :accords,
+                perfume_note_joins: :note
               ])
-    changeset = Fragrance.change_perfume(perfume)
-    top_notes_select = Fragrance.select_all_top_notes_by_perfume_id(perfume.id)
-    middle_notes_select = Fragrance.select_all_middle_notes_by_perfume_id(perfume.id)
-    base_notes_select = Fragrance.select_all_base_notes_by_perfume_id(perfume.id)
-    render(conn, "edit.html", perfume: perfume, 
-           changeset: changeset, 
-           top_notes_select: top_notes_select, 
-           middle_notes_select: middle_notes_select,
-           base_notes_select: base_notes_select)
+    changeset = Perfume.changeset(%Perfume{}, %{}) 
+    render(conn, 
+           "edit.html", 
+           perfume: perfume, 
+           changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "perfume" => perfume_params}) do

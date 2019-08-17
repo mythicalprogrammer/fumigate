@@ -5,6 +5,9 @@ defmodule FumigateWeb.Admin.PerfumeView do
     for company <- companies, do: {company.company_name, company.id}
   end
 
+  def company_selected(nil) do
+    nil
+  end
   def company_selected(companies) do
     for company <- companies, do: company.id
   end
@@ -13,10 +16,22 @@ defmodule FumigateWeb.Admin.PerfumeView do
     for note <- notes, do: {note.note_name, note.id}
   end
 
+  def note_selected(nil) do
+    nil
+  end
+  def note_selected(notejoins, pyramid) do
+    notejoins 
+    |> Enum.filter(fn notejoin -> notejoin.pyramid_note == pyramid end)
+    |> Enum.map(fn notejoin -> notejoin.note.id end)
+  end
+
   def accord_select_options(accords) do
     for accord <- accords, do: {accord.accord_name, accord.id}
   end
 
+  def accord_selected(nil) do
+    nil
+  end
   def accord_selected(accords) do
     for accord <- accords, do: accord.id
   end
@@ -32,11 +47,13 @@ defmodule FumigateWeb.Admin.PerfumeView do
     |> raw 
   end
 
-  def note_parse(notes) do
-    notes 
+  def note_parse(notejoins, pyramid) do
+    notejoins 
+    |> Enum.filter(fn notejoin -> notejoin.pyramid_note == pyramid end)
     |> Enum.map( 
-         fn note -> "<a href='/notes/#{note.id}'>#{note.note_name}</a>" 
-    end)
+      fn notejoin -> 
+        "<a href='/notes/#{notejoin.note.id}'>#{notejoin.note.note_name}</a>" 
+      end)
     |> Enum.sort
     |> Enum.join(", ")
     |> HtmlSanitizeEx.basic_html 
