@@ -17,11 +17,9 @@ defmodule FumigateWeb.Admin.PerfumeController do
   def new(conn, _params) do
     changeset = Fragrance.change_perfume(%Perfume{}) 
     render(conn, "new.html", changeset: changeset,
-           accords_select: nil, 
            top_notes_select: nil, 
            middle_notes_select: nil,
-           base_notes_select: nil, 
-           companies_select: nil)
+           base_notes_select: nil)
   end
 
   def create(conn, %{"perfume" => perfume_params}) do
@@ -41,22 +39,18 @@ defmodule FumigateWeb.Admin.PerfumeController do
         {:error, _changeset} ->
           changeset = Fragrance.Perfume.changeset(%Perfume{}, perfume_params) 
           render(conn, "new.html", changeset: changeset,
-            accords_select: nil, 
             top_notes_select: nil, 
             middle_notes_select: nil,
-            base_notes_select: nil, 
-            companies_select: nil)
+            base_notes_select: nil)
       end
     else 
       changeset = Fragrance.Perfume.changeset(%Perfume{}, perfume_params) 
       conn
       |> put_flash(:warning, "ERROR: Perfume is a dupe.")
       |> render("new.html", changeset: changeset,
-            accords_select: nil, 
             top_notes_select: nil, 
             middle_notes_select: nil,
-            base_notes_select: nil, 
-            companies_select: nil)
+            base_notes_select: nil)
     end
   end
 
