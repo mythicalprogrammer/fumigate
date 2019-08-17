@@ -5,12 +5,20 @@ defmodule FumigateWeb.Admin.PerfumeView do
     for company <- companies, do: {company.company_name, company.id}
   end
 
+  def company_selected(companies) do
+    for company <- companies, do: company.id
+  end
+
   def note_select_options(notes) do
     for note <- notes, do: {note.note_name, note.id}
   end
 
   def accord_select_options(accords) do
     for accord <- accords, do: {accord.accord_name, accord.id}
+  end
+
+  def accord_selected(accords) do
+    for accord <- accords, do: accord.id
   end
 
   def company_parse(companies) do
