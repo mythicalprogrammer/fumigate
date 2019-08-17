@@ -74,7 +74,7 @@ defmodule FumigateWeb.Admin.PerfumeController do
                 :accords,
                 perfume_note_joins: :note
               ])
-    changeset = Perfume.changeset(%Perfume{}, %{}) 
+    changeset = Fragrance.change_perfume(perfume)
     render(conn, 
            "edit.html", 
            perfume: perfume, 
