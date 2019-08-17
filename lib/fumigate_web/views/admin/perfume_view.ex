@@ -16,7 +16,7 @@ defmodule FumigateWeb.Admin.PerfumeView do
     for note <- notes, do: {note.note_name, note.id}
   end
 
-  def note_selected(nil) do
+  def note_selected(nil, _pyramid) do
     nil
   end
   def note_selected(notejoins, pyramid) do
