@@ -11,11 +11,11 @@ defmodule FumigateWeb.PerfumeController do
 
   def show(conn, %{"id" => id}) do
     perfume = Fragrance.get_perfume!(id)
-              |> Fumigate.Repo.preload([:accords, :companies])
-    top_notes = Fragrance.get_all_top_notes_by_perfume_id(id)
-    middle_notes = Fragrance.get_all_middle_notes_by_perfume_id(id)
-    base_notes = Fragrance.get_all_base_notes_by_perfume_id(id)
-    render(conn, "show.html", perfume: perfume,
-           top_notes: top_notes, middle_notes: middle_notes, base_notes: base_notes)
+              |> Fumigate.Repo.preload([
+                :accords, 
+                :companies,
+                perfume_note_joins: :note  
+              ])
+    render(conn, "show.html", perfume: perfume)
   end
 end

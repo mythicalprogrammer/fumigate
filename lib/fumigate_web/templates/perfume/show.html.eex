@@ -56,15 +56,15 @@
    <ul>
      <li>
        Top Notes: 
-        <%= note_parse(@top_notes) %>
+        <%= note_parse(@perfume.perfume_note_joins, :top) %>
      </li>
      <li>
        Middle Notes: 
-        <%= note_parse(@middle_notes) %>
+        <%= note_parse(@perfume.perfume_note_joins, :middle) %>
      </li>
      <li>
        Base Notes: 
-        <%= note_parse(@base_notes) %>
+        <%= note_parse(@perfume.perfume_note_joins, :base) %>
      </li>
    </ul>
   </li>
