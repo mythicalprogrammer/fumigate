@@ -13,17 +13,26 @@
 
     <%= label f, :top_note_id, "Note (Top)" %>
     <%= multiple_select f, :top_note_id, note_select_options(@notes), 
-      [prompt: "Choose one or more top note.", class: "custom-select w-100", id: "top_note_select", selected: @top_notes_select] %>
+        [prompt: "Choose one or more top note.", 
+         class: "custom-select w-100", 
+         id: "top_note_select", 
+         selected: note_selected(@perfume.perfume_approval_note_joins, :top)] %>
     <%= error_tag f, :top_note_id %>
 
     <%= label f, :middle_note_id, "Note (Middle)" %>
     <%= multiple_select f, :middle_note_id, note_select_options(@notes), 
-      [prompt: "Choose one or more middle note.", class: "custom-select w-100", id: "middle_note_select", selected: @middle_notes_select] %>
+        [prompt: "Choose one or more middle note.", 
+         class: "custom-select w-100", 
+         id: "middle_note_select", 
+         selected: note_selected(@perfume.perfume_approval_note_joins, :middle)] %>
     <%= error_tag f, :middle_note_id %>
 
     <%= label f, :base_note_id, "Note (Base)" %>
     <%= multiple_select f, :base_note_id, note_select_options(@notes), 
-      [prompt: "Choose one or more base note.", class: "custom-select w-100", id: "base_note_select",  selected: @base_notes_select] %>
+        [prompt: "Choose one or more base note.",
+         class: "custom-select w-100", 
+         id: "base_note_select",  
+         selected: note_selected(@perfume.perfume_approval_note_joins, :base)] %>
     <%= error_tag f, :base_note_id %>
   </div>
 

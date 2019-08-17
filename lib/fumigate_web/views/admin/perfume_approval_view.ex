@@ -12,6 +12,15 @@ defmodule FumigateWeb.Admin.PerfumeApprovalView do
   def note_select_options(notes) do
     for note <- notes, do: {note.note_name, note.id}
   end
+  
+  def note_selected(nil, _pyramid) do
+    nil
+  end
+  def note_selected(notejoins, pyramid) do
+    notejoins 
+    |> Enum.filter(fn notejoin -> notejoin.pyramid_note == pyramid end)
+    |> Enum.map(fn notejoin -> notejoin.note.id end)
+  end
 
   def accord_select_options(accords) do
     for accord <- accords, do: {accord.accord_name, accord.id}

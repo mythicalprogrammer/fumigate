@@ -31,22 +31,15 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
     perfume = Approval.get_perfume!(id)
               |> Fumigate.Repo.preload([
                 :perfume_approval_company_joins, 
-                :perfume_approval_note_joins, 
                 :perfume_approval_accord_joins,
                 :companies,
-                :accords
+                :accords,
+                perfume_approval_note_joins: :note  
               ])
     changeset = Approval.change_perfume(perfume)
-    top_notes_select = Approval.select_all_top_notes_by_perfume_id(perfume.id)
-    middle_notes_select = Approval.select_all_middle_notes_by_perfume_id(perfume.id)
-    base_notes_select = Approval.select_all_base_notes_by_perfume_id(perfume.id)
     render(conn, "edit.html", 
            perfume: perfume, 
-           changeset: changeset, 
-           top_notes_select: top_notes_select, 
-           middle_notes_select: middle_notes_select,
-           base_notes_select: base_notes_select)
-           
+           changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "perfume_approval" => perfume_params}) do
