@@ -32,11 +32,13 @@ defmodule FumigateWeb.Admin.PerfumeApprovalView do
     |> raw 
   end
 
-  def note_parse(notes) do
-    notes 
+  def note_parse(notejoins, pyramid) do
+    notejoins 
+    |> Enum.filter(fn notejoin -> notejoin.pyramid_note == pyramid end)
     |> Enum.map( 
-         fn note -> "<a href='/notes/#{note.id}'>#{note.note_name}</a>" 
-    end)
+      fn notejoin -> 
+        "<a href='/notes/#{notejoin.note.id}'>#{notejoin.note.note_name}</a>" 
+      end)
     |> Enum.sort
     |> Enum.join(", ")
     |> HtmlSanitizeEx.basic_html 
