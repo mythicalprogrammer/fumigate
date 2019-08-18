@@ -71,7 +71,6 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
                                                      perfume_approval.concentration,
                                                      perfume_approval.companies)
 
-
     if List.first(perfume) == nil && List.first(perfume_approval.companies) != nil do
       case Approval.approve_perfume(perfume_approval) do
         {:ok, new_perfume} ->

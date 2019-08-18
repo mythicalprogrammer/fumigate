@@ -133,12 +133,28 @@ defmodule Fumigate.Fragrance.Perfume do
   end
 
   def get_all_perfume_by_perfume_name_con_comp(query, name, concentration, companies) do 
+    query = get_all_perfume_by_perfume_name_con(query, name, concentration) 
+    query = Enum.reduce(companies, query, 
+                        fn(company, query) -> 
+                          match_all_company_for_dupe(query, company) 
+                        end)
+    from q in query,
+      group_by: q.id
+  end
+
+  defp match_all_company_for_dupe(query, nil) do
+    query
+  end
+  defp match_all_company_for_dupe(query, []) do
+    query
+  end
+  defp match_all_company_for_dupe(query, company) do
     from p in query,
-      join: j in Fumigate.Fragrance.PerfumeCompanyJoin, where: p.id == j.perfume_id,
-      join: c in Fumigate.Fragrance.Company, where: c.id == j.company_id,
-      where: [perfume_name: ^name],
-      where: [concentration: ^concentration],
-      where: c.company_name in ^companies
+      join: j in Fumigate.Fragrance.PerfumeCompanyJoin, 
+      where: p.id == j.perfume_id,
+      join: c in Fumigate.Fragrance.Company, 
+      where: c.id == j.company_id,
+      where: c.company_name in [^company] 
   end
 
   def get_all_perfume_by_perfume_name_con(query, name, concentration) do 
