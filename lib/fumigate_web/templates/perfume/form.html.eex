@@ -13,26 +13,17 @@
 
     <%= label f, :top_note_id, "Note (Top)" %>
     <%= multiple_select f, :top_note_id, note_select_options(@notes), 
-        [prompt: "Choose one or more top note.", 
-         class: "custom-select w-100", 
-         id: "top_note_select", 
-         selected: note_selected(@perfume, :top)] %>
+      [prompt: "Choose one or more top note.", class: "custom-select w-100", id: "top_note_select", selected: note_selected(@perfume, :top)] %>
     <%= error_tag f, :top_note_id %>
 
     <%= label f, :middle_note_id, "Note (Middle)" %>
     <%= multiple_select f, :middle_note_id, note_select_options(@notes), 
-        [prompt: "Choose one or more middle note.", 
-         class: "custom-select w-100", 
-         id: "middle_note_select", 
-         selected: note_selected(@perfume, :middle)] %>
+      [prompt: "Choose one or more middle note.", class: "custom-select w-100", id: "middle_note_select", selected: note_selected(@perfume, :middle)] %>
     <%= error_tag f, :middle_note_id %>
 
     <%= label f, :base_note_id, "Note (Base)" %>
     <%= multiple_select f, :base_note_id, note_select_options(@notes), 
-        [prompt: "Choose one or more base note.", 
-         class: "custom-select w-100", 
-         id: "base_note_select",  
-         selected: note_selected(@perfume, :base)] %>
+      [prompt: "Choose one or more base note.", class: "custom-select w-100", id: "base_note_select",  selected: note_selected(@perfume, :base)] %>
     <%= error_tag f, :base_note_id %>
   </div>
 
@@ -41,9 +32,15 @@
     <div class="row">
       <div class="col-md-8">
     <%= label f, :company_id, "Company" %>
-    <%= multiple_select f, :company_id, company_select_options(@companies), 
-      [prompt: "Choose one or more company.", class: "custom-select w-100", selected: company_selected(@perfume), id: "company_select"] %>
-    <%= error_tag f, :company_id%>
+    <%= if f.errors[:company_id] do %>
+    <%= error_tag f, :company_id %>
+        <%= multiple_select f, :company_id, company_select_options(@companies), 
+              [prompt: "Choose one or more company.", 
+              class: "custom-select w-100 form-control is-invalid", selected: company_selected(@perfume), id: "company_select"] %>
+      <% else %>
+        <%= multiple_select f, :company_id, company_select_options(@companies), 
+      [prompt: "Choose one or more company.", class: " form-control custom-select w-100", selected: company_selected(@perfume), id: "company_select"] %>
+      <% end %>
       </div>
     </div>
     <div class="row">
@@ -59,7 +56,11 @@
 
       <div class="col-md-4">
       <%= label f, :concentration %>
-      <%= text_input f, :concentration, [class: "form-control"] %>
+      <%= if f.errors[:concentration] do %>
+        <%= text_input f, :concentration, [class: "form-control is-invalid"] %>
+      <% else %>
+        <%= text_input f, :concentration, [class: "form-control"] %>
+      <% end %>
       <%= error_tag f, :concentration %>
       </div>
     </div>
@@ -93,7 +94,11 @@
     <div class="row">
       <div class="col-md-12">
       <%= label f, :perfume_description %>
-      <%= textarea f, :perfume_description, [class: "form-control", rows: 4] %>  
+      <%= if f.errors[:perfume_description] do %>
+        <%= textarea f, :perfume_description, [class: "form-control is-invalid", rows: 4] %>  
+      <% else %>
+        <%= textarea f, :perfume_description, [class: "form-control", rows: 4] %>  
+      <% end %>
       <%= error_tag f, :perfume_description %>
       </div>
     </div>

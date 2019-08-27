@@ -5,8 +5,7 @@
   </div>
 
   <hr/>
-
-      <%= render "form.html", Map.put(assigns, :action, Routes.admin_perfume_path(@conn, :update, @perfume)) %>
+  <%= render FumigateWeb.PerfumeView, "form.html", Map.put(assigns, :action, Routes.admin_perfume_path(@conn, :update, @perfume)) %>
 </div>
 
 

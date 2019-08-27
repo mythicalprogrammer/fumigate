@@ -34,8 +34,7 @@ defmodule FumigateWeb.Admin.PerfumeController do
           |> put_flash(:info, "Perfume created successfully.")
           |> redirect(to: Routes.admin_perfume_path(conn, :show, perfume))
 
-        {:error, _changeset} ->
-          changeset = Fragrance.Perfume.changeset(%Perfume{}, perfume_params) 
+        {:error, changeset} ->
           render(conn, "new.html", changeset: changeset, perfume: perfume_params)
       end
     else 
@@ -75,7 +74,12 @@ defmodule FumigateWeb.Admin.PerfumeController do
   def update(conn, %{"id" => id, "perfume" => perfume_params}) do
     perfume = Fragrance.get_perfume!(id)
               |> Fumigate.Repo.preload([
-                :perfume_company_joins, :perfume_note_joins, :perfume_accord_joins])
+                :perfume_company_joins, 
+                :perfume_accord_joins,
+                :companies,
+                :accords,
+                perfume_note_joins: :note
+              ])
 
     case Fragrance.update_perfume(perfume, perfume_params) do
       {:ok, perfume} ->
@@ -84,6 +88,7 @@ defmodule FumigateWeb.Admin.PerfumeController do
         |> redirect(to: Routes.admin_perfume_path(conn, :show, perfume))
 
       {:error, %Ecto.Changeset{} = changeset} ->
+        IO.inspect(changeset)
         render(conn, "edit.html", perfume: perfume, changeset: changeset)
     end
   end
