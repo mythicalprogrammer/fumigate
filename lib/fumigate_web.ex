@@ -44,6 +44,17 @@ defmodule FumigateWeb do
       import FumigateWeb.Gettext
       alias FumigateWeb.Router.Helpers, as: Routes
       import Scrivener.HTML
+      import FumigateWeb.ViewPerfumeHelpers
+    end
+  end
+
+  def view_perfume do
+    quote do
+
+      use Phoenix.HTML
+
+      import FumigateWeb.Gettext
+      alias FumigateWeb.Router.Helpers, as: Routes
     end
   end
 

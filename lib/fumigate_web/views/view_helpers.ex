@@ -16,4 +16,8 @@ defmodule FumigateWeb.ViewHelpers do
 
   def main_activity(%{company_main_activity: %{main_activity: main_activity}}), do: main_activity 
   def main_activity(_), do: "Unknown" 
+
+  def company_select_options(companies) do
+    for company <- companies, do: {company.company_name, company.id}
+  end
 end
