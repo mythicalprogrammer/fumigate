@@ -49,7 +49,7 @@ defmodule Fumigate.Fragrance.Perfume do
 
     perfume 
     |> cast(attrs, [:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released, :submitter_user_id])
-    |> validate_required([:perfume_name, :gender, :perfume_description])
+    |> validate_required([:perfume_name, :gender, :perfume_description, :concentration])
     |> put_assoc(:perfume_company_joins, company_records)
     |> put_assoc?(:perfume_accord_joins, accord_records)
     |> put_assoc?(:perfume_note_joins, note_records)

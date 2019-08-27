@@ -49,7 +49,8 @@ defmodule Fumigate.Approval.PerfumeApproval do
 
     perfume_approval
     |> cast(attrs, [:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released, :submitter_user_id, :approved])
-    |> validate_required([:perfume_name, :gender, :perfume_description, :submitter_user_id])
+    |> validate_required([:perfume_name, :gender, :concentration, :perfume_description, :submitter_user_id])
+    |> check_companies(company_records)
     |> put_assoc(:perfume_approval_company_joins, company_records)
     |> put_assoc?(:perfume_approval_accord_joins, accord_records)
     |> put_assoc?(:perfume_approval_note_joins, note_records)
@@ -59,6 +60,17 @@ defmodule Fumigate.Approval.PerfumeApproval do
     perfume_approval
     |> cast(attrs, [:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released, :submitter_user_id, :approved])
     |> validate_required([:perfume_name, :gender, :perfume_description, :submitter_user_id])
+  end
+
+  defp check_companies(changeset, nil) do
+    add_error(changeset, :company_id, "Company is require.")
+  end
+  defp check_companies(changeset, company_records) do
+    if length(company_records) > 0 do
+      changeset
+    else
+      add_error(changeset, :company_id, "Company is require.")
+    end
   end
 
   defp put_assoc?(changeset, _atom, nil), do: changeset

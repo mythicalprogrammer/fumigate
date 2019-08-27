@@ -31,10 +31,16 @@
   <div class="col-md-8 order-md-1"> 
     <div class="row">
       <div class="col-md-8">
-    <%= label f, :company_id, "Company (required)" %>
-    <%= multiple_select f, :company_id, company_select_options(@companies), 
-      [prompt: "Choose one or more company.", class: "custom-select w-100", selected: @companies_select, id: "company_select"] %>
+    <%= label f, :company_id, "Company" %>
+    <%= if f.errors[:company_id] do %>
     <%= error_tag f, :company_id %>
+        <%= multiple_select f, :company_id, company_select_options(@companies), 
+              [prompt: "Choose one or more company.", 
+              class: "custom-select w-100 form-control is-invalid", selected: @companies_select, id: "company_select"] %>
+      <% else %>
+        <%= multiple_select f, :company_id, company_select_options(@companies), 
+      [prompt: "Choose one or more company.", class: " form-control custom-select w-100", selected: @companies_select, id: "company_select"] %>
+      <% end %>
       </div>
     </div>
     <div class="row">
@@ -50,7 +56,11 @@
 
       <div class="col-md-4">
       <%= label f, :concentration %>
-      <%= text_input f, :concentration, [class: "form-control"] %>
+      <%= if f.errors[:concentration] do %>
+        <%= text_input f, :concentration, [class: "form-control is-invalid"] %>
+      <% else %>
+        <%= text_input f, :concentration, [class: "form-control"] %>
+      <% end %>
       <%= error_tag f, :concentration %>
       </div>
     </div>
@@ -84,7 +94,11 @@
     <div class="row">
       <div class="col-md-12">
       <%= label f, :perfume_description %>
-      <%= textarea f, :perfume_description, [class: "form-control", rows: 4] %>  
+      <%= if f.errors[:perfume_description] do %>
+        <%= textarea f, :perfume_description, [class: "form-control is-invalid", rows: 4] %>  
+      <% else %>
+        <%= textarea f, :perfume_description, [class: "form-control", rows: 4] %>  
+      <% end %>
       <%= error_tag f, :perfume_description %>
       </div>
     </div>
