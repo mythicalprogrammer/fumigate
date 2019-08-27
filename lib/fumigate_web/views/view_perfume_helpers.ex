@@ -47,7 +47,7 @@ defmodule FumigateWeb.ViewPerfumeHelpers do
   def company_selected(params) do
     check = Map.has_key?(params, :companies)
     if check do
-      company_selected_aux(params[:companies]) 
+      company_selected_aux(params.companies) 
     else
       nil
     end
@@ -63,7 +63,7 @@ defmodule FumigateWeb.ViewPerfumeHelpers do
   def note_selected(params, pyramid) do
     check = Map.has_key?(params, :perfume_note_joins)
     if check do
-      note_selected_aux(params[:perfume_note_joins], pyramid) 
+      note_selected_aux(params.perfume_note_joins, pyramid) 
     else
       nil
     end
@@ -81,7 +81,7 @@ defmodule FumigateWeb.ViewPerfumeHelpers do
   def accord_selected(params) do
     check = Map.has_key?(params, :accords)
     if check do
-      accord_selected_aux(params[:accords]) 
+      accord_selected_aux(params.accords) 
     else
       nil
     end

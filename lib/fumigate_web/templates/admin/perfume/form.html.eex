@@ -8,7 +8,7 @@
   <div class="col-md-4 order-md-2 mb-4"> 
     <%= label f, :accord_id, "Accord" %>
     <%= multiple_select f, :accord_id, accord_select_options(@accords), 
-      [prompt: "Choose one or more accord.", class: "custom-select w-100", id: "accord_select", selected: accord_selected(@perfume.accords)] %>
+      [prompt: "Choose one or more accord.", class: "custom-select w-100", id: "accord_select", selected: accord_selected(@perfume)] %>
     <%= error_tag f, :accord_id %>
 
     <%= label f, :top_note_id, "Note (Top)" %>
@@ -16,7 +16,7 @@
         [prompt: "Choose one or more top note.", 
          class: "custom-select w-100", 
          id: "top_note_select", 
-         selected: note_selected(@perfume.perfume_note_joins, :top)] %>
+         selected: note_selected(@perfume, :top)] %>
     <%= error_tag f, :top_note_id %>
 
     <%= label f, :middle_note_id, "Note (Middle)" %>
@@ -24,7 +24,7 @@
         [prompt: "Choose one or more middle note.", 
          class: "custom-select w-100", 
          id: "middle_note_select", 
-         selected: note_selected(@perfume.perfume_note_joins, :middle)] %>
+         selected: note_selected(@perfume, :middle)] %>
     <%= error_tag f, :middle_note_id %>
 
     <%= label f, :base_note_id, "Note (Base)" %>
@@ -32,7 +32,7 @@
         [prompt: "Choose one or more base note.", 
          class: "custom-select w-100", 
          id: "base_note_select",  
-         selected: note_selected(@perfume.perfume_note_joins, :base)] %>
+         selected: note_selected(@perfume, :base)] %>
     <%= error_tag f, :base_note_id %>
   </div>
 
@@ -42,7 +42,7 @@
       <div class="col-md-8">
     <%= label f, :company_id, "Company" %>
     <%= multiple_select f, :company_id, company_select_options(@companies), 
-      [prompt: "Choose one or more company.", class: "custom-select w-100", selected: company_selected(@perfume.companies), id: "company_select"] %>
+      [prompt: "Choose one or more company.", class: "custom-select w-100", selected: company_selected(@perfume), id: "company_select"] %>
     <%= error_tag f, :company_id%>
       </div>
     </div>
