@@ -19,11 +19,7 @@ defmodule FumigateWeb.User.PerfumeController do
   def new(conn, _params) do
     changeset = Approval.change_perfume_approval(%PerfumeApproval{})
     render(conn, "new.html", changeset: changeset,
-           accords_select: nil, 
-           top_notes_select: nil, 
-           middle_notes_select: nil,
-           base_notes_select: nil, 
-           companies_select: nil)
+           perfume: %{})
   end
 
   def create(conn, %{"perfume_approval" => perfume_params}) do
@@ -38,12 +34,9 @@ defmodule FumigateWeb.User.PerfumeController do
         |> redirect(to: Routes.perfume_path(conn, :index))
   
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset,
-          accords_select: nil, 
-          top_notes_select: nil, 
-          middle_notes_select: nil,
-          base_notes_select: nil, 
-          companies_select: nil)
+        render(conn, "new.html", 
+               changeset: changeset,
+               perfume: perfume_params)  
     end
   end
 

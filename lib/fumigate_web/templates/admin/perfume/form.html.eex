@@ -40,10 +40,10 @@
   <div class="col-md-8 order-md-1"> 
     <div class="row">
       <div class="col-md-8">
-    <%= label f, :company, "Company" %>
-    <%= multiple_select f, :company, company_select_options(@companies), 
+    <%= label f, :company_id, "Company" %>
+    <%= multiple_select f, :company_id, company_select_options(@companies), 
       [prompt: "Choose one or more company.", class: "custom-select w-100", selected: company_selected(@perfume.companies), id: "company_select"] %>
-    <%= error_tag f, :company%>
+    <%= error_tag f, :company_id%>
       </div>
     </div>
     <div class="row">
