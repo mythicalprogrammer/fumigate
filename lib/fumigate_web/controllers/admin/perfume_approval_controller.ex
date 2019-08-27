@@ -45,8 +45,11 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
     perfume = Approval.get_perfume!(id)
               |> Fumigate.Repo.preload([
                 :perfume_approval_company_joins, 
-                :perfume_approval_note_joins, 
-                :perfume_approval_accord_joins])
+                :perfume_approval_accord_joins,
+                :companies,
+                :accords,
+                perfume_approval_note_joins: :note  
+              ])
 
     case Approval.update_perfume(perfume, perfume_params) do
       {:ok, perfume} ->
