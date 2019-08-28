@@ -2,6 +2,7 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
   use FumigateWeb, :controller
 
   alias Fumigate.Approval
+  alias Fumigate.Fragrance
 
   plug Fumigate.Plug.AccordList when action in [:new, :create, :edit, :update]
   plug Fumigate.Plug.NoteList when action in [:new, :create, :edit, :update]
@@ -71,10 +72,11 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
                                               ])
 
     dupe = 
-      Approval.find_perfume_by_name_con_comp_sex(perfume_approval.perfume_name, 
-                                                 perfume_approval.concentration,
-                                                 perfume_approval.companies,
-                                                 perfume_approval.gender)
+      Fragrance.find_perfume_by_name_con_comp_sex(
+        perfume_approval.perfume_name, 
+        perfume_approval.concentration,
+        perfume_approval.companies,
+        perfume_approval.gender)
 
     if dupe == false do
       case Approval.approve_perfume(perfume_approval) do

@@ -12,6 +12,7 @@ defmodule Fumigate.Approval do
   alias Fumigate.Approval.PerfumeApprovalNoteJoin
   alias Fumigate.Fragrance.Note
   alias Fumigate.Fragrance.Perfume
+  import Fumigate.Helpers.PerfumeHelper
 
   def change_perfume(%PerfumeApproval{} = perfume) do
     PerfumeApproval.changeset(perfume, %{})
@@ -143,15 +144,6 @@ defmodule Fumigate.Approval do
     |> Repo.insert_all(records)
   end
 
-  def find_perfume_by_name_con_comp_sex(name, concentration, companies, gender) do
-    results = Perfume
-              |> Perfume.get_all_perfume_by_name_con_sex(name, concentration, gender) 
-              |> Repo.all()
-
-    companies = Enum.map(companies, fn company -> company.id end)
-    Enum.sort(results) == Enum.sort(companies)
-  end
-
   def delete_perfume(%PerfumeApproval{} = perfume) do
     Repo.delete(perfume)
   end
@@ -197,5 +189,17 @@ defmodule Fumigate.Approval do
       changesets
       |> Enum.map(fn x -> Integer.to_string(x.id) end)
     end
+  end
+
+  def find_perfume_approval_by_name_con_comp_sex(
+    name, concentration, companies, gender) do
+
+    results = PerfumeApproval
+              |> PerfumeApproval.get_all_perfume_approval_by_name_con_sex(
+                name, concentration, gender) 
+              |> Repo.all()
+
+    companies = format_company(companies)
+    Enum.sort(results) == Enum.sort(companies)
   end
 end

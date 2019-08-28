@@ -15,6 +15,7 @@ defmodule Fumigate.Fragrance do
   alias Fumigate.Fragrance.Note
   alias Fumigate.Fragrance.PerfumeNoteJoin
   alias Fumigate.Fragrance.PerfumeAccordJoin
+  import Fumigate.Helpers.PerfumeHelper
 
   def list_notes_paginate(params) do
     Note
@@ -852,12 +853,15 @@ defmodule Fumigate.Fragrance do
     PerfumeAccordJoin.changeset(perfume_accord_join, %{})
   end
 
-  def find_perfume_by_name_con_comp_sex(name, concentration, companies, gender) do
+  def find_perfume_by_name_con_comp_sex(
+    name, concentration, companies, gender) do
+
     results = Perfume
-              |> Perfume.get_all_perfume_by_name_con_sex(name, concentration, gender) 
+              |> Perfume.get_all_perfume_by_name_con_sex(
+                name, concentration, gender) 
               |> Repo.all()
 
-    companies = for company <- companies, do: String.to_integer(company) 
+    companies = format_company(companies)
     Enum.sort(results) == Enum.sort(companies)
   end
 end

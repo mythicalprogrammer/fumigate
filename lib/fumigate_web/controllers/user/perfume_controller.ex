@@ -27,16 +27,35 @@ defmodule FumigateWeb.User.PerfumeController do
     perfume_params = 
       Map.put(perfume_params, "submitter_user_id", submitter_user_id)
 
-    case Approval.create_perfume_approval(perfume_params) do
-      {:ok, _perfume} ->
-        conn
-        |> put_flash(:info, "Perfume created successfully.")
-        |> redirect(to: Routes.perfume_path(conn, :index))
+    dupe = 
+      Approval.find_perfume_approval_by_name_con_comp_sex(
+        perfume_params["perfume_name"], 
+        perfume_params["concentration"],
+        perfume_params["company_id"],
+        perfume_params["gender"])
+
+
+    if dupe == false do
+      case Approval.create_perfume_approval(perfume_params) do
+        {:ok, _perfume} ->
+          conn
+          |> put_flash(:info, "Perfume created successfully.")
+          |> redirect(to: Routes.perfume_path(conn, :index))
   
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", 
-               changeset: changeset,
-               perfume: perfume_params)  
+        {:error, %Ecto.Changeset{} = changeset} ->
+            conn
+            |> put_flash(:danger, "ERROR: Perfume created unsuccessfully.")
+            |> render("new.html", 
+                      changeset: changeset,
+                      perfume: perfume_params)
+      end
+    else 
+      # dupe or no company
+      conn
+      |> put_flash(:warning,
+                   "ERROR: Perfume to be approve is a dupe or there is no companies associated to it.")
+      |> render("show.html",
+                perfume: perfume_params)
     end
   end
 

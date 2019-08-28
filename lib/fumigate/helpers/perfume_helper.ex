@@ -2,6 +2,13 @@ defmodule Fumigate.Helpers.PerfumeHelper do
   import Ecto.Changeset
   import Ecto.Query
 
+  def format_company(companies) when is_list(companies) do
+    if is_map(List.first(companies)) do
+      Enum.map(companies, fn company -> company.id end)
+    else
+      for company <- companies, do: String.to_integer(company) 
+    end
+  end
 
   def check_companies(changeset, nil) do
     add_error(changeset, :company_id, "Company is require.")
@@ -74,6 +81,17 @@ defmodule Fumigate.Helpers.PerfumeHelper do
     query, name, concentration, gender, module_name) do 
     from p in query,
       join: j in ^module_name, where: p.id == j.perfume_id,
+      where: [perfume_name: ^name, 
+              concentration: ^concentration,
+              gender: ^gender
+      ],
+      select: j.company_id 
+  end
+
+  def get_all_perfume_approval_by_name_con_sex_module(
+    query, name, concentration, gender, module_name) do 
+    from p in query,
+      join: j in ^module_name, where: p.id == j.perfume_approval_id,
       where: [perfume_name: ^name, 
               concentration: ^concentration,
               gender: ^gender
