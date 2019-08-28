@@ -166,7 +166,7 @@ defmodule Fumigate.Approval do
       "perfume_description" => perfume_changeset.perfume_description,
       "perfume_name" => perfume_changeset.perfume_name,
       "year_released" => perfume_changeset.year_released,
-      "company" => id_records_changeset(perfume_changeset.companies),
+      "company_id" => id_records_changeset(perfume_changeset.companies),
       "accord_id" => id_records_changeset(perfume_changeset.accords), 
       "base_note_id" => 
         id_records_note_changeset(perfume_changeset.perfume_approval_note_joins, :base),
