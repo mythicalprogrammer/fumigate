@@ -147,13 +147,7 @@ defmodule Fumigate.Approval do
     companies_list = Enum.map(companies, fn company -> company.company_name end)
     Perfume
     |> Perfume.get_all_perfume_by_perfume_name_con_comp(name, concentration, companies_list) 
-    #|> print_sql()
     |> Repo.all()
-  end
-
-  def print_sql(queryable) do
-	IO.inspect(Ecto.Adapters.SQL.to_sql(:all, Repo, queryable))
-	queryable
   end
 
   def delete_perfume(%PerfumeApproval{} = perfume) do

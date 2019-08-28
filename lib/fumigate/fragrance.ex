@@ -860,10 +860,4 @@ defmodule Fumigate.Fragrance do
     companies = for company <- companies, do: String.to_integer(company) 
     Enum.sort(results) == Enum.sort(companies)
   end
-
-  defp print_sql(queryable) do
-	IO.inspect(Ecto.Adapters.SQL.to_sql(:all, Repo, queryable))
-	queryable
-  end
-
 end
