@@ -2,6 +2,8 @@ defmodule Fumigate.Approval.PerfumeApproval do
   use Ecto.Schema
   import Ecto.Changeset
   import Ecto.Query
+  import Fumigate.Helpers.PerfumeHelper
+  import Fumigate.Helpers.ChangesetHelper
 
   schema "perfume_approvals" do
     field :concentration, :string
@@ -60,79 +62,6 @@ defmodule Fumigate.Approval.PerfumeApproval do
     perfume_approval
     |> cast(attrs, [:perfume_name, :concentration, :gender, :perfume_description, :picture_url, :year_released, :month_released, :day_released, :submitter_user_id, :approved])
     |> validate_required([:perfume_name, :gender, :perfume_description, :submitter_user_id])
-  end
-
-  defp check_companies(changeset, nil) do
-    add_error(changeset, :company_id, "Company is require.")
-  end
-  defp check_companies(changeset, company_records) do
-    if length(company_records) > 0 do
-      changeset
-    else
-      add_error(changeset, :company_id, "Company is require.")
-    end
-  end
-
-  defp put_assoc?(changeset, _atom, nil), do: changeset
-  defp put_assoc?(changeset, atom, records) do
-    changeset
-    |> put_assoc(atom, records)
-  end
-
-  defp get_all_note_records(attrs) do
-    note_base_records = 
-      if attrs["base_note_id"] do
-        id_note_records(:note_id, :base, attrs["base_note_id"])
-      else
-       [] 
-      end
-
-    note_middle_records = 
-      if attrs["middle_note_id"] do
-        id_note_records(:note_id, :middle, attrs["middle_note_id"])
-      else
-        [] 
-      end
-
-    note_top_records = 
-      if attrs["top_note_id"] do
-        id_note_records(:note_id, :top, attrs["top_note_id"])
-      else
-        [] 
-      end
-
-    note_records = note_base_records ++ note_middle_records ++ note_top_records
-
-    if length(note_records) == 0 do
-      nil
-    else
-      note_records
-    end
-  end
-
-  defp id_note_records(key, pyramid, ids) do
-    if is_nil(ids) do
-      ids
-    else 
-      ids 
-      |> Enum.map(
-        fn(id) -> %{
-          key => String.to_integer(id),
-          :pyramid_note => pyramid
-        } end)
-    end
-  end
-
-  defp id_records(key, ids) do
-    if is_nil(ids) do
-      ids
-    else 
-      ids 
-      |> Enum.map(
-        fn(id) -> %{
-          key => String.to_integer(id)
-        } end)
-    end
   end
 
   def get_all_perfume_approvals_preload(query) do 
