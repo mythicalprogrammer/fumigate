@@ -74,12 +74,6 @@ defmodule Fumigate.Fragrance.Perfume do
   end
 
   def get_all_perfume_by_name_con_sex(query, name, concentration, gender) do 
-    from p in query,
-      join: j in Fumigate.Fragrance.PerfumeCompanyJoin, where: p.id == j.perfume_id,
-      where: [perfume_name: ^name, 
-              concentration: ^concentration,
-              gender: ^gender
-      ],
-      select: j.company_id 
+  get_all_perfume_by_name_con_sex_module(query, name, concentration, gender, Fumigate.Fragrance.PerfumeCompanyJoin)  
   end
 end

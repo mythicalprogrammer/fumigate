@@ -143,11 +143,13 @@ defmodule Fumigate.Approval do
     |> Repo.insert_all(records)
   end
 
-  def find_perfume_by_name_con_comp(name, concentration, companies) do
-    companies_list = Enum.map(companies, fn company -> company.company_name end)
-    Perfume
-    |> Perfume.get_all_perfume_by_perfume_name_con_comp(name, concentration, companies_list) 
-    |> Repo.all()
+  def find_perfume_by_name_con_comp_sex(name, concentration, companies, gender) do
+    results = Perfume
+              |> Perfume.get_all_perfume_by_name_con_sex(name, concentration, gender) 
+              |> Repo.all()
+
+    companies = Enum.map(companies, fn company -> company.id end)
+    Enum.sort(results) == Enum.sort(companies)
   end
 
   def delete_perfume(%PerfumeApproval{} = perfume) do

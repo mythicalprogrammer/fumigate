@@ -1,5 +1,6 @@
 defmodule Fumigate.Helpers.PerfumeHelper do
   import Ecto.Changeset
+  import Ecto.Query
 
 
   def check_companies(changeset, nil) do
@@ -67,5 +68,16 @@ defmodule Fumigate.Helpers.PerfumeHelper do
           key => String.to_integer(id)
         } end)
     end
+  end
+
+  def get_all_perfume_by_name_con_sex_module(
+    query, name, concentration, gender, module_name) do 
+    from p in query,
+      join: j in ^module_name, where: p.id == j.perfume_id,
+      where: [perfume_name: ^name, 
+              concentration: ^concentration,
+              gender: ^gender
+      ],
+      select: j.company_id 
   end
 end

@@ -70,13 +70,16 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
                                                  perfume_approval_note_joins: :note
                                               ])
 
-    perfume = Approval.find_perfume_by_name_con_comp(perfume_approval.perfume_name, 
-                                                     perfume_approval.concentration,
-                                                     perfume_approval.companies)
+    dupe = 
+      Approval.find_perfume_by_name_con_comp_sex(perfume_approval.perfume_name, 
+                                                 perfume_approval.concentration,
+                                                 perfume_approval.companies,
+                                                 perfume_approval.gender)
 
-    if List.first(perfume) == nil && List.first(perfume_approval.companies) != nil do
+    if dupe == false do
       case Approval.approve_perfume(perfume_approval) do
         {:ok, new_perfume} ->
+
           {:ok, _perfume} = 
             Approval.update_perfume_approval_no_assoc(perfume_approval, %{approved: true})
 
@@ -84,7 +87,8 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
           |> put_flash(:success, "Perfume created successfully.")
           |> redirect(to: Routes.admin_perfume_path(conn, :show, new_perfume))
 
-        {:error, _changeset } ->
+        {:error, changeset } ->
+          IO.inspect(changeset)
           conn
           |> put_flash(:danger, "ERROR: Perfume created unsuccessfully.")
           |> render("show.html", perfume: perfume_approval)
