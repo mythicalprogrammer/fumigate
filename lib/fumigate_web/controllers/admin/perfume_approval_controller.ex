@@ -88,7 +88,6 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
           |> redirect(to: Routes.admin_perfume_path(conn, :show, new_perfume))
 
         {:error, changeset } ->
-          IO.inspect(changeset)
           conn
           |> put_flash(:danger, "ERROR: Perfume created unsuccessfully.")
           |> render("show.html", perfume: perfume_approval)
