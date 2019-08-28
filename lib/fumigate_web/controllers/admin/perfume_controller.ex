@@ -88,7 +88,6 @@ defmodule FumigateWeb.Admin.PerfumeController do
         |> redirect(to: Routes.admin_perfume_path(conn, :show, perfume))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        IO.inspect(changeset)
         render(conn, "edit.html", perfume: perfume, changeset: changeset)
     end
   end
