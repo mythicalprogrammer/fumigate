@@ -852,11 +852,13 @@ defmodule Fumigate.Fragrance do
     PerfumeAccordJoin.changeset(perfume_accord_join, %{})
   end
 
-  def find_perfume_by_name_con_comp(name, concentration, companies) do
-    Perfume
-    |> Perfume.get_all_perfume_by_perfume_name_con(name, concentration, companies) 
-    #|> print_sql()
-    |> Repo.all()
+  def find_perfume_by_name_con_comp_sex(name, concentration, companies, gender) do
+    results = Perfume
+              |> Perfume.get_all_perfume_by_name_con_sex(name, concentration, gender) 
+              |> Repo.all()
+
+    companies = for company <- companies, do: String.to_integer(company) 
+    Enum.sort(results) == Enum.sort(companies)
   end
 
   defp print_sql(queryable) do

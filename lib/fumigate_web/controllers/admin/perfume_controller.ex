@@ -21,13 +21,13 @@ defmodule FumigateWeb.Admin.PerfumeController do
   end
 
   def create(conn, %{"perfume" => perfume_params}) do
-
     perfume_dupe = 
-      Fragrance.find_perfume_by_name_con_comp(perfume_params["perfume_name"], 
-                                              perfume_params["concentration"],
-                                              perfume_params["company"])
+      Fragrance.find_perfume_by_name_con_comp_sex(perfume_params["perfume_name"], 
+                                                  perfume_params["concentration"],
+                                                  perfume_params["company_id"],
+                                                  perfume_params["gender"])
 
-    if List.first(perfume_dupe) == nil do 
+    if perfume_dupe == false do 
       case Fragrance.create_perfume(perfume_params) do
         {:ok, perfume} ->
           conn
