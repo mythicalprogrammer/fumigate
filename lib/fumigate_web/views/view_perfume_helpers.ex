@@ -45,11 +45,12 @@ defmodule FumigateWeb.ViewPerfumeHelpers do
   end
 
   def company_selected(params) do
-    check = Map.has_key?(params, :companies)
-    if check do
-      company_selected_aux(params.companies) 
-    else
-      nil
+    cond do
+      # this is for changeset
+      Map.has_key?(params, :companies) ->
+        company_selected_aux(params.companies) 
+      true ->
+        nil
     end
   end
 

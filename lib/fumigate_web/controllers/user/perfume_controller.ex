@@ -43,18 +43,20 @@ defmodule FumigateWeb.User.PerfumeController do
           |> redirect(to: Routes.perfume_path(conn, :index))
   
         {:error, %Ecto.Changeset{} = changeset} ->
-            conn
-            |> put_flash(:danger, "ERROR: Perfume created unsuccessfully.")
-            |> render("new.html", 
-                      changeset: changeset,
-                      perfume: perfume_params)
+          conn
+          |> put_flash(:danger, "ERROR: Perfume created unsuccessfully.")
+          |> render("new.html", 
+                    changeset: changeset,
+                    perfume: perfume_params)
       end
     else 
       # dupe or no company
+      changeset = Approval.PerfumeApproval.changeset(%PerfumeApproval{}, perfume_params)
       conn
       |> put_flash(:warning,
                    "ERROR: Perfume to be approve is a dupe or there is no companies associated to it.")
-      |> render("show.html",
+      |> render("new.html", 
+                changeset: changeset,
                 perfume: perfume_params)
     end
   end
