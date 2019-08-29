@@ -52,14 +52,27 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
                 perfume_approval_note_joins: :note  
               ])
 
-    case Approval.update_perfume(perfume, perfume_params) do
-      {:ok, perfume} ->
-        conn
-        |> put_flash(:info, "Perfume updated successfully.")
-        |> redirect(to: Routes.admin_perfume_approval_path(conn, :show, perfume))
+    perfume_dupe = 
+      Approval.find_perfume_approval_by_name_con_comp_sex(
+        perfume_params["perfume_name"], 
+        perfume_params["concentration"],
+        perfume_params["company_id"],
+        perfume_params["gender"])
 
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", perfume: perfume, changeset: changeset)
+    if perfume_dupe == false do 
+      case Approval.update_perfume(perfume, perfume_params) do
+        {:ok, perfume} ->
+          conn
+          |> put_flash(:info, "Perfume Approval updated successfully.")
+          |> redirect(to: Routes.admin_perfume_approval_path(conn, :show, perfume))
+
+        {:error, %Ecto.Changeset{} = changeset} ->
+          render(conn, "edit.html", perfume: perfume, changeset: changeset)
+      end
+    else
+      conn
+      |> put_flash(:warning, "ERROR: Perfume Approval is a dupe.")
+      |> redirect(to: Routes.admin_perfume_approval_path(conn, :show, perfume))
     end
   end
 
