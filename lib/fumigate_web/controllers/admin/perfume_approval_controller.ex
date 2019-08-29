@@ -84,7 +84,7 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
                                                  perfume_approval_note_joins: :note
                                               ])
 
-    dupe = 
+    {dupe, perfume_id} = 
       Fragrance.find_perfume_by_name_con_comp_sex(
         perfume_approval.perfume_name, 
         perfume_approval.concentration,
