@@ -96,6 +96,6 @@ defmodule Fumigate.Helpers.PerfumeHelper do
               concentration: ^concentration,
               gender: ^gender
       ],
-      select: j.company_id 
+      select: {j.company_id, p.id}
   end
 end

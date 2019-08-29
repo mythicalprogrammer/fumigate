@@ -8,6 +8,11 @@ defmodule FumigateWeb.User.PerfumeController do
   plug Fumigate.Plug.NoteList when action in [:new, :create, :edit, :update]
   plug Fumigate.Plug.CompanyList when action in [:new, :create, :edit, :update]
 
+  @perfume_approval_struct %PerfumeApproval{
+    companies: [],
+    accords: []
+  }
+
   #def index(conn, params) do
     # get user
     #  params = Map.put(params, :page_size, 25)
@@ -19,21 +24,23 @@ defmodule FumigateWeb.User.PerfumeController do
   def new(conn, _params) do
     changeset = Approval.change_perfume_approval(%PerfumeApproval{})
     render(conn, "new.html", changeset: changeset,
-           perfume: %{})
+           perfume: @perfume_approval_struct)
   end
 
   def create(conn, %{"perfume_approval" => perfume_params}) do
     submitter_user_id = conn.assigns.current_user.id
     perfume_params = 
       Map.put(perfume_params, "submitter_user_id", submitter_user_id)
+    perfume_approval = %PerfumeApproval{
+      @perfume_approval_struct | 
+      submitter_user_id: submitter_user_id}
 
-    dupe = 
+    {dupe, _perfume_ids} = 
       Approval.find_perfume_approval_by_name_con_comp_sex(
         perfume_params["perfume_name"], 
         perfume_params["concentration"],
         perfume_params["company_id"],
         perfume_params["gender"])
-
 
     if dupe == false do
       case Approval.create_perfume_approval(perfume_params) do
@@ -47,17 +54,17 @@ defmodule FumigateWeb.User.PerfumeController do
           |> put_flash(:danger, "ERROR: Perfume created unsuccessfully.")
           |> render("new.html", 
                     changeset: changeset,
-                    perfume: perfume_params)
+                    perfume: perfume_approval)
       end
     else 
       # dupe or no company
       changeset = Approval.PerfumeApproval.changeset(%PerfumeApproval{}, perfume_params)
       conn
       |> put_flash(:warning,
-                   "ERROR: Perfume to be approve is a dupe or there is no companies associated to it.")
+                   "ERROR: Perfume to be approve is a dupe.")
       |> render("new.html", 
                 changeset: changeset,
-                perfume: perfume_params)
+                perfume: perfume_approval)
     end
   end
 

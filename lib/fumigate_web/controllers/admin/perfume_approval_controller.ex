@@ -52,14 +52,17 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
                 perfume_approval_note_joins: :note  
               ])
 
-    perfume_dupe = 
+    {perfume_dupe, perfume_dupe_id} = 
       Approval.find_perfume_approval_by_name_con_comp_sex(
         perfume_params["perfume_name"], 
         perfume_params["concentration"],
         perfume_params["company_id"],
         perfume_params["gender"])
 
-    if perfume_dupe == false do 
+    perfume_dupe_id = List.first(perfume_dupe_id)
+
+    if (perfume_dupe == false) 
+      || (perfume_dupe_id == String.to_integer(id)) do 
       case Approval.update_perfume(perfume, perfume_params) do
         {:ok, perfume} ->
           conn

@@ -856,7 +856,7 @@ defmodule Fumigate.Fragrance do
   def find_perfume_by_name_con_comp_sex(
     name, concentration, companies, gender) do
     if companies == nil do
-      false
+      {false, []}
     else
       results = 
         Perfume
@@ -866,6 +866,7 @@ defmodule Fumigate.Fragrance do
 
       company_ids = 
         for {company_id, _perfume_id} <- results, do: company_id 
+      company_ids = Enum.uniq(company_ids)
 
       perfume_ids = 
         for {_company_id, perfume_id} <- results, do: perfume_id 
