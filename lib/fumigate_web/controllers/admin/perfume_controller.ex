@@ -8,6 +8,12 @@ defmodule FumigateWeb.Admin.PerfumeController do
   plug Fumigate.Plug.NoteList when action in [:new, :create, :edit, :update]
   plug Fumigate.Plug.CompanyList when action in [:new, :create, :edit, :update]
 
+  @perfume_struct %Perfume{
+    companies: [],
+    accords: [],
+    perfume_note_joins: []
+  }
+
   def index(conn, params) do 
     params = Map.put(params, :page_size, 25)
     page = Fragrance.list_perfumes_paginate(params) 
@@ -17,7 +23,7 @@ defmodule FumigateWeb.Admin.PerfumeController do
   def new(conn, _params) do
     changeset = Fragrance.change_perfume(%Perfume{}) 
     render(conn, "new.html", changeset: changeset,
-           perfume: %{})
+           perfume: @perfume_struct)
   end
 
   def create(conn, %{"perfume" => perfume_params}) do
@@ -35,13 +41,13 @@ defmodule FumigateWeb.Admin.PerfumeController do
           |> redirect(to: Routes.admin_perfume_path(conn, :show, perfume))
 
         {:error, changeset} ->
-          render(conn, "new.html", changeset: changeset, perfume: perfume_params)
+          render(conn, "new.html", changeset: changeset, perfume: @perfume_struct)
       end
     else 
       changeset = Fragrance.Perfume.changeset(%Perfume{}, perfume_params) 
       conn
       |> put_flash(:warning, "ERROR: Perfume is a dupe.")
-      |> render("new.html", changeset: changeset, perfume: perfume_params)
+      |> render("new.html", changeset: changeset, perfume: @perfume_struct)
     end
   end
 

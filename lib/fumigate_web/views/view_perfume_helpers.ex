@@ -44,23 +44,6 @@ defmodule FumigateWeb.ViewPerfumeHelpers do
     |> raw 
   end
 
-  def company_selected(params) do
-    cond do
-      # this is for changeset
-      Map.has_key?(params, :companies) ->
-        company_selected_aux(params.companies) 
-      true ->
-        nil
-    end
-  end
-
-  defp company_selected_aux(nil) do
-    nil
-  end
-  defp company_selected_aux(companies) do
-    for company <- companies, do: company.id
-  end
-
   def note_selected(params, pyramid) do
     check = Map.has_key?(params, :perfume_note_joins)
     if check do
@@ -77,21 +60,5 @@ defmodule FumigateWeb.ViewPerfumeHelpers do
     notejoins 
     |> Enum.filter(fn notejoin -> notejoin.pyramid_note == pyramid end)
     |> Enum.map(fn notejoin -> notejoin.note.id end)
-  end
-
-  def accord_selected(params) do
-    check = Map.has_key?(params, :accords)
-    if check do
-      accord_selected_aux(params.accords) 
-    else
-      nil
-    end
-  end
-
-  defp accord_selected_aux(nil) do
-    nil
-  end
-  defp accord_selected_aux(accords) do
-    for accord <- accords, do: accord.id
   end
 end
