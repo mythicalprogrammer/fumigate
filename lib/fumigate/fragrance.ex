@@ -855,13 +855,16 @@ defmodule Fumigate.Fragrance do
 
   def find_perfume_by_name_con_comp_sex(
     name, concentration, companies, gender) do
+    if companies == nil do
+      false
+    else
+      results = Perfume
+                |> Perfume.get_all_perfume_by_name_con_sex(
+                  name, concentration, gender) 
+                |> Repo.all()
 
-    results = Perfume
-              |> Perfume.get_all_perfume_by_name_con_sex(
-                name, concentration, gender) 
-              |> Repo.all()
-
-    companies = format_company(companies)
-    Enum.sort(results) == Enum.sort(companies)
+      companies = format_company(companies)
+      Enum.sort(results) == Enum.sort(companies)
+    end
   end
 end

@@ -193,13 +193,16 @@ defmodule Fumigate.Approval do
 
   def find_perfume_approval_by_name_con_comp_sex(
     name, concentration, companies, gender) do
+    if companies == nil do
+      false
+    else
+      results = PerfumeApproval
+                |> PerfumeApproval.get_all_perfume_approval_by_name_con_sex(
+                  name, concentration, gender) 
+                |> Repo.all()
 
-    results = PerfumeApproval
-              |> PerfumeApproval.get_all_perfume_approval_by_name_con_sex(
-                name, concentration, gender) 
-              |> Repo.all()
-
-    companies = format_company(companies)
-    Enum.sort(results) == Enum.sort(companies)
+      companies = format_company(companies)
+      Enum.sort(results) == Enum.sort(companies)
+    end
   end
 end
