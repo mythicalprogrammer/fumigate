@@ -85,7 +85,7 @@ defmodule Fumigate.Helpers.PerfumeHelper do
               concentration: ^concentration,
               gender: ^gender
       ],
-      select: j.company_id 
+      select: {j.company_id, p.id}
   end
 
   def get_all_perfume_approval_by_name_con_sex_module(

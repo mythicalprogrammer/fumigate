@@ -858,13 +858,21 @@ defmodule Fumigate.Fragrance do
     if companies == nil do
       false
     else
-      results = Perfume
-                |> Perfume.get_all_perfume_by_name_con_sex(
-                  name, concentration, gender) 
-                |> Repo.all()
+      results = 
+        Perfume
+        |> Perfume.get_all_perfume_by_name_con_sex(
+          name, concentration, gender) 
+        |> Repo.all()
+
+      company_ids = 
+        for {company_id, _perfume_id} <- results, do: company_id 
+
+      perfume_ids = 
+        for {_company_id, perfume_id} <- results, do: perfume_id 
+      perfume_ids = Enum.uniq(perfume_ids)
 
       companies = format_company(companies)
-      Enum.sort(results) == Enum.sort(companies)
+      {Enum.sort(company_ids) == Enum.sort(companies), perfume_ids}
     end
   end
 end

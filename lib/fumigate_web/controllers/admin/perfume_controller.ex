@@ -27,11 +27,12 @@ defmodule FumigateWeb.Admin.PerfumeController do
   end
 
   def create(conn, %{"perfume" => perfume_params}) do
-    perfume_dupe = 
-      Fragrance.find_perfume_by_name_con_comp_sex(perfume_params["perfume_name"], 
-                                                  perfume_params["concentration"],
-                                                  perfume_params["company_id"],
-                                                  perfume_params["gender"])
+    {perfume_dupe, perfume_dupe_id} = 
+      Fragrance.find_perfume_by_name_con_comp_sex(
+        perfume_params["perfume_name"], 
+        perfume_params["concentration"],
+        perfume_params["company_id"],
+        perfume_params["gender"])
 
     if perfume_dupe == false do 
       case Fragrance.create_perfume(perfume_params) do
@@ -87,13 +88,17 @@ defmodule FumigateWeb.Admin.PerfumeController do
                 perfume_note_joins: :note
               ])
 
-    perfume_dupe = 
-      Fragrance.find_perfume_by_name_con_comp_sex(perfume_params["perfume_name"], 
-                                                  perfume_params["concentration"],
-                                                  perfume_params["company_id"],
-                                                  perfume_params["gender"])
+    {perfume_dupe, perfume_dupe_id} = 
+      Fragrance.find_perfume_by_name_con_comp_sex(
+        perfume_params["perfume_name"], 
+        perfume_params["concentration"],
+        perfume_params["company_id"],
+        perfume_params["gender"])
 
-    if perfume_dupe == false do 
+    perfume_dupe_id = List.first(perfume_dupe_id)
+    
+    if (perfume_dupe == false) 
+      || (perfume_dupe_id == String.to_integer(id)) do 
       case Fragrance.update_perfume(perfume, perfume_params) do
         {:ok, perfume} ->
           conn
