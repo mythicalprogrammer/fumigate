@@ -113,7 +113,7 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
     else 
       # dupe or no company
       conn
-      |> put_flash(:warning, "ERROR: Perfume to be approve is a dupe or there is no companies associated to it.")
+      |> put_flash(:warning, "ERROR: Perfume to be approve is a dupe.")
       |> render("show.html", perfume: perfume_approval)
     end
   end
