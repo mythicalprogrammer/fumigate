@@ -80,6 +80,6 @@ defmodule Fumigate.Fragrance.Perfume do
   end
 
   def get_all_perfume_by_name_con_sex(query, name, concentration, gender) do 
-    get_all_perfume_by_name_con_sex_module(query, name, concentration, gender, Fumigate.Fragrance.PerfumeCompanyJoin)  
+    get_all_perf_by_name_con_sex_module_join_table(query, name, concentration, gender, Fumigate.Fragrance.PerfumeCompanyJoin, join_table_perfume())  
   end
 end

@@ -82,6 +82,6 @@ defmodule Fumigate.Approval.PerfumeApproval do
   end
 
   def get_all_perfume_approval_by_name_con_sex(query, name, concentration, gender) do 
-    get_all_perfume_approval_by_name_con_sex_module(query, name, concentration, gender, Fumigate.Approval.PerfumeApprovalCompanyJoin)  
+    get_all_perf_by_name_con_sex_module_join_table(query, name, concentration, gender, Fumigate.Approval.PerfumeApprovalCompanyJoin, join_table_perfume_approval())
   end
 end

@@ -77,10 +77,11 @@ defmodule Fumigate.Helpers.PerfumeHelper do
     end
   end
 
-  def get_all_perfume_by_name_con_sex_module(
-    query, name, concentration, gender, module_name) do 
+  def get_all_perf_by_name_con_sex_module_join_table(
+    query, name, concentration, gender, module_name, join_table_f) do 
     from p in query,
-      join: j in ^module_name, where: p.id == j.perfume_id,
+      join: j in ^module_name, 
+      where: ^join_table_f,
       where: [perfume_name: ^name, 
               concentration: ^concentration,
               gender: ^gender
@@ -88,14 +89,11 @@ defmodule Fumigate.Helpers.PerfumeHelper do
       select: {j.company_id, p.id}
   end
 
-  def get_all_perfume_approval_by_name_con_sex_module(
-    query, name, concentration, gender, module_name) do 
-    from p in query,
-      join: j in ^module_name, where: p.id == j.perfume_approval_id,
-      where: [perfume_name: ^name, 
-              concentration: ^concentration,
-              gender: ^gender
-      ],
-      select: {j.company_id, p.id}
+  def join_table_perfume() do
+    dynamic([p, j], p.id == j.perfume_id)
+  end
+
+  def join_table_perfume_approval() do
+    dynamic([p, j], p.id == j.perfume_approval_id)
   end
 end
