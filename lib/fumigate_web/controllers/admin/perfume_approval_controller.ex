@@ -87,7 +87,7 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
                                                  perfume_approval_note_joins: :note
                                               ])
 
-    {dupe, perfume_id} = 
+    {dupe, _perfume_id} = 
       Fragrance.find_perfume_by_name_con_comp_sex(
         perfume_approval.perfume_name, 
         perfume_approval.concentration,
@@ -105,7 +105,7 @@ defmodule FumigateWeb.Admin.PerfumeApprovalController do
           |> put_flash(:success, "Perfume created successfully.")
           |> redirect(to: Routes.admin_perfume_path(conn, :show, new_perfume))
 
-        {:error, changeset } ->
+        {:error, _changeset } ->
           conn
           |> put_flash(:danger, "ERROR: Perfume created unsuccessfully.")
           |> render("show.html", perfume: perfume_approval)

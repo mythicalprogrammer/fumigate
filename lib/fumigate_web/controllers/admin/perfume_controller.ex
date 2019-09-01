@@ -27,7 +27,7 @@ defmodule FumigateWeb.Admin.PerfumeController do
   end
 
   def create(conn, %{"perfume" => perfume_params}) do
-    {perfume_dupe, perfume_dupe_id} = 
+    {perfume_dupe, _perfume_dupe_id} = 
       Fragrance.find_perfume_by_name_con_comp_sex(
         perfume_params["perfume_name"], 
         perfume_params["concentration"],
