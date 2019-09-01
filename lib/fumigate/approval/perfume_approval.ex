@@ -20,25 +20,31 @@ defmodule Fumigate.Approval.PerfumeApproval do
 
     many_to_many :companies, Fumigate.Fragrance.Company, 
       join_through: Fumigate.Approval.PerfumeApprovalCompanyJoin, 
-      on_replace: :delete
+      on_replace: :delete,
+      defaults: []
 
     many_to_many :notes, Fumigate.Fragrance.Note, 
       join_through: Fumigate.Approval.PerfumeApprovalNoteJoin,
-      on_replace: :delete
+      on_replace: :delete,
+      defaults: []
 
     many_to_many :accords, Fumigate.Fragrance.Accord, 
       join_through: Fumigate.Approval.PerfumeApprovalAccordJoin,
-      on_replace: :delete
+      on_replace: :delete,
+      defaults: []
 
     has_many :perfume_approval_company_joins, 
       Fumigate.Approval.PerfumeApprovalCompanyJoin,
-      on_replace: :delete
+      on_replace: :delete,
+      defaults: []
     has_many :perfume_approval_accord_joins, 
       Fumigate.Approval.PerfumeApprovalAccordJoin,
-      on_replace: :delete
+      on_replace: :delete,
+      defaults: []
     has_many :perfume_approval_note_joins, 
       Fumigate.Approval.PerfumeApprovalNoteJoin,
-      on_replace: :delete
+      on_replace: :delete,
+      defaults: []
 
     timestamps()
   end
