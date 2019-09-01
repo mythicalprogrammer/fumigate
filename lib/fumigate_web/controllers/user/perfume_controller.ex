@@ -1,6 +1,7 @@
 defmodule FumigateWeb.User.PerfumeController do
   use FumigateWeb, :controller
 
+  alias Fumigate.Fragrance
   alias Fumigate.Approval
   alias Fumigate.Approval.PerfumeApproval
 
@@ -42,7 +43,15 @@ defmodule FumigateWeb.User.PerfumeController do
         perfume_params["company_id"],
         perfume_params["gender"])
 
-    if dupe == false do
+    {dupe2, _perfume_ids} = 
+      Fragrance.find_perfume_by_name_con_comp_sex(
+        perfume_params["perfume_name"], 
+        perfume_params["concentration"],
+        perfume_params["company_id"],
+        perfume_params["gender"])
+
+
+    if (dupe == false) && (dupe2 == false) do
       case Approval.create_perfume_approval(perfume_params) do
         {:ok, _perfume} ->
           conn
