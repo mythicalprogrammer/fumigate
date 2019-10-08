@@ -73,6 +73,11 @@ defmodule FumigateWeb.Router do
     resources "/perfumes_approval", PerfumeApprovalController
   end
 
+  # For let's encrypt cron self cert renewel
+  scope "/.well-known/acme-challenge", FumigateWeb do
+      get "/:challenge", AcmeChallengeController, :show
+  end
+
   #pipeline :api do
   #  plug :accepts, ["json"]
   #end
