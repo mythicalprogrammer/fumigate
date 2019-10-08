@@ -75,7 +75,8 @@ defmodule FumigateWeb.Router do
 
   # For let's encrypt cron self cert renewel
   scope "/.well-known/acme-challenge", FumigateWeb do
-      get "/:challenge", AcmeChallengeController, :show
+    pipe_through [:browser]
+    get "/:challenge", AcmeChallengeController, :show
   end
 
   #pipeline :api do
