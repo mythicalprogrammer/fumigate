@@ -57,7 +57,7 @@ defmodule Fumigate.MixProject do
       {:sobelow, "~> 0.7.6"},
       {:html_sanitize_ex, "~> 1.3"},
       {:scrivener_html, "~> 1.8"},
-      {:comeonin, "~> 5.1"},
+      {:comeonin, "~> 5.3"},
       {:bcrypt_elixir, "~> 2.0"},
       {:pow, "~> 1.0.4"},
       {:recaptcha, "~> 2.3"}

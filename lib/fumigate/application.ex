@@ -10,9 +10,10 @@ defmodule Fumigate.Application do
     children = [
       # Start the Ecto repository
       Fumigate.Repo,
-      {Phoenix.PubSub, Fumigate.PubSub},
+      # Start the PubSub system 
+      {Phoenix.PubSub, name: Fumigate.PubSub},
       # Start the endpoint when the application starts
-      FumigateWeb.Endpoint
+      FumigateWeb.Endpoint,
       # Starts a worker by calling: Fumigate.Worker.start_link(arg)
       # {Fumigate.Worker, arg},
     ]
