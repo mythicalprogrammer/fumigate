@@ -24,7 +24,7 @@
   </head>
   <body class="d-flex flex-column">
     <header>
-    <%= #render FumigateWeb.NavbarView, "navbar.html", assigns %>
+    <%= render FumigateWeb.NavbarView, "navbar.html", assigns %>
     </header>
 
     <!-- Begin page content -->
@@ -34,7 +34,7 @@
 
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
  
-    <%= #render "_footer.html", assigns %>
+    <%= render "_footer.html", assigns %>
 
 	<!-- START Bootstrap-Cookie-Alert -->
 	<div class="alert text-center cookiealert" role="alert">
