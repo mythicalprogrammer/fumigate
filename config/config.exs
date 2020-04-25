@@ -14,7 +14,7 @@ config :fumigate, FumigateWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "OTZjYpX0GIVGuiofbe4ZxII+UIA9jeEK1Sazo0LVT3d0Ojza3ZqMs/Wpbo/oxujN",
   render_errors: [view: FumigateWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Fumigate.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: Fumigate.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,
